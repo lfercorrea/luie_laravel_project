@@ -1,11 +1,25 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-// rotas criadas por mim
-Route::view('/teste', 'teste');
+// use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\SiteController;
+use App\Http\Controllers\AdminController;
 
-// rotas padrão do laravel
-Route::view('/', 'welcome');
+/*
+* rotas criadas por mim
+*/
+Route::get('/', function () {
+    return view('index');
+});
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+Route::view('/teste', 'teste');
+// Route::get('/produtos', [ProdutoController::class, 'index']);
+Route::get('/produtos', [SiteController::class, 'index'])->name('site.index');
+
+/*
+* rotas padrão do laravel
+*/
+Route::view('/welcome', 'welcome');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Mercadoria;
+use App\Models\Admin;
+use App\Models\Produto;
 use Illuminate\Http\Request;
 
-class MercadoriaController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $produtos = Produto::paginate(30);
+
+        return view('admin.index', [
+            'produtos' => $produtos,
+        ]);
     }
 
     /**
@@ -34,7 +39,7 @@ class MercadoriaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Mercadoria $mercadoria)
+    public function show(Admin $admin)
     {
         //
     }
@@ -42,7 +47,7 @@ class MercadoriaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Mercadoria $mercadoria)
+    public function edit(Admin $admin)
     {
         //
     }
@@ -50,7 +55,7 @@ class MercadoriaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Mercadoria $mercadoria)
+    public function update(Request $request, Admin $admin)
     {
         //
     }
@@ -58,7 +63,7 @@ class MercadoriaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Mercadoria $mercadoria)
+    public function destroy(Admin $admin)
     {
         //
     }
