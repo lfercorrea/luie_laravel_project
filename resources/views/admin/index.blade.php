@@ -1,41 +1,53 @@
 @extends('admin.layout')
 
 @section('content')
-    <div class='center'>
-        <h4>Painel de gestão de produtos</h4>
+
+    <div class="container center">
+        <h4>Painel de administração</h4>
+    </div>
+
+    <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+        <h5>Gestão de produtos</h5>
         <hr>
     </div>
 
-    <div class="row">
-        {{ $produtos->links('custom/pagination') }}
+    <div class="container">
+        <div class="row">
+            <div class="col s6 m4 center">
+                <div class="container">
+                    <a href="/admin/categorias" class="waves-effect"><i class="material-icons center large red-text text-red-darken-1">category</i></a>
+                </div>
+                <div class="container">
+                    Categorias de produtos
+                </div>
+            </div>
+            <div class="col s6 m4 center">
+                <div class="container">
+                    <a href="/admin/produtos" class="waves-effect"><i class="material-icons center large red-text text-red-darken-1">shopping_cart</i></a>
+                </div>
+                <div class="container">
+                    Produtos
+                </div>
+            </div>
+        </div>
     </div>
 
-    <table class="striped">
-        <thead>
-        <tr>
-            <th>Produto</th>
-            <th>Descrição</th>
-            <th>Preço</th>
-            <th>Slug</th>
-            <th>Imagem URI</th>
-        </tr>
-        </thead>
+    <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+        <h5>Gestão de pessoas</h5>
+        <hr>
+    </div>
 
-        <tbody>
-            @foreach ($produtos as $produto)
-            <tr>
-                <td>{{ $produto->nome }}</td>
-                <td>{{ $produto->descricao }}</td>
-                <td>{{ $produto->preco }}</td>
-                <td>{{ $produto->slug }}</td>
-                <td>{{ $produto->imagem }}</td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-
-    <div class="row">
-        {{ $produtos->links('custom/pagination') }}
+    <div class="container">
+        <div class="row">
+            <div class="col s6 m4 center">
+                <div class="container">
+                    <a href="/admin/clientes" class="waves-effect"><i class="material-icons center large red-text text-red-darken-1">people_alt</i></a>
+                </div>
+                <div class="container">
+                    Dados de clientes
+                </div>
+            </div>
+        </div>
     </div>
     
 @endsection

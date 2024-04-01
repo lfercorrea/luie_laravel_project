@@ -14,7 +14,12 @@ class ProdutoController extends Controller
     public function index(): View
     {
         // $produtos = Produto::all();
-        $produtos = Produto::paginate(12);
+
+        // $produto = Produto::find($id);
+        // $nomeCategoria = $produto->categoria->nome;
+
+        $produtos = Produto::with('categoria')->paginate(12);
+        // $produtos = Produto::paginate(12);
 
         return view('produtos', [
             'produtos' => $produtos,

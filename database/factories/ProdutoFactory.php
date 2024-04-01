@@ -23,6 +23,7 @@ class ProdutoFactory extends Factory
 
         // populacao inicial da tabela
         return [
+            'quantidade' => random_int(1, 20),
             'nome' => $nome,
             'descricao' => $this->faker->text,
             'preco' => $this->faker->randomFloat(2, 0, 1000),  // randomFloat(casas, inicio, fim)

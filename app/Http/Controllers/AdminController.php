@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Categoria;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 
@@ -13,9 +14,57 @@ class AdminController extends Controller
      */
     public function index()
     {
+        return view('admin.index');
+    }
+
+    public function produtos()
+    {
+        return view('admin.produtos');
+    }
+
+    public function estoque()
+    {
         $produtos = Produto::paginate(30);
 
-        return view('admin.index', [
+        return view('admin.estoque', [
+            'produtos' => $produtos,
+        ]);
+    }
+
+    public function cadastrar_produto()
+    {
+        $produto = new Produto();
+        $categorias = Categoria::all();
+
+        return view('admin.form_produto', [
+            'produto' => $produto, 
+            'categorias' => $categorias, 
+            'modo' => 'cadastrar',
+        ]);
+    }
+
+    public function alterar_produto($id)
+    {
+        $produto = Produto::findOrFail($id);
+        $produtos = Produto::with('categoria');
+        $categorias = Categoria::all();
+
+        return view('admin.form_produto', [
+            'produto' => $produto, 
+            'produtos' => $produtos,
+            'categorias' => $categorias, 
+            'modo' => 'alterar',
+        ]);
+        // return view('admin.alterar_produto', [
+        //     'produtos' => $produtos,
+        // ]);
+    }
+
+    public function excluir_produto()
+    {
+        $produtos = Produto::paginate(30);
+
+        return view('admin.excluir_produto', [
             'produtos' => $produtos,
         ]);
     }

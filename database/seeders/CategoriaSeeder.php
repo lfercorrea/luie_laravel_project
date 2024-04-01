@@ -13,6 +13,15 @@ class CategoriaSeeder extends Seeder
      */
     public function run(): void
     {
-        Categoria::factory(20)->create();
+        // Categoria::factory(20)->create();
+        Categoria::create([
+            'nome' => 'Lingeries',
+            'descricao' => 'Descrição para lingeries',
+        ]);
+
+        Categoria::create([
+            'nome' => 'Pijamas',
+            'descricao' => 'Descrição para pijamas',
+        ]);
     }
 }
