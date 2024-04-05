@@ -1,50 +1,7 @@
-{{-- <ul class="pagination">
-
-    <li class="disabled">
-        <a href="#!">
-            <i class="material-icons">chevron_left</i>
-        </a>
-    </li>
-
-    <li class="active">
-        <a href="#!">1</a>
-    </li>
-
-    <li class="waves-effect">
-        <a href="#!">
-            <i class="material-icons">chevron_right</i>
-        </a>
-    </li>
-    
-</ul> --}}
 <div class='container center'>
     @if ($paginator->hasPages())
         <ul class="pagination">
         {{-- Previous Page Link --}}
-        {{-- @if ($paginator->onFirstPage())
-            <li class="disabled">
-                <a href="#!">
-                    <i class="material-icons">chevron_left</i>
-                </a>
-            </li>
-        @else
-            <li class="waves-effect">
-                <a href="{{ $paginator->previousPageUrl() }}"><i class="material-icons">chevron_left</i></a>
-            </li>
-        @endif --}}
-
-        {{-- Next Page Link --}}
-        {{-- @if ($paginator->hasMorePages())
-            <li class="waves-effect">
-                <a href="{{ $paginator->nextPageUrl() }}"><i class="material-icons">chevron_right</i></a>
-            </li>
-        @else
-            <li class="disabled">
-                <a href="#!">
-                    <i class="material-icons">chevron_right</i>
-                </a>
-            </li>
-        @endif --}}
         </ul>
         <p class="small text-muted">
             {!! __('Mostrando de') !!}
@@ -81,7 +38,7 @@
                 @if (is_array($element))
                     @foreach ($element as $page => $url)
                         @if ($page == $paginator->currentPage())
-                            <li class="active">
+                            <li class="active red black">
                                 <a>{{ $page }}</a>
                             </li>
                             {{-- <li class="page-item active" aria-current="page"><span class="page-link">{{ $page }}</span></li> --}}

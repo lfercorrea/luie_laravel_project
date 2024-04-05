@@ -7,7 +7,7 @@ use App\Models\Produto;
 
 class SiteController extends Controller
 {
-    public function index()
+    public function produtos()
     {
         // $produtos = Produto::all();
         $produtos = Produto::paginate(12);

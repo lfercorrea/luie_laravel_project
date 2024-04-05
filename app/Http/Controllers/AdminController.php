@@ -6,6 +6,8 @@ use App\Models\Admin;
 use App\Models\Categoria;
 use App\Models\Produto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
@@ -33,11 +35,13 @@ class AdminController extends Controller
 
     public function cadastrar_produto()
     {
+        $title = "Cadastro de produto";
         $produto = new Produto();
         $categorias = Categoria::all();
 
         return view('admin.form_produto', [
             'produto' => $produto, 
+            'id_user' => 1, // referente ao metodo store() abaixo
             'categorias' => $categorias, 
             'modo' => 'cadastrar',
         ]);
@@ -82,7 +86,50 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->modo === 'cadastrar') {
+            $id_user = 1; // enquanto o sistema de cadastro de users não está pronto, id fixa em 1. após, será capturada por um input hidden html
+        }
+        elseif ($request->modo === 'alterar') {
+            $id_user = 1; // aqui, será puxada a id do user cadastrado com User::find($id)
+        }
+
+        Log::info('Iniciando método store');
+
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'preco' => 'required|numeric',
+            'quantidade' => 'required|integer',
+            'id_categoria' => 'required|exists:categorias,id',
+            'id_user' => 'required|exists:users,id',
+            'descricao' => 'nullable|string',
+            'imagem_produto' => 'nullable|image|mimes:jpeg,png|max:2048',
+        ]);
+
+        Log::info('Dados do formulário validados');
+
+        // instanciacao produto
+        $produto = new Produto();
+
+        $produto->quantidade = abs($request->quantidade);
+        $produto->nome = $request->nome;
+        $produto->descricao = $request->descricao;
+        $produto->preco = $request->preco;
+        $produto->slug = Str::slug($request->nome . '-' . substr($request->descricao, 0, 30));
+        $produto->id_user = $request->id_user;
+        $produto->id_categoria = $request->id_categoria;
+
+        // ajustes da imagem
+        if ($request->hasFile('imagem')) {
+            $imagem = $request->file('imagem');
+            $nomeImagem = time() . '_' . $imagem->getClientOriginalName();
+            $caminhoImagem = $imagem->storeAs('imagens', $nomeImagem);
+            $produto->imagem = $caminhoImagem;
+        }
+
+        
+        $produto->save();
+
+        return redirect()->route('admin.produtos')->with('success', 'Produto cadastrado com sucesso.');
     }
 
     /**

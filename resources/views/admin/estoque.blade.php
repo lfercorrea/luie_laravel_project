@@ -67,22 +67,6 @@
     <div class="row">
         {{ $produtos->links('custom/pagination') }}
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.modal');
-            var instances = M.Modal.init(elems);
-    
-            var deleteButtons = document.querySelectorAll('.modal-trigger');
-            deleteButtons.forEach(function(button) {
-                button.addEventListener('click', function() {
-                    var productId = this.dataset.productId;
-                    var form = document.getElementById('delete-form');
-                    form.action = '/admin/excluir/produto/' + productId;
-                });
-            });
-        });
-    </script>
     
     
 @endsection

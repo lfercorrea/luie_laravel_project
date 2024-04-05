@@ -12,27 +12,38 @@
 </div>
 
 <div class="row">
-    <form class="col s12" action="{{ $modo === 'cadastrar' ? '/admin/cadastrar/produto' : '/admin/alterar/produto/'.$produto->id }}" method="POST">
+    <form id="form-produto" class="col s12" action="{{ $modo === 'cadastrar' ? '/admin/cadastrar/produto/store' : '/admin/alterar/produto/' . $produto->id }}" method="POST" enctype="multipart/form-data">
         @csrf
         @if($modo === 'alterar')
             @method('PUT')
         @endif
+        <input type="hidden" name="modo" value="{{ $modo }}">
+
+        @if($modo === 'alterar')
+        <div class="row">
+            <div class="s12">
+                <span class="grey-text"><i>Produto cadastrado por <b>{{ $produto->user->name }}</b></i></span>
+            </div>
+        </div>
+        @endif
 
         <div class="row">
             <div class="input-field col s6 m3">
-                <input id="nome_produto" type="text" class="validate" name="nome" value="{{ old('nome', $produto->nome) }}">
-                <label for="nome_produto">Nome do produto</label>
+                {{-- referente ao id_user passado pelo AdminController.php --}}
+                <input type="hidden" name="id_user" value="1" />
+                <input id="nome" type="text" class="validate" name="nome" value="{{ old('nome', $produto->nome) }}">
+                <label for="nome">Nome do produto</label>
             </div>
             <div class="input-field col s6 m3">
-                <input id="preco_produto" type="number" placeholder="R$ 123,45" class="validate" name="preco" value="{{ old('preco', $produto->preco) }}">
-                <label for="preco_produto">Preço</label>
+                <input id="preco" type="number" placeholder="R$ 123,45" class="validate" name="preco" value="{{ old('preco', $produto->preco) }}">
+                <label for="preco">Preço</label>
             </div>
             <div class="input-field col s6 m3">
-                <input id="quantidade_produto" type="number" placeholder="123" class="validate" name="quantidade" value="{{ old('quantidade', $produto->quantidade) }}">
-                <label for="quantidade_produto">Quantidade</label>
+                <input id="quantidade" type="number" placeholder="123" class="validate" name="quantidade" value="{{ old('quantidade', $produto->quantidade) }}">
+                <label for="quantidade">Quantidade</label>
             </div>
             <div class="input-field col s6 m3">
-                <select>
+                <select name="id_categoria">
                   <option value="{{ old('id_categoria', $produto->id_categoria) }}" disabled selected>{{ $modo == 'cadastrar' ? 'Selecione' : old('id_categoria', $produto->categoria->nome) }}</option>
                   @foreach ($categorias as $categoria)
                     <option value="{{ $categoria->id }}">{{ $categoria->nome }}</option>
@@ -44,8 +55,8 @@
         <div class="row">
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea id="descricao_produto" class="materialize-textarea" name="descricao">{{ old('descricao', $produto->descricao) }}</textarea>
-                    <label for="descricao_produto">Descrição do produto</label>
+                    <textarea id="descricao" class="materialize-textarea" name="descricao">{{ old('descricao', $produto->descricao) }}</textarea>
+                    <label for="descricao">Descrição do produto</label>
                 </div>
             </div>
         </div>
@@ -60,34 +71,33 @@
         @endif
 
         <div class="row">
-            <form action="#" enctype="multipart/form-data">
-                <div class="file-field input-field">
-                    <div class="waves-effect btn red lighten-2">
-                        <span>Enviar arquivo</span>
-                        <input type="file" name="imagem_produto">
-                    </div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text">
-                        <label for="imagem_produto">Imagens podem ser do tipo JPG ou PNG</label>
-                    </div>
+            <div class="file-field input-field">
+                <div class="waves-effect btn red black">
+                    <span>Enviar arquivo</span>
+                    <input type="file" name="imagem">
                 </div>
-            </form>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                    <label for="imagem">Imagens podem ser do tipo JPG ou PNG</label>
+                </div>
+            </div>
         </div>
     </form>
+
     <div class="container center">
         <a class="waves-effect waves-teal btn-flat" onclick="history.back()">Voltar</a>
-        <a class="btn red lighten-2 white-text" href="/admin">Painel principal</a>
+        <a class="btn red black white-text" href="/admin">Painel principal</a>
         <button class="btn waves-effect waves-white white-text teal darken-1" type="submit" form="form-produto">
             <i class="material-icons right">check</i>{{ $modo }}
         </button>
     </div>
-</div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('select');
-        var instances = M.FormSelect.init(elems);
-    });
-</script>
+    @if ($msg = Session::get('fail') || $errors->any() )
+        
+        @include('messages.fail')
+
+    @endif
+
+</div>
 
 @endsection

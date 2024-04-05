@@ -1,0 +1,31 @@
+/**
+ * Arquivo de customização css.
+ * 
+ * Qualquer personalização de classe do materialize CSS deverá ser 
+ * incorporada neste arquivo, bem como qualquer criação de classe completamente nova.
+ * 
+ * @nando.correa
+ */
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.popup {
+    position: fixed;
+    bottom: 20px; /* Espaço em relação ao fundo da página */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999; /* Para garantir que esteja sempre acima do conteúdo */
+    width: 80%; /* Largura do popup, em relação ao container em que estiver inscrito */
+    max-width: 400px; /* Largura máxima do popup. testar em celulares, ajustar conforme necessário */
+}
