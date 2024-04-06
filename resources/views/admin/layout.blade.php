@@ -14,9 +14,9 @@
     <li>
       <div class="user-view">
         <div class="background">
-          <img src="{{ Storage::url('images/office.jpg') }}">
+          <img src="{{ asset('storage/images/brand_logo.jpg') }}">
         </div>
-        <a href="#user" class="waves-effect"><img class="circle" src="{{ Storage::url('images/img_avatar.png') }}"></a>
+        <a href="#user" class="waves-effect"><img class="circle" src="{{ asset('storage/images/img_avatar.png') }}"></a>
         <a href="#name" class="waves-effect"><span class="white-text name">Projeto Integrador</span></a>
         <a href="#email" class="waves-effect"><span class="white-text email">alunos@univesp.br</span></a>
       </div>

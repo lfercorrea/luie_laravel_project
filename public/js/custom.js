@@ -7,6 +7,12 @@
  * @nando.correa
  */
 
+/** collapsible element */
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.collapsible');
+  var instances = M.Collapsible.init(elems);
+});
+
 /** dropdown do materialize css. é o menu usado na navbar, para listar categorias */
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.dropdown-trigger');

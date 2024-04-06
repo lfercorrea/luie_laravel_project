@@ -27,7 +27,9 @@ Route::get('/admin/excluir/produto', [AdminController::class, 'excluir_produto']
 // });
 Route::view('/', 'index')->name('site.index');
 Route::get('/categorias', [SiteController::class, 'categorias'])->name('site.categorias');
+Route::get('/categorias/ver/{id}', [SiteController::class, 'ver_categoria'])->name('site.ver.categoria');
 Route::get('/produtos', [SiteController::class, 'produtos'])->name('site.produtos');
+Route::get('/produtos/ver/{slug}', [SiteController::class, 'ver_produto'])->name('site.ver.produto');
 
 /*
 * rotas padrão do laravel
