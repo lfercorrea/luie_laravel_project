@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LoginController;
 
 /**
  * rotas admin.*
@@ -26,6 +27,8 @@ Route::get('/admin/excluir/produto', [AdminController::class, 'excluir_produto']
 //     return view('index');
 // });
 Route::view('/', 'index')->name('site.index');
+Route::view('/entrar', 'login.form')->name('login.form');
+Route::post('/entrar/auth', [LoginController::class, 'auth'])->name('login.auth');
 Route::get('/categorias', [SiteController::class, 'categorias'])->name('site.categorias');
 Route::get('/categorias/ver/{id}', [SiteController::class, 'ver_categoria'])->name('site.ver.categoria');
 Route::get('/produtos', [SiteController::class, 'produtos'])->name('site.produtos');

@@ -20,6 +20,17 @@ main {
     flex: 1;
 }
 
+/** para aplicar animação e esmaecimento às divs com id success-message */
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; display: none; }
+}
+
+#success-message {
+    animation: fadeOut 1s ease-in-out 4s forwards; /* após 4 segundos, começa a esmaecer. após mais 1 segundo, esmaeceu completamente */
+}
+
+/** aplica o efeito popup às divs, mesmo rolando a página elas permanecem estáticas */
 .popup {
     position: fixed;
     bottom: 20px; /* Espaço em relação ao fundo da página */

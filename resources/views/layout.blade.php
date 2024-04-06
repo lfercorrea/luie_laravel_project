@@ -25,7 +25,7 @@
                 @endforeach
               </ul>
               <li><a href="{{ route('site.produtos') }}">Produtos</a></li>
-              <li><a href="{{ route('login') }}">Entrar</a></li>
+              <li><a href="{{ route('login.form') }}">Entrar</a></li>
               <li><a href="collapsible.html">Menu</a></li>
             </ul>
             {{-- botão menu para mobile --}}
@@ -40,7 +40,7 @@
                   <a href="#email" class="waves-effect"><span class="white-text email">alunos@univesp.br</span></a>
                 </div>
               </li>
-              <li><a href="{{ route('login') }}"><i class="material-icons left">login</i>Entrar</a></li>
+              <li><a href="{{ route('login.form') }}"><i class="material-icons left">login</i>Entrar</a></li>
               <li><div class="divider"></div></li>
               <li><a href="{{ route('site.index') }}"><i class="material-icons left">home</i>Início do site</a></li>
               <li><a href="{{ route('admin.index') }}"><i class="material-icons left">build</i>Administração</a></li>
@@ -101,6 +101,11 @@
       <div class="row container">
         <p>@yield('content')</p>
       </div>
+      @if ($msg = Session::get('success'))
+        
+          @include('messages.success')
+          
+      @endif
     </main>
     <footer class="page-footer pink lighten-2">
       <div class="container">

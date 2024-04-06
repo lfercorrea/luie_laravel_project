@@ -22,7 +22,7 @@
         </div>
 
         <div class="container center">
-            <p><a href="{{ route('admin.cadastrar_produto') }}" class="btn waves-effect waves-teal blue">Voltar</a></p>
+            <p><a href="{{ url()->current() }}" class="btn waves-effect waves-teal blue">Voltar</a></p>
         </div>
     </div>
 
