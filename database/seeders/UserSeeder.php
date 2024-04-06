@@ -13,8 +13,9 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // seed default do laravel
+        // cria o usuário que tem poder total no sistema
         User::create([
+            'level' => 1,
             'name' => 'nando',
             'email' => 'lfercorrea@gmail.com',
             'password' => bcrypt('luiscorrea'),

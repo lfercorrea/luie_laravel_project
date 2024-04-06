@@ -18,10 +18,10 @@
                 @csrf
                     <div class="container">
                         <div class="row">
-                            <input id="email" type="email" name="email" value="" class="validate" required><br>
-                            <label for="email">Email</label>
+                            <input id="email" type="email" name="email" class="validate" required><br>
+                            <label for="email">E-mail</label>
 
-                            <input type="password" name="password" value="" class="validate" required><br>
+                            <input id="password" type="password" name="password" class="validate" required><br>
                             <label for="password">Senha</label>
                         </div>
                         <div class="row">      

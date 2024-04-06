@@ -12,6 +12,14 @@ use Illuminate\Support\Facades\Log;
 class AdminController extends Controller
 {
     /**
+     * aplica o middleware para restrição de acesso a todos os métodos do controlador, mas tambem
+     * é possivel criar uma lista negra de métodos deste controlador encadeando ->only('metodo')
+     * ou uma lista branca encadeando ->except('metodo').
+     */
+    // public function __construct () {
+    //     $this->middleware('auth')->except('index');
+    // }
+    /**
      * Display a listing of the resource.
      */
     public function index()

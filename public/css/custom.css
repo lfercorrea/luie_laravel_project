@@ -20,6 +20,39 @@ main {
     flex: 1;
 }
 
+
+/** classe para aplicar preenchimento de imagens */
+.image-padding {
+    padding: 30px; /* Ajuste conforme necessário */
+    display: inline-block; /* Para a div se ajustar ao tamanho da imagem */
+    overflow: hidden;
+}
+.image-padding.black {
+    background-color: black;
+}
+.image-padding.grey {
+    background-color: grey;
+}
+.image-padding.white {
+    background-color: white;
+}
+
+/** classe para aplicar bordas em imagens */
+.image-border {
+    border-radius: 2px; /* Borda arredondada */
+    display: inline-block; /* Para a div se ajustar ao tamanho da imagem */
+}
+.image-border.black {
+    border: 1px solid black;
+}
+.image-border.grey {
+    border: 1px solid grey;
+}
+.image-border.white {
+    border: 1px solid white;
+}
+
+
 /** para aplicar animação e esmaecimento às divs com id success-message */
 @keyframes fadeOut {
     0% { opacity: 1; }

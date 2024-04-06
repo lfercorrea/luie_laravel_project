@@ -11,18 +11,9 @@
 
 <header>
   <ul id="slide-out" class="sidenav">
-    <li>
-      <div class="user-view">
-        <div class="background">
-          <img src="{{ asset('storage/images/brand_logo.jpg') }}">
-        </div>
-        <a href="#user" class="waves-effect"><img class="circle" src="{{ asset('storage/images/img_avatar.png') }}"></a>
-        <a href="#name" class="waves-effect"><span class="white-text name">Projeto Integrador</span></a>
-        <a href="#email" class="waves-effect"><span class="white-text email">alunos@univesp.br</span></a>
-      </div>
-    </li>
+    @include('common.sidenav_head')
+    
     <li><a href="{{ route('site.index') }}" class="waves-effect"><i class="material-icons">home</i>Índice do site</a></li>
-    <li><a href="{{ route('admin.index') }}" class="waves-effect"><i class="material-icons">build</i>Administração</a></li>
 
     <li><div class="divider"></div></li>
     <li class="center"><a class="subheader" class="waves-effect">Gestão</a></li>
@@ -48,6 +39,13 @@
           </div>
             @yield('content')<br />
         </div>
+
+        @if ($msg = Session::get('success'))
+            @include('messages.success')
+        @elseif ($msg = Session::get('fail'))
+            @include('messages.fail')
+        @endif
+
     </main>
     
     <div class="fixed-action-btn">
