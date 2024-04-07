@@ -20,11 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // sharing all 'categorias' elements
         $categorias = Categoria::all();
-        view()->share('categorias', $categorias);
-
-        // níveis de usuário para controle de permissões
         $levels = [
             1 => 'Proprietário',
             2 => 'Administrador',
@@ -32,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
         ];
         
         view()->share([
+            'categorias' => $categorias,
             'levels' => $levels,
         ]);
     }

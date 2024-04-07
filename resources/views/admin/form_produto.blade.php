@@ -12,7 +12,7 @@
 </div>
 
 <div class="row">
-    <form id="form-produto" class="col s12" action="{{ $modo === 'cadastrar' ? route('admin.cadastrar_produto_store') : route('admin.alterar_produto', ['id' => $produto->id] ) }}" method="POST" enctype="multipart/form-data">
+    <form id="form-produto" class="col s12" action="{{ $modo === 'cadastrar' ? route('admin.cadastrar_produto_store') : route('admin.alterar_produto.store', ['id' => $produto->id] ) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @if($modo === 'alterar')
             @method('PUT')
@@ -44,10 +44,12 @@
             </div>
             <div class="input-field col s6 m3">
                 <select name="id_categoria">
-                  <option value="{{ old('id_categoria', $produto->id_categoria) }}" disabled selected>{{ $modo == 'cadastrar' ? 'Selecione' : old('id_categoria', $produto->categoria->nome) }}</option>
+                  <option value="{{ old('id_categoria', $produto->id_categoria) }}" selected>{{ $modo == 'cadastrar' ? 'Selecione' : old('id_categoria', $produto->categoria->nome) }}</option>
+        
                   @foreach ($categorias as $categoria)
                     <option value="{{ $categoria->id }}">{{ $categoria->nome }}</option>
                   @endforeach
+
                 </select>
                 <label>Categoria</label>
             </div>

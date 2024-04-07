@@ -8,6 +8,7 @@ use App\Models\Produto;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
@@ -76,12 +77,13 @@ class AdminController extends Controller
         // ]);
     }
 
-    public function excluir_produto () {
-        $produtos = Produto::paginate(30);
+    public function excluir_produto ($id) {
+        $produto = Produto::find($id);
+        $produto->delete();
 
-        return view('admin.excluir_produto', [
-            'produtos' => $produtos,
-        ]);
+        return redirect()
+            ->route('admin.estoque')
+            ->with('success', 'Produto excluído com sucesso.');
     }
 
     /**
@@ -126,10 +128,10 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         if ($request->modo === 'cadastrar') {
-            $id_user = 1; // enquanto o sistema de cadastro de users não está pronto, id fixa em 1. após, será capturada por um input hidden html
+            $produto = new Produto();
         }
         elseif ($request->modo === 'alterar') {
-            $id_user = 1; // aqui, será puxada a id do user cadastrado com User::find($id)
+            $produto = Produto::findOrFail($request->id);
         }
 
         Log::info('Iniciando método store');
@@ -146,15 +148,12 @@ class AdminController extends Controller
 
         Log::info('Dados do formulário validados');
 
-        // instanciacao produto
-        $produto = new Produto();
-
         $produto->quantidade = abs($request->quantidade);
         $produto->nome = $request->nome;
         $produto->descricao = $request->descricao;
         $produto->preco = $request->preco;
         $produto->slug = Str::slug($request->nome . '-' . substr($request->descricao, 0, 30));
-        $produto->id_user = $request->id_user;
+        $produto->id_user = auth()->user()->id;
         $produto->id_categoria = $request->id_categoria;
 
         // ajustes da imagem
@@ -164,11 +163,10 @@ class AdminController extends Controller
             $caminhoImagem = $imagem->storeAs('imagens', $nomeImagem);
             $produto->imagem = $caminhoImagem;
         }
-
         
         $produto->save();
 
-        return redirect()->route('admin.produtos')->with('success', 'Produto cadastrado com sucesso.');
+        return redirect()->route('admin.estoque')->with('success', 'Produto salvo com sucesso.');
     }
 
     /**

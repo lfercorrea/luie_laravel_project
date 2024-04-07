@@ -19,9 +19,10 @@ Route::middleware(['auth_admin'])->prefix('admin')->group(function () {
     Route::get('/estoque', [AdminController::class, 'estoque'])->name('admin.estoque');
     Route::get('/produtos', [AdminController::class, 'produtos'])->name('admin.produtos');
     Route::get('/alterar/produto/{id}', [AdminController::class, 'alterar_produto'])->name('admin.alterar_produto');
+    Route::match(['put', 'post'], '/alterar/produto/{id}/store', [AdminController::class, 'store'])->name('admin.alterar_produto.store');
     Route::get('/cadastrar/produto', [AdminController::class, 'cadastrar_produto'])->name('admin.cadastrar_produto');
     Route::post('/cadastrar/produto/store', [AdminController::class, 'store'])->name('admin.cadastrar_produto_store');
-    Route::get('/excluir/produto', [AdminController::class, 'excluir_produto'])->name('admin.excluir_produto');
+    Route::delete('/excluir/produto/{id}', [AdminController::class, 'excluir_produto'])->name('admin.excluir_produto');
 });
 
 
