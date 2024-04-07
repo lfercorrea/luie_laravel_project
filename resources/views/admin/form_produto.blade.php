@@ -12,7 +12,7 @@
 </div>
 
 <div class="row">
-    <form id="form-produto" class="col s12" action="{{ $modo === 'cadastrar' ? '/admin/cadastrar/produto/store' : '/admin/alterar/produto/' . $produto->id }}" method="POST" enctype="multipart/form-data">
+    <form id="form-produto" class="col s12" action="{{ $modo === 'cadastrar' ? route('admin.cadastrar_produto_store') : route('admin.alterar_produto', ['id' => $produto->id] ) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @if($modo === 'alterar')
             @method('PUT')
@@ -20,11 +20,11 @@
         <input type="hidden" name="modo" value="{{ $modo }}">
 
         @if($modo === 'alterar')
-        <div class="row">
-            <div class="s12">
-                <span class="grey-text"><i>Produto cadastrado por <b>{{ $produto->user->name }}</b></i></span>
+            <div class="row">
+                <div class="s12">
+                    <span class="grey-text"><i>Produto cadastrado por <b>{{ $produto->user->name }}</b></i></span>
+                </div>
             </div>
-        </div>
         @endif
 
         <div class="row">

@@ -7,6 +7,12 @@
     </div>
 
     <div class="row">
+        <div class="col s12">
+            <a href="{{ route('admin.cadastrar_produto') }}" class="btn green">Novo produto</a>
+        </div>
+    </div>
+
+    <div class="row">
         {{ $produtos->links('common/pagination') }}
     </div>
 
@@ -52,7 +58,7 @@
                     </button>
                 </td>
                 <td>{{ $produto->quantidade }}</td>
-                <td>{{ $produto->nome }}</td>
+                <td><b>{{ $produto->nome }}</b></td>
                 <td>{{ $produto->descricao }}</td>
                 <td>{{ $produto->preco }}</td>
                 <td>{{ $produto->categoria->nome }}</td>

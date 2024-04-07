@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col s6 m4 center">
                 <div class="container">
-                    <a href="/admin/categorias" class="waves-effect"><i class="material-icons center large black-text text-darken-4">category</i></a>
+                    <a href="{{ route('admin.categorias') }}" class="waves-effect"><i class="material-icons center large black-text text-darken-4">category</i></a>
                 </div>
                 <div class="container">
                     Categorias de produtos
@@ -23,7 +23,7 @@
             </div>
             <div class="col s6 m4 center">
                 <div class="container">
-                    <a href="/admin/produtos" class="waves-effect"><i class="material-icons center large black-text text-darken-4">shopping_cart</i></a>
+                    <a href="{{ route('admin.produtos') }}" class="waves-effect"><i class="material-icons center large black-text text-darken-4">shopping_cart</i></a>
                 </div>
                 <div class="container">
                     Produtos
@@ -41,10 +41,10 @@
         <div class="row">
             <div class="col s6 m4 center">
                 <div class="container">
-                    <a href="/admin/clientes" class="waves-effect"><i class="material-icons center large black-text text-darken-4">people_alt</i></a>
+                    <a href="{{ route('admin.usuarios') }}" class="waves-effect"><i class="material-icons center large black-text text-darken-4">people_alt</i></a>
                 </div>
                 <div class="container">
-                    Dados de clientes
+                    Usuários/clientes
                 </div>
             </div>
         </div>

@@ -10,7 +10,12 @@ use Illuminate\Support\Facades\Log;
 class UserController extends Controller
 {
     public function create () {
-        return view('cadastrar_usuario');
+        $usuario = new User();
+
+        return view('common.form_usuario', [
+            'usuario' => $usuario,
+            'modo' => 'cadastrar',
+        ]);
     }
 
     public function store (Request $request) {

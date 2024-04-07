@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use App\Models\Categoria;
 use App\Models\Produto;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
@@ -27,6 +28,9 @@ class AdminController extends Controller
         return view('admin.index');
     }
 
+    /**
+     * Produtos
+     */
     public function produtos()
     {
         return view('admin.produtos');
@@ -72,12 +76,39 @@ class AdminController extends Controller
         // ]);
     }
 
-    public function excluir_produto()
-    {
+    public function excluir_produto () {
         $produtos = Produto::paginate(30);
 
         return view('admin.excluir_produto', [
             'produtos' => $produtos,
+        ]);
+    }
+
+    /**
+     * Usuários
+     */
+    public function usuarios () {
+        $usuarios = User::paginate(30);
+
+        return view('admin.usuarios', [
+            'usuarios' => $usuarios,
+        ]);
+    }
+
+    public function alterar_usuario ($id) {
+        $usuario = User::findOrFail($id);
+
+        return view('common.form_usuario', [
+            'usuario' => $usuario,
+            'modo' => 'alterar',
+        ]);
+    }
+
+    public function excluir_usuario () {
+        $usuarios = User::paginate(30);
+
+        return view('admin.excluir_usuario', [
+            'usuarios' => $usuarios,
         ]);
     }
 

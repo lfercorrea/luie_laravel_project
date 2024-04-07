@@ -19,7 +19,7 @@
     <li class="center"><a class="subheader" class="waves-effect">Gestão</a></li>
     <li><a href="{{ route('admin.categorias') }}" class="waves-effect"><i class="material-icons">category</i>Categorias</a></li>
     <li><a href="{{ route('admin.produtos') }}" class="waves-effect"><i class="material-icons">shopping_cart</i>Produtos</a></li>
-    <li><a href="{{ route('admin.clientes') }}" class="waves-effect"><i class="material-icons">people_alt</i>Clientes</a></li>
+    <li><a href="{{ route('admin.usuarios') }}" class="waves-effect"><i class="material-icons">people_alt</i>Usuários/clientes</a></li>
     
     <li><div class="divider"></div></li>
     <li class="center"><a class="subheader" class="waves-effect">Configurações do site</a></li>
