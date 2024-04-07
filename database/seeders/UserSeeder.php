@@ -17,6 +17,13 @@ class UserSeeder extends Seeder
         User::create([
             'level' => 1,
             'name' => 'nando',
+            'endereco' => 'Rua Dominique Danesi',
+            'numero' => 34,
+            'cidade' => 'São Paulo',
+            'uf' => 'SP',
+            'bairro' => 'Parque Maria Fernanda',
+            'cep' => 14033035,
+            'celular' => 18996073988,
             'email' => 'lfercorrea@gmail.com',
             'password' => bcrypt('luiscorrea'),
         ]);

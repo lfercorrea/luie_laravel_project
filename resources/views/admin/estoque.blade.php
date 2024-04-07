@@ -7,7 +7,7 @@
     </div>
 
     <div class="row">
-        {{ $produtos->links('custom/pagination') }}
+        {{ $produtos->links('common/pagination') }}
     </div>
 
     <div id="confirm-delete-modal" class="modal">
@@ -65,7 +65,7 @@
     <hr>
 
     <div class="row">
-        {{ $produtos->links('custom/pagination') }}
+        {{ $produtos->links('common/pagination') }}
     </div>
     
     

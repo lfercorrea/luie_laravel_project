@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 
 /**
  * rotas admin.*
@@ -33,12 +34,22 @@ Route::middleware(['auth_admin'])->prefix('admin')->group(function () {
 //     return view('index');
 // });
 Route::view('/', 'index')->name('site.index');
-/** login system */
+/** 
+ * login system
+ */
 Route::view('/entrar', 'login.form')->name('login');
 Route::post('/entrar/auth', [LoginController::class, 'auth'])->name('login.auth');
 Route::get('/sair', [LoginController::class, 'logout'])->name('logout.auth');
 
+/**
+ * cadastro de usuário
+ */
+Route::get('/cadastro', [UserController::class, 'create'])->name('user.create');
+Route::post('/cadastrar', [UserController::class, 'store'])->name('users.store');
 
+/**
+ * produtos
+ */
 Route::get('/categorias', [SiteController::class, 'categorias'])->name('site.categorias');
 Route::get('/categorias/ver/{id}', [SiteController::class, 'ver_categoria'])->name('site.ver.categoria');
 Route::get('/produtos', [SiteController::class, 'produtos'])->name('site.produtos');

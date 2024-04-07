@@ -26,6 +26,12 @@ class UserFactory extends Factory
         return [
             'level' => 3,
             'name' => fake()->name(),
+            'endereco' => fake()->endereco(),
+            'numero' => fake()->number(),
+            'cidade' => fake()->name(),
+            'uf' => fake()->name(),
+            'cep' => fake()->random_int(10000000, 19900000),
+            'celular' => fake()->random_int(48980000000, 48999999999),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),

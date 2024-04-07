@@ -15,6 +15,13 @@ return new class extends Migration
             $table->id();
             $table->integer('level');
             $table->string('name');
+            $table->string('endereco');
+            $table->string('numero');
+            $table->string('cidade');
+            $table->string('uf');
+            $table->string('bairro');
+            $table->string('cep');
+            $table->string('celular');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

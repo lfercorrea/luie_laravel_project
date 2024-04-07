@@ -8,13 +8,13 @@
     <div class="row">
         @foreach ($produtos as $produto)
         
-            @include('card_produto')
+            @include('common.card_produto')
 
         @endforeach
     </div>
 
     <div class="row">
-        {{ $produtos->links('custom/pagination') }}
+        {{ $produtos->links('common/pagination') }}
     </div>
 
 @endsection
