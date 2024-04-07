@@ -23,8 +23,6 @@
     
     <li><div class="divider"></div></li>
     <li class="center"><a class="subheader" class="waves-effect">Configurações do site</a></li>
-    
-    <li><a class="waves-effect" href="{{ route('admin.permissoes') }}" class="waves-effect"><i class="material-icons">lock</i>Permissões de acesso</a></li>
   </ul>
   <!-- <div class="container">
       <a href="#" data-target="slide-out" class="ml-3 waves-effect sidenav-trigger red black left btn"><i class="material-icons right">arrow_forward</i>Abrir painel</a>

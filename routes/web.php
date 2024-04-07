@@ -12,10 +12,7 @@ use App\Http\Controllers\UserController;
  */
 Route::middleware(['auth_admin'])->prefix('admin')->group(function () {
 
-    // diversas
     Route::get('/', [AdminController::class, 'index'])->middleware(['auth'])->name('admin.index');
-    // Route::get('/clientes', [AdminController::class, 'clientes'])->name('admin.clientes');
-    Route::get('/permissoes', [AdminController::class, 'permissoes'])->name('admin.permissoes');
 
     // relacionadas a produtos
     Route::get('/categorias', [AdminController::class, 'categorias'])->name('admin.categorias');
@@ -25,13 +22,21 @@ Route::middleware(['auth_admin'])->prefix('admin')->group(function () {
     Route::get('/cadastrar/produto', [AdminController::class, 'cadastrar_produto'])->name('admin.cadastrar_produto');
     Route::post('/cadastrar/produto/store', [AdminController::class, 'store'])->name('admin.cadastrar_produto_store');
     Route::get('/excluir/produto', [AdminController::class, 'excluir_produto'])->name('admin.excluir_produto');
-    
+});
+
+
+/**
+ * rotas admin.*
+ * estas rotas estão agrupadas para proteção do middleware auth_prop
+ * para funções que só o priprietário pode ter acesso
+ */
+Route::middleware(['auth_prop'])->prefix('admin')->group(function () {
+
     // relacionadas a usuários
     Route::get('/usuarios', [AdminController::class, 'usuarios'])->name('admin.usuarios');
     Route::get('/alterar/usuario/{id}', [AdminController::class, 'alterar_usuario'])->name('admin.alterar_usuario');
     Route::get('/excluir/usuario', [AdminController::class, 'excluir_usuario'])->name('admin.excluir_usuario');
 });
-
 /**
  * outras rotas
  */
