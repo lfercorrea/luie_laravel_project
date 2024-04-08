@@ -36,7 +36,8 @@ Route::middleware(['auth_prop'])->prefix('admin')->group(function () {
     // relacionadas a usuários
     Route::get('/usuarios', [AdminController::class, 'usuarios'])->name('admin.usuarios');
     Route::get('/alterar/usuario/{id}', [AdminController::class, 'alterar_usuario'])->name('admin.alterar_usuario');
-    Route::get('/excluir/usuario', [AdminController::class, 'excluir_usuario'])->name('admin.excluir_usuario');
+    Route::put('/alterar/usuario/{id}/store', [UserController::class, 'store'])->name('admin.alterar_usuario.store');
+    Route::delete('/excluir/usuario/{id}', [AdminController::class, 'excluir_usuario'])->name('admin.excluir_usuario');
 });
 /**
  * outras rotas

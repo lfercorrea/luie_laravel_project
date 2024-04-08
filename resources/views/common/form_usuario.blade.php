@@ -17,7 +17,7 @@
             @include('messages.fail')
         @endif
 
-        <form action="{{ $modo === 'cadastrar' ? route('users.store') : route('admin.alterar_usuario', ['id' => $usuario->id] ) }}" method="POST">
+        <form action="{{ $modo === 'cadastrar' ? route('users.store') : route('admin.alterar_usuario.store', ['id' => $usuario->id] ) }}" method="POST">
             @csrf
             @if($modo === 'alterar')
                 @method('PUT')
@@ -86,6 +86,39 @@
                     <label for="confirmar_senha">Confirme a senha</label>
                 </div>
             </div>
+
+            @if ( $modo === 'alterar' )
+                <div class="row">
+                    <h5>Tipo de usuário</h5>
+                    <p>O tipo de usuário determina o que ele pode fazer no sistema.</p>
+
+                    <div class="row">
+                        <div class="col s12 m4 red lighten-3 center"><b>Proprietário</b></div>
+                        <div class="col s12 m4 green lighten-3 center"><b>Administrador</b></div>
+                        <div class="col s12 m4 blue lighten-3 center"><b>Cliente</b></div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m4 red lighten-3">Tem poder total no site e não pode ser excluído.</div>
+                        <div class="col s12 m4 green lighten-3">Pode cadastrar, alterar e excluir produtos, mas não pode excluir clientes nem alterar configurações do site.</div>
+                        <div class="col s12 m4 blue lighten-3">Podem se cadastrar e fazer qualquer coisa que um usuário não cadastrado faz.</div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col s12 m4">
+                        <select name="level">
+                        <option value="{{ old('level', $usuario->level) }}" selected>{{ $levels[$usuario->level] }}</option>
+                
+                        @foreach ($levels as $level_id => $level_name)
+                            <option value="{{ $level_id }}">{{ $level_name }}</option>
+                        @endforeach
+s
+                        </select>
+                        <label>Tipo de usuário</label>
+                    </div>
+                </div>
+            @endif
+
             <div class="container center">
                 <div class="col s12 center">      
                     <button type="submit" class="btn waves-effect black">{{ $modo }}</button>

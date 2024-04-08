@@ -53,7 +53,7 @@
                     <a href="/admin/alterar/produto/{{ $produto->id }}" class="btn-small waves-effect blue darken-1">
                         <i class="material-icons center">edit</i>
                     </a>
-                    <button class="btn-small waves-effect red darken-1 modal-trigger" data-target="confirm-delete-modal" data-product-id="{{ $produto->id }}">
+                    <button class="btn-small waves-effect red darken-1 modal-trigger" data-target="confirm-delete-modal" data-target-url="/admin/excluir/produto/" data-target-id="{{ $produto->id }}">
                         <i class="material-icons center">delete</i>
                     </button>
                 </td>

@@ -23,21 +23,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-/** Modal do materialize css - usado principalmente na gestão de estoques, mas é um popup de confirmação
- * útil para qualquer região do site
+/**
+ * modal abstrato do materialize CSS
+ * pode ser usado com qualquer formulário, 
+ * desde que seja especificada a roda válida 
+ * e a id do recurso a ser excluído
  */
 document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.modal');
-    var instances = M.Modal.init(elems);
+  var elems = document.querySelectorAll('.modal');
+  var instances = M.Modal.init(elems);
 
-    var deleteButtons = document.querySelectorAll('.modal-trigger');
-    deleteButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            var productId = this.dataset.productId;
-            var form = document.getElementById('delete-form');
-            form.action = '/admin/excluir/produto/' + productId;
-        });
-    });
+  var deleteButtons = document.querySelectorAll('.modal-trigger');
+  deleteButtons.forEach(function(button) {
+      button.addEventListener('click', function() {
+          var targetId = this.dataset.targetId;
+          var targetUrl = this.dataset.targetUrl;
+          var form = document.getElementById('delete-form');
+          form.action = targetUrl + targetId;
+      });
+  });
 });
 
 /** seletor de checkbox múltiplas */

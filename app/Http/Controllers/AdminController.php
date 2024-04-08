@@ -106,12 +106,18 @@ class AdminController extends Controller
         ]);
     }
 
-    public function excluir_usuario () {
-        $usuarios = User::paginate(30);
+    public function excluir_usuario ($id) {
+        $user = User::find($id);
 
-        return view('admin.excluir_usuario', [
-            'usuarios' => $usuarios,
-        ]);
+        if( $user->level == 1 ) {
+            return back()->with('fail', 'O proprietário não pode ser excluído.');
+        }
+
+        $user->delete();
+
+        return redirect()
+            ->route('admin.usuarios')
+            ->with('success', 'Usuário excluído.');
     }
 
     /**
@@ -127,15 +133,8 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->modo === 'cadastrar') {
-            $produto = new Produto();
-        }
-        elseif ($request->modo === 'alterar') {
-            $produto = Produto::findOrFail($request->id);
-        }
-
-        Log::info('Iniciando método store');
-
+        Log::info('Iniciando validação de cadastro de produto... (AdminController@store)');
+        
         $request->validate([
             'nome' => 'required|string|max:255',
             'preco' => 'required|numeric',
@@ -145,8 +144,15 @@ class AdminController extends Controller
             'descricao' => 'nullable|string',
             'imagem_produto' => 'nullable|image|mimes:jpeg,png|max:2048',
         ]);
-
-        Log::info('Dados do formulário validados');
+        
+        Log::info('Completada validação de cadastro de produto... (AdminController@store)');
+        
+        if ($request->modo === 'cadastrar') {
+            $produto = new Produto();
+        }
+        elseif ($request->modo === 'alterar') {
+            $produto = Produto::findOrFail($request->id);
+        }
 
         $produto->quantidade = abs($request->quantidade);
         $produto->nome = $request->nome;
@@ -155,8 +161,7 @@ class AdminController extends Controller
         $produto->slug = Str::slug($request->nome . '-' . substr($request->descricao, 0, 30));
         $produto->id_user = auth()->user()->id;
         $produto->id_categoria = $request->id_categoria;
-
-        // ajustes da imagem
+        
         if ($request->hasFile('imagem')) {
             $imagem = $request->file('imagem');
             $nomeImagem = time() . '_' . $imagem->getClientOriginalName();
@@ -165,6 +170,8 @@ class AdminController extends Controller
         }
         
         $produto->save();
+
+        Log::info('Produto cadastrado. (AdminController@store)');
 
         return redirect()->route('admin.estoque')->with('success', 'Produto salvo com sucesso.');
     }

@@ -19,7 +19,7 @@ class UserController extends Controller
     }
 
     public function store (Request $request) {
-        Log::info('Iniciando validação cadastro de usuário (UserController@store)');
+        Log::info('Iniciando validação dos campos de formulário de usuário (UserController@store)');
         $request->validate([
             'name' => 'required|string|max:255',
             'endereco' => 'required|string|max:255',
@@ -65,16 +65,28 @@ class UserController extends Controller
             'password_confirmation.required' => 'É necessário confirmar a senha',
             'foto.image' => 'O arquivo enviado não está no formato de imagem aceito (JPEG, PNG) ou ultrapassa 2 MB',
         ]);
-        Log::info('Finalizando validação de cadastro de usuário (UserController@store)');
+        Log::info('Finalizando validação dos campos do formulário de usuário (UserController@store)');
 
-        $user = $request->all();
-        $user['level'] = 3;
-        $user['password'] = bcrypt($request->password);
-        $user = User::create($user);
-        Log::info('Usuário criado com sucesso (UserController@store)');
+        $arr_user = $request->all();
+        $arr_user['level'] = 3;
+        $arr_user['password'] = bcrypt($request->password);
 
-        Auth::login($user);
+        if ($request->modo === 'cadastrar') {
+            $user = User::create($arr_user);
 
-        return redirect()->route('site.index');
+            Log::info('Usuário criado com sucesso (UserController@store)');
+        }
+        elseif ($request->modo === 'alterar') {
+            $arr_user['level'] = $request->level;
+            $user = User::findOrFail($request->id);
+
+            $user->update($arr_user);
+
+            return redirect()->route('admin.usuarios')->with('success', 'Usuário alterado.');
+        }
+
+        // Auth::login($user);
+
+        return redirect()->route('site.index')->with('success', 'Cadastro realizado. Agora você já pode fazer login com seu e-mail e senha.');
     }
 }
