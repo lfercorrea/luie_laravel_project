@@ -7,7 +7,31 @@
     </div>
 
     <div class="row">
-        {{ $usuarios->links('common/pagination') }}
+        <div class="col s3">
+            <a href="{{ route('user.create') }}" class="btn green">Novo usuário</a>
+        </div>
+        <form action="{{ route('admin.usuarios') }}" method="GET">
+            <div class="col s6">
+                <input type="text" name="search"> 
+            </div>
+            <div class="col s3">
+                <button class="btn waves-effect waves-light black" type="submit">Buscar</button> 
+            </div>
+        </form>
+    </div>
+
+    @if ( $count_usuarios > 0 )
+        <div class="container center">
+            <h5>{{ $count_usuarios }} usuários encontrados</h5>
+        </div>
+    @endif
+
+    <div class="row">
+        @if (request()->input('search'))
+            {{ $usuarios->appends(['search' => request()->input('search')])->links('common/pagination') }}
+        @else
+            {{ $usuarios->links('common/pagination') }}
+        @endif
     </div>
 
     <div id="confirm-delete-modal" class="modal">
@@ -25,12 +49,6 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col s12">
-            <a href="{{ route('user.create') }}" class="btn green">Novo usuário</a>
-        </div>
-    </div>
-
     <table class="striped responsive-table">
         <thead>
             <tr>
@@ -45,17 +63,20 @@
         </thead>
 
         <tbody>
+
             @foreach ($usuarios as $usuario)
             <tr>
                 <td>
                     <a href="{{ route('admin.alterar_usuario', $usuario->id) }}" class="btn-small waves-effect blue darken-1">
                         <i class="material-icons center">edit</i>
                     </a>
+
                     @if ($usuario->level >= 1)
                         <button class="btn-small waves-effect red darken-1 modal-trigger" data-target="confirm-delete-modal" data-target-url="/admin/excluir/usuario/" data-target-id="{{ $usuario->id }}">
                             <i class="material-icons center">delete</i>
                         </button>
                     @endif
+
                 </td>
                 <td>{{ $usuario->id }}</td>
                 @if ( $usuario->id === 1)
@@ -69,13 +90,18 @@
                 <td>{{ $usuario->celular }}</td>
             </tr>
             @endforeach
+
         </tbody>
     </table>
 
     <hr>
 
     <div class="row">
-        {{ $usuarios->links('common/pagination') }}
+        @if (request()->input('search'))
+            {{ $usuarios->appends(['search' => request()->input('search')])->links('common/pagination') }}
+        @else
+            {{ $usuarios->links('common/pagination') }}
+        @endif
     </div>
     
 @endsection

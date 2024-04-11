@@ -21,6 +21,11 @@ class Produto extends Model
         return $this->belongsTo(Categoria::class, 'id_categoria');
     }
 
+    public static function search ($search) {
+        return self::where('nome', 'like', '%' . $search . '%')
+            ->orWhere('descricao', 'like', '%' . $search . '%');
+    }
+
     protected $fillable = [
         'quantidade',
         'name',

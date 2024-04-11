@@ -22,9 +22,6 @@ class AdminController extends Controller
     // public function __construct () {
     //     $this->middleware('auth')->except('index');
     // }
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         return view('admin.index');
@@ -128,17 +125,21 @@ class AdminController extends Controller
     /**
      * Produtos
      */
-    public function produtos()
+    public function estoque(Request $request)
     {
-        return view('admin.produtos');
-    }
+        $count_produtos = 0;
 
-    public function estoque()
-    {
-        $produtos = Produto::orderBy('updated_at', 'desc')->paginate(30);
-
+        if ($request->search){
+            $produtos = Produto::search($request->search)->paginate(30);
+            $count_produtos = Produto::search($request->search)->count();
+        }
+        else{
+            $produtos = Produto::orderBy('updated_at', 'desc')->paginate(30);
+        }
+        
         return view('admin.estoque', [
             'produtos' => $produtos,
+            'count_produtos' => $count_produtos,
         ]);
     }
 
@@ -149,8 +150,7 @@ class AdminController extends Controller
         $categorias = Categoria::all();
 
         return view('admin.form_produto', [
-            'produto' => $produto, 
-            'id_user' => 1, // referente ao metodo store() abaixo verificar
+            'produto' => $produto,
             'categorias' => $categorias, 
             'modo' => 'cadastrar',
         ]);
@@ -181,7 +181,6 @@ class AdminController extends Controller
             'preco' => 'required|numeric',
             'quantidade' => 'required|integer',
             'id_categoria' => 'required|exists:categorias,id',
-            'id_user' => 'required|exists:users,id',
             'descricao' => 'required|string',
             'imagem' => 'nullable|image|mimes:jpeg,png|max:2048',
         ], [
@@ -268,12 +267,26 @@ class AdminController extends Controller
     /**
      * Usuários
      */
-    public function usuarios () {
-        $usuarios = User::orderBy('name')->paginate(30);
+    public function usuarios (Request $request) {
+        $count_usuarios = 0;
 
+        if ($request->search){
+            $usuarios = User::search($request->search)->paginate(30);
+            $count_usuarios = User::search($request->search)->count();
+        }
+        else{
+            $usuarios = User::orderBy('name')->paginate(30);
+        }
+        
         return view('admin.usuarios', [
             'usuarios' => $usuarios,
+            'count_usuarios' => $count_usuarios,
         ]);
+        
+
+        // return view('admin.usuarios', [
+        //     'usuarios' => $usuarios,
+        // ]);
     }
 
     public function alterar_usuario ($id) {
@@ -303,45 +316,5 @@ class AdminController extends Controller
         return redirect()
             ->route('admin.usuarios')
             ->with('success', 'Usuário excluído.');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Admin $admin)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Admin $admin)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Admin $admin)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Admin $admin)
-    {
-        //
     }
 }

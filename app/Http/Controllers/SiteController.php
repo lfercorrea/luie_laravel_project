@@ -8,13 +8,21 @@ use App\Models\Produto;
 
 class SiteController extends Controller
 {
-    public function produtos()
+    public function produtos(Request $request)
     {
-        // $produtos = Produto::all();
-        $produtos = Produto::paginate(12);
+        $count_produtos = 0;
 
+        if ($request->search){
+            $produtos = Produto::search($request->search)->paginate(15);
+            $count_produtos = Produto::search($request->search)->count();
+        }
+        else{
+            $produtos = Produto::orderBy('updated_at', 'desc')->paginate(15);
+        }
+        
         return view('produtos', [
             'produtos' => $produtos,
+            'count_produtos' => $count_produtos,
         ]);
     }
 

@@ -9,7 +9,7 @@
 <!-- Modal Structure -->
 <div id="zoom_img_{{ $produto->slug }}" class="modal modal-fixed-footer">
     <div class="modal-content center">
-        <img src="{{ asset('storage/' . $produto->imagem) }}" class="responsive-img">
+        <img src="{{ empty($produto->imagem) ? asset('storage/static/images/no_photo.gif') :  asset('storage/' . $produto->imagem) }}" class="responsive-img">
         {{-- <h4>{{ $produto->nome }}</h4>
         <p>{{ $produto->descricao }}</p> --}}
     </div>
