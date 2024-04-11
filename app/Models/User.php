@@ -19,6 +19,7 @@ class User extends Authenticatable
     protected $fillable = [
         'level',
         'name',
+        'foto',
         'endereco',
         'numero',
         'cidade',

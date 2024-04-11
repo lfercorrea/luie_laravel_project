@@ -13,7 +13,7 @@
     <div id="confirm-delete-modal" class="modal">
         <div class="modal-content">
             <h4>Confirmar exclusão</h4>
-            <p>Tem certeza que deseja EXCLUIR este usuario?</p>
+            <p>Tem certeza que deseja <b>excluir</b> este usuario?</p>
         </div>
         <div class="modal-footer">
             <form id="delete-form" action="/admin/excluir/usuario" method="POST">
@@ -36,12 +36,12 @@
             <tr>
                 <th>Ações</th>
                 <th>ID</th>
-                <th>Nível</th>
                 <th>Nome</th>
+                <th>Foto</th>
+                <th>Nível</th>
                 <th>Endereço</th>
                 <th>Cidade</th>
                 <th>Celular</th>
-                <th>Imagem</th>
             </tr>
         </thead>
 
@@ -59,12 +59,12 @@
                     @endif
                 </td>
                 <td>{{ $usuario->id }}</td>
-                <td>{{ $levels[$usuario->level] }}</td>
                 <td><b>{{ $usuario->name }}</b></td>
+                <td><img src="{{ asset('storage/' . $usuario->foto) }}" class="responsive-img circle" style="width: 80px; height: 80px;"></td>
+                <td>{{ $levels[$usuario->level] }}</td>
                 <td>{{ $usuario->endereco }}</td>
                 <td>{{ $usuario->cidade }}</td>
                 <td>{{ $usuario->celular }}</td>
-                <td><img src="{{ $usuario->imagem }}" class="responsive-img"></td>
             </tr>
             @endforeach
         </tbody>

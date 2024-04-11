@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('level');
             $table->string('name');
+            $table->string('foto')->nullable();
             $table->string('endereco');
             $table->string('numero');
             $table->string('cidade');

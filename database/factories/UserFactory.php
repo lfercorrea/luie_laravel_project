@@ -26,6 +26,7 @@ class UserFactory extends Factory
         return [
             'level' => 3,
             'name' => fake()->name(),
+            'foto' => $this->faker->imageUrl(400, 400),
             'endereco' => fake()->endereco(),
             'numero' => fake()->number(),
             'cidade' => fake()->name(),

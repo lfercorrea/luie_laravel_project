@@ -28,17 +28,17 @@
         @endif
 
         <div class="row">
-            <div class="input-field col s6 m3">
+            <div class="input-field col s6 m6">
                 {{-- referente ao id_user passado pelo AdminController.php --}}
                 <input type="hidden" name="id_user" value="1" />
                 <input id="nome" type="text" class="validate" name="nome" value="{{ old('nome', $produto->nome) }}">
                 <label for="nome">Nome do produto</label>
             </div>
-            <div class="input-field col s6 m3">
-                <input id="preco" type="number" placeholder="R$ 123,45" class="validate" name="preco" value="{{ old('preco', $produto->preco) }}">
+            <div class="input-field col s6 m2">
+                <input id="preco" type="number" placeholder="R$ 123,45" class="validate" name="preco" min="0" step="0.01" value="{{ old('preco', $produto->preco) }}">
                 <label for="preco">Preço</label>
             </div>
-            <div class="input-field col s6 m3">
+            <div class="input-field col s6 m1">
                 <input id="quantidade" type="number" placeholder="123" class="validate" name="quantidade" value="{{ old('quantidade', $produto->quantidade) }}">
                 <label for="quantidade">Quantidade</label>
             </div>
@@ -67,7 +67,7 @@
             Imagem atual: 
             <div class="row center">
                 <div class="col s12">
-                    <img src="{{ $produto->imagem }}" class="responsive-img">
+                    <img src="{{ asset('storage/' . $produto->imagem) }}" class="responsive-img">
                 </div>
             </div>
         @endif
@@ -76,7 +76,7 @@
             <div class="file-field input-field">
                 <div class="waves-effect btn red black">
                     <span>Enviar arquivo</span>
-                    <input type="file" name="imagem">
+                    <input id="imagem" type="file" name="imagem">
                 </div>
                 <div class="file-path-wrapper">
                     <input class="file-path validate" type="text">
@@ -87,11 +87,8 @@
     </form>
 
     <div class="container center">
-        <a class="waves-effect waves-teal btn-flat" onclick="history.back()">Voltar</a>
-        <a class="btn red black white-text" href="/admin">Painel principal</a>
-        <button class="btn waves-effect waves-white white-text teal darken-1" type="submit" form="form-produto">
-            <i class="material-icons right">check</i>{{ $modo }}
-        </button>
+        <a class="waves-effect waves-black btn-flat" onclick="history.back()">Voltar</a>
+        <button class="btn waves-effect waves-light white-text black" type="submit" form="form-produto">{{ $modo }}</button>
     </div>
 
     @if ($msg = Session::get('fail') || $errors->any() )

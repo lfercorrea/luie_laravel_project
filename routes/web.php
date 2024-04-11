@@ -16,6 +16,11 @@ Route::middleware(['auth_admin'])->prefix('admin')->group(function () {
 
     // relacionadas a produtos
     Route::get('/categorias', [AdminController::class, 'categorias'])->name('admin.categorias');
+    Route::get('/cadastrar/categoria', [AdminController::class, 'cadastrar_categoria'])->name('admin.cadastrar_categoria');
+    Route::post('/cadastrar/categoria/store', [AdminController::class, 'categoria_store'])->name('admin.cadastrar_categoria_store');
+    Route::get('/alterar/categoria/{id}', [AdminController::class, 'alterar_categoria'])->name('admin.alterar_categoria');
+    Route::match(['put', 'post'], '/alterar/categoria/{id}/store', [AdminController::class, 'categoria_store'])->name('admin.alterar_categoria_store');
+    Route::delete('/excluir/categoria/{id}', [AdminController::class, 'excluir_categoria'])->name('admin.excluir_categoria');
     Route::get('/estoque', [AdminController::class, 'estoque'])->name('admin.estoque');
     Route::get('/produtos', [AdminController::class, 'produtos'])->name('admin.produtos');
     Route::get('/alterar/produto/{id}', [AdminController::class, 'alterar_produto'])->name('admin.alterar_produto');

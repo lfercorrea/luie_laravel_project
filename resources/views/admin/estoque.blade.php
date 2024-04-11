@@ -19,9 +19,9 @@
     <div id="confirm-delete-modal" class="modal">
         <div class="modal-content">
             <h4>Confirmar exclusão</h4>
-            <p>Tem certeza que deseja EXCLUIR este produto?
-                Se quiser apenas diminuir a quantidade deste produto em estoque, 
-                você deve clicar em editar (botão azul) e fazer as alterações pelo formulário.</p>
+            <p>Tem certeza que deseja <b>excluir</b> este produto?
+                Isto excluirá <b>todos</b> os produtos deste tipo. Se quiser apenas excluir algumas unidades em estoque, 
+                você deve clicar em <i class="material-icons center">edit</i> e fazer as alterações pelo formulário.</p>
         </div>
         <div class="modal-footer">
             <form id="delete-form" action="/admin/excluir/produto" method="POST">
@@ -62,7 +62,7 @@
                 <td>{{ $produto->descricao }}</td>
                 <td>{{ $produto->preco }}</td>
                 <td>{{ $produto->categoria->nome }}</td>
-                <td><img src="{{ $produto->imagem }}" class="responsive-img"></td>
+                <td><img src="{{ asset('storage/' . $produto->imagem) }}" class="responsive-img"></td>
             </tr>
             @endforeach
         </tbody>

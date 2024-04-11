@@ -7,9 +7,9 @@
 --}}
 
 <!-- Modal Structure -->
-<div id="zoom_img_{{ $produto->slug }}" class="modal">
+<div id="zoom_img_{{ $produto->slug }}" class="modal modal-fixed-footer">
     <div class="modal-content center">
-        <img src="{{ $produto->imagem }}" class="responsive-img">
+        <img src="{{ asset('storage/' . $produto->imagem) }}" class="responsive-img">
         {{-- <h4>{{ $produto->nome }}</h4>
         <p>{{ $produto->descricao }}</p> --}}
     </div>
@@ -22,10 +22,10 @@
     <div class="card">
         <div class="card-image">
             <a href="{{ route('site.ver.produto', ['slug' => $produto->slug]) }}" class="waves-effect waves-light red">
-                <img src="{{ $produto->imagem }}">
+                <img src="{{ asset('storage/' . $produto->imagem) }}">
                 <span class="card-title">R$ {{ number_format($produto->preco, 2, ',', '.') }}</span>
             </a>
-            <a href="#zoom_img_{{ $produto->slug }}" class="btn-floating halfway-fab waves-effect waves-light red modal-trigger"><i class="material-icons">zoom_in</i></a>
+            <a href="#zoom_img_{{ $produto->slug }}" class="btn-floating halfway-fab waves-effect waves-light pink lighten-2 modal-trigger"><i class="material-icons black-text">zoom_in</i></a>
         </div>
         <div class="card-content">
             {{ Str::limit($produto->nome, 60) }}

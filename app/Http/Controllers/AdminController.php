@@ -30,6 +30,81 @@ class AdminController extends Controller
     }
 
     /**
+     * categorias
+     */
+    public function categorias () {
+        $categorias = Categoria::paginate(20);
+
+        return view('admin.categorias', [
+            'categorias' => $categorias,
+        ]);
+    }
+
+    public function cadastrar_categoria () {
+        $title = "Cadastro de categoria";
+        $categoria = new Categoria();
+
+        return view('admin.form_categoria', [
+            'categoria' => $categoria,
+            'modo' => 'cadastrar',
+        ]);
+    }
+
+    public function categoria_store (Request $request) {
+        $categoria = $request->all();
+        Log::info('Iniciando validação de cadastro de categoria... (AdminController@cadastrar_categoria_store)');
+        
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'descricao' => 'nullable|string',
+            'imagem' => 'nullable|image|mimes:jpeg,png|max:2048',
+        ]);
+        
+        Log::info('Completada validação de cadastro de categoria... (AdminController@cadastrar_categoria_store)');
+        
+        if ($request->modo === 'cadastrar') {
+            $categoria = new Categoria();
+        }
+        elseif ($request->modo === 'alterar') {
+            $categoria = Categoria::findOrFail($request->id);
+        }
+        
+        $categoria->nome = $request->nome;
+        $categoria->descricao = $request->descricao;
+        
+        if ($request->hasFile('imagem')) {
+            $imagem = $request->file('imagem');
+            $nomeImagem = time() . '_' . $imagem->getClientOriginalName();
+            $caminhoImagem = $imagem->storeAs('categorias/imagens', $nomeImagem);
+            $categoria->imagem = $caminhoImagem;
+        }
+        
+        $categoria->save();
+
+        Log::info('Categoria cadastrada. (AdminController@cadastrar_categoria_store)');
+
+        return redirect()->route('admin.categorias')->with('success', 'Categoria salva.');
+    }
+
+    public function alterar_categoria ($id) {
+        $categoria = Categoria::findOrFail($id);
+
+        return view('admin.form_categoria', [
+            'categoria' => $categoria,
+            'modo' => 'alterar',
+        ]);
+    }
+
+    public function excluir_categoria ($id) {
+        $categoria = Categoria::find($id);
+        $categoria->delete();
+
+        return redirect()
+            ->route('admin.categorias')
+            ->with('success', 'Categoria excluída.');
+    }
+
+    /**
      * Produtos
      */
     public function produtos()
@@ -54,10 +129,55 @@ class AdminController extends Controller
 
         return view('admin.form_produto', [
             'produto' => $produto, 
-            'id_user' => 1, // referente ao metodo store() abaixo
+            'id_user' => 1, // referente ao metodo store() abaixo verificar
             'categorias' => $categorias, 
             'modo' => 'cadastrar',
         ]);
+    }
+    
+    public function store(Request $request)
+    {
+        Log::info('Iniciando validação de cadastro de produto... (AdminController@store)');
+        
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'preco' => 'required|numeric',
+            'quantidade' => 'required|integer',
+            'id_categoria' => 'required|exists:categorias,id',
+            'id_user' => 'required|exists:users,id',
+            'descricao' => 'nullable|string',
+            'imagem_produto' => 'nullable|image|mimes:jpeg,png|max:2048',
+        ]);
+        
+        Log::info('Completada validação de cadastro de produto... (AdminController@store)');
+        
+        if ($request->modo === 'cadastrar') {
+            $produto = new Produto();
+        }
+        elseif ($request->modo === 'alterar') {
+            $produto = Produto::findOrFail($request->id);
+        }
+
+        $produto->quantidade = abs($request->quantidade);
+        $produto->nome = $request->nome;
+        $produto->descricao = $request->descricao;
+        $produto->preco = $request->preco;
+        $produto->slug = Str::slug($request->nome . '-' . substr($request->descricao, 0, 30));
+        $produto->id_user = auth()->user()->id;
+        $produto->id_categoria = $request->id_categoria;
+        
+        if ($request->hasFile('imagem')) {
+            $imagem = $request->file('imagem');
+            $nomeImagem = time() . '_' . $imagem->getClientOriginalName();
+            $caminhoImagem = $imagem->storeAs('produtos/imagens', $nomeImagem);
+            $produto->imagem = $caminhoImagem;
+        }
+        
+        $produto->save();
+
+        Log::info('Produto cadastrado. (AdminController@store)');
+
+        return redirect()->route('admin.estoque')->with('success', 'Produto salvo com sucesso.');
     }
 
     public function alterar_produto($id)
@@ -126,54 +246,6 @@ class AdminController extends Controller
     public function create()
     {
         //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        Log::info('Iniciando validação de cadastro de produto... (AdminController@store)');
-        
-        $request->validate([
-            'nome' => 'required|string|max:255',
-            'preco' => 'required|numeric',
-            'quantidade' => 'required|integer',
-            'id_categoria' => 'required|exists:categorias,id',
-            'id_user' => 'required|exists:users,id',
-            'descricao' => 'nullable|string',
-            'imagem_produto' => 'nullable|image|mimes:jpeg,png|max:2048',
-        ]);
-        
-        Log::info('Completada validação de cadastro de produto... (AdminController@store)');
-        
-        if ($request->modo === 'cadastrar') {
-            $produto = new Produto();
-        }
-        elseif ($request->modo === 'alterar') {
-            $produto = Produto::findOrFail($request->id);
-        }
-
-        $produto->quantidade = abs($request->quantidade);
-        $produto->nome = $request->nome;
-        $produto->descricao = $request->descricao;
-        $produto->preco = $request->preco;
-        $produto->slug = Str::slug($request->nome . '-' . substr($request->descricao, 0, 30));
-        $produto->id_user = auth()->user()->id;
-        $produto->id_categoria = $request->id_categoria;
-        
-        if ($request->hasFile('imagem')) {
-            $imagem = $request->file('imagem');
-            $nomeImagem = time() . '_' . $imagem->getClientOriginalName();
-            $caminhoImagem = $imagem->storeAs('imagens', $nomeImagem);
-            $produto->imagem = $caminhoImagem;
-        }
-        
-        $produto->save();
-
-        Log::info('Produto cadastrado. (AdminController@store)');
-
-        return redirect()->route('admin.estoque')->with('success', 'Produto salvo com sucesso.');
     }
 
     /**

@@ -16,13 +16,15 @@
     <li><a href="{{ route('site.index') }}" class="waves-effect"><i class="material-icons">home</i>Índice do site</a></li>
 
     <li><div class="divider"></div></li>
-    <li class="center"><a class="subheader" class="waves-effect">Gestão</a></li>
-    <li><a href="{{ route('admin.categorias') }}" class="waves-effect"><i class="material-icons">category</i>Categorias</a></li>
-    <li><a href="{{ route('admin.produtos') }}" class="waves-effect"><i class="material-icons">shopping_cart</i>Produtos</a></li>
-    <li><a href="{{ route('admin.usuarios') }}" class="waves-effect"><i class="material-icons">people_alt</i>Usuários/clientes</a></li>
+    <li class="center"><a class="subheader" class="waves-effect">Produtos</a></li>
+    <li class="no-padding">
+      <li><a href="{{ route('admin.categorias') }}"><i class="material-icons">category</i>Categorias</a></li>
+      <li><a href="{{ route('admin.estoque') }}"><i class="material-icons">production_quantity_limits</i>Estoque</a></li>
+    </li>
     
     <li><div class="divider"></div></li>
-    <li class="center"><a class="subheader" class="waves-effect">Configurações do site</a></li>
+    <li class="center"><a class="subheader" class="waves-effect">Gestão do site</a></li>
+    <li><a href="{{ route('admin.usuarios') }}" class="waves-effect"><i class="material-icons">people_alt</i>Usuários/clientes</a></li>
   </ul>
   <!-- <div class="container">
       <a href="#" data-target="slide-out" class="ml-3 waves-effect sidenav-trigger red black left btn"><i class="material-icons right">arrow_forward</i>Abrir painel</a>
@@ -33,7 +35,7 @@
     <main>
         <div class="container">
           <div class="left">
-              <a href="#" data-target="slide-out" class="ml-3 waves-effect sidenav-trigger red black left btn"><i class="material-icons right">arrow_forward</i>Menu</a>
+              <a href="#" data-target="slide-out" class="ml-3 waves-effect waves-light sidenav-trigger red black left btn"><i class="material-icons right">chevron_right</i>Abrir menu</a>
           </div>
             @yield('content')<br />
         </div>

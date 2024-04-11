@@ -17,7 +17,7 @@
             @include('messages.fail')
         @endif
 
-        <form action="{{ $modo === 'cadastrar' ? route('users.store') : route('admin.alterar_usuario.store', ['id' => $usuario->id] ) }}" method="POST">
+        <form action="{{ $modo === 'cadastrar' ? route('users.store') : route('admin.alterar_usuario.store', ['id' => $usuario->id] ) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @if($modo === 'alterar')
                 @method('PUT')
@@ -87,41 +87,85 @@
                 </div>
             </div>
 
+            @if ($modo === 'alterar')
+            <div class="row">
+                <div class="col s12">
+                    <h5><p>Foto atual:</p></h5> 
+                    <div class="row center">
+                        <div class="col s12">
+                            <img src="{{ asset('storage/' . $usuario->foto) }}" class="responsive-img" style="max-width: 640px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
+
+            <div class="row">
+                <h5><p>Enviar {{ $modo === 'alterar' ? 'nova' : 'uma' }} foto</p></h5>
+            </div>
+
+            <div class="row">
+                <div class="file-field input-field">
+                    <div class="waves-effect btn red black">
+                        <span>Enviar arquivo</span>
+                        <input type="file" id="foto" name="foto">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                        <label for="foto">Imagens podem ser do tipo JPG ou PNG</label>
+                    </div>
+                </div>
+            </div>
+
             @if ( $modo === 'alterar' )
-                <div class="row">
-                    <h5>Tipo de usuário</h5>
-                    <p>O tipo de usuário determina o que ele pode fazer no sistema.</p>
+                @if ( $usuario->id !== auth()->user()->id && $usuario->id !== 1 )
+                                
+                    <div class="row">
+                        <h5>Tipo de usuário</h5>
+                        <p>O tipo de usuário determina o que ele pode fazer no sistema.</p>
+
+                        <div class="row">
+                            <div class="col s12 m8 red lighten-3"><b>Proprietário</b></div>
+                            <div class="col s12 m8 red lighten-3">Tem poder total no site e não pode ser excluído.</div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m8 green lighten-3"><b>Administrador</b></div>
+                            <div class="col s12 m8 green lighten-3">Pode cadastrar, alterar e excluir produtos, mas não pode excluir clientes nem alterar configurações do site.</div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m8 blue lighten-3"><b>Cliente</b></div>
+                            <div class="col s12 m8 blue lighten-3">Podem se cadastrar e fazer qualquer coisa que um usuário não cadastrado faz.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col s12 m4">
+                            <select id="level" name="level">
+                            <option value="{{ old('level', $usuario->level) }}" selected>{{ $levels[$usuario->level] }}</option>
+                    
+                            @foreach ($levels as $level_id => $level_name)
+                                <option value="{{ $level_id }}">{{ $level_name }}</option>
+                            @endforeach
+                            
+                            </select>
+                            <label for="level">Tipo de usuário</label>
+                        </div>
+                    </div>
+
+                @else
 
                     <div class="row">
-                        <div class="col s12 m4 red lighten-3 center"><b>Proprietário</b></div>
-                        <div class="col s12 m4 green lighten-3 center"><b>Administrador</b></div>
-                        <div class="col s12 m4 blue lighten-3 center"><b>Cliente</b></div>
+                        <div class="col s12 red lighten-3"><b>Proprietário ID 1</b></div>
+                        <div class="col s12 red lighten-3">Este usuário não pode ser excluído nem ter sua credencial alterada.</div>
                     </div>
-                    <div class="row">
-                        <div class="col s12 m4 red lighten-3">Tem poder total no site e não pode ser excluído.</div>
-                        <div class="col s12 m4 green lighten-3">Pode cadastrar, alterar e excluir produtos, mas não pode excluir clientes nem alterar configurações do site.</div>
-                        <div class="col s12 m4 blue lighten-3">Podem se cadastrar e fazer qualquer coisa que um usuário não cadastrado faz.</div>
-                    </div>
-                </div>
                 
-                <div class="row">
-                    <div class="col s12 m4">
-                        <select name="level">
-                        <option value="{{ old('level', $usuario->level) }}" selected>{{ $levels[$usuario->level] }}</option>
-                
-                        @foreach ($levels as $level_id => $level_name)
-                            <option value="{{ $level_id }}">{{ $level_name }}</option>
-                        @endforeach
-s
-                        </select>
-                        <label>Tipo de usuário</label>
-                    </div>
-                </div>
+                @endif
             @endif
 
             <div class="container center">
-                <div class="col s12 center">      
-                    <button type="submit" class="btn waves-effect black">{{ $modo }}</button>
+                <div class="col s12 center">
+                    <a class="waves-effect waves-black btn-flat" onclick="history.back()">Voltar</a>
+                    <button type="submit" class="btn waves-effect waves-light black">{{ $modo }}</button>
                 </div>
             </div>
         </form>

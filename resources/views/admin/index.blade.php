@@ -13,20 +13,30 @@
 
     <div class="container">
         <div class="row">
-            <div class="col s6 m4 center">
-                <div class="container">
-                    <a href="{{ route('admin.categorias') }}" class="waves-effect"><i class="material-icons center large black-text text-darken-4">category</i></a>
+            <div class="row">
+                <div class="col s6 m4 center">
+                    <div class="container">
+                        <a href="/admin/cadastrar/produto" class="waves-effect"><i class="material-icons center large large black-text text-darken-4">add_shopping_cart</i></a>
+                    </div>
+                    <div class="container">
+                        Cadastrar produto
+                    </div>
                 </div>
-                <div class="container">
-                    Categorias de produtos
+                <div class="col s6 m4 center">
+                    <div class="container">
+                        <a href="/admin/estoque" class="waves-effect"><i class="material-icons center large large black-text text-darken-4">production_quantity_limits</i></a>
+                    </div>
+                    <div class="container">
+                        Estoque
+                    </div>
                 </div>
-            </div>
-            <div class="col s6 m4 center">
-                <div class="container">
-                    <a href="{{ route('admin.produtos') }}" class="waves-effect"><i class="material-icons center large black-text text-darken-4">shopping_cart</i></a>
-                </div>
-                <div class="container">
-                    Produtos
+                <div class="col s6 m4 center">
+                    <div class="container">
+                        <a href="/admin/categorias" class="waves-effect"><i class="material-icons center large large black-text text-darken-4">category</i></a>
+                    </div>
+                    <div class="container">
+                        Categorias
+                    </div>
                 </div>
             </div>
         </div>

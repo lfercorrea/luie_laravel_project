@@ -13,40 +13,44 @@
     <nav>
         <div class="nav-wrapper black">
             {{-- <a href="#" data-target="mobile-btn" class="sidenav-trigger"><i class="material-icons">menu</i></a> --}}
-            <a href="{{ route('site.index') }}" class="brand-logo"><img src="{{ asset('storage/images/brand_logo.jpg') }}" class="responsive-img" style="width: 100px;"></a>
+            <a href="{{ route('site.index') }}" class="brand-logo waves-effect waves-light"><img src="{{ asset('storage/static/images/brand_logo.jpg') }}" class="responsive-img" style="width: 100px;"></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
               
               {{-- BEGIN user-menu Dropdown --}}
               @if ( $user = auth()->user() )
                 <li>
-                  <a data-target='user-menu' class='dropdown-trigger'><i class="material-icons right">expand_more</i>{{ $user->name }}</a>
+                  <img class="circle responsive-img" src="{{ isset(auth()->user()->foto) ? asset('storage/'. auth()->user()->foto) : asset('storage/static/images/img_avatar.png') }}" style="height: 63px; width: 63px;">
+                </li>
+                <li>
+                  <a data-target='user-menu' class='dropdown-trigger waves-effect waves-light'>
+                    <i class="material-icons right">expand_more</i>{{ $user->name }}
+                  </a>
                 </li>
                 
                 <!-- Dropdown Structure -->
                 <ul id='user-menu' class='dropdown-content'>
 
-                  <li><a href="{{ route('admin.index') }}"><i class="material-icons left">build</i>Administração</a></li>
-                  <li><a href="{{ route('logout.auth') }}"><i class="material-icons left">logout</i>Sair</a></li>
-                    {{-- <li><a href="{{ route('site.ver.categoria', $categoria->id) }}">{{ $categoria->nome }}</a></li> --}}
+                  <li><a href="{{ route('admin.index') }}" class="red-text text-darken-4"><i class="material-icons left">build</i>Administração</a></li>
+                  <li><a href="{{ route('logout.auth') }}" class="black-text"><i class="material-icons left">logout</i>Sair</a></li>
                   
                 </ul>
               @else
-                <li><a href="{{ route('login') }}"><i class="material-icons left">login</i>Entrar</a></li>
+                <li><a href="{{ route('user.create') }}" class="waves-effect waves-light"><i class="material-icons left">how_to_reg</i>Cadastro</a></li>
+                <li><a href="{{ route('login') }}" class="waves-effect waves-light"><i class="material-icons left">login</i>Entrar</a></li>
               @endif
               {{-- END user-menu Dropdown --}}
               
               {{-- BEGIN categorias Dropdown --}}
-              <li><a data-target='categorias' class='dropdown-trigger'><i class="material-icons right">expand_more</i>Categorias</a></li>
+              <li><a data-target='categorias' class='dropdown-trigger waves-effect waves-light'><i class="material-icons right">expand_more</i>Categorias</a></li>
               <!-- Dropdown Structure -->
               <ul id='categorias' class='dropdown-content'>
                 @foreach ($categorias as $categoria)
-                  <li><a href="{{ route('site.ver.categoria', $categoria->id) }}">{{ $categoria->nome }}</a></li>
+                  <li><a href="{{ route('site.ver.categoria', $categoria->id) }}" class="black-text">{{ $categoria->nome }}</a></li>
                 @endforeach
               </ul>
               {{-- END categorias Dropdown --}}
 
-              <li><a href="{{ route('site.produtos') }}">Produtos</a></li>
-              <li><a href="collapsible.html">Menu</a></li>
+              <li><a href="{{ route('site.produtos') }}" class="waves-effect waves-light">Produtos</a></li>
             </ul>
 
             {{-- BEGIN sidenav --}}

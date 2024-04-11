@@ -68,6 +68,14 @@ class UserController extends Controller
         Log::info('Finalizando validação dos campos do formulário de usuário (UserController@store)');
 
         $arr_user = $request->all();
+
+        if ($request->hasFile('foto')) {
+            $foto = $request->file('foto');
+            $nome_foto = time() . '_' . $foto->getClientOriginalName();
+            $caminho_foto = $foto->storeAs('usuarios/fotos', $nome_foto);
+            $arr_user['foto'] = $caminho_foto;
+        }
+
         $arr_user['level'] = 3;
         $arr_user['password'] = bcrypt($request->password);
 
@@ -75,18 +83,24 @@ class UserController extends Controller
             $user = User::create($arr_user);
 
             Log::info('Usuário criado com sucesso (UserController@store)');
+
+            if ( isset(auth()->user()->level) ? auth()->user()->level === 1 : false ) {
+
+                return redirect()->route('admin.usuarios')->with('success', 'Cadastro realizado.');
+            }
+
         }
         elseif ($request->modo === 'alterar') {
             $arr_user['level'] = $request->level;
             $user = User::findOrFail($request->id);
-
+            
             $user->update($arr_user);
-
+            
             return redirect()->route('admin.usuarios')->with('success', 'Usuário alterado.');
         }
+        
+        Auth::login($user);
 
-        // Auth::login($user);
-
-        return redirect()->route('site.index')->with('success', 'Cadastro realizado. Agora você já pode fazer login com seu e-mail e senha.');
+        return redirect()->route('site.index')->with('success', 'Cadastro realizado.');
     }
 }
