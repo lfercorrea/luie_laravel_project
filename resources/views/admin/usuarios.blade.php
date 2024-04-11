@@ -40,7 +40,6 @@
                 <th>Foto</th>
                 <th>Nível</th>
                 <th>Endereço</th>
-                <th>Cidade</th>
                 <th>Celular</th>
             </tr>
         </thead>
@@ -59,11 +58,14 @@
                     @endif
                 </td>
                 <td>{{ $usuario->id }}</td>
-                <td><b>{{ $usuario->name }}</b></td>
-                <td><img src="{{ asset('storage/' . $usuario->foto) }}" class="responsive-img circle avatar-cell"></td>
+                @if ( $usuario->id === 1)
+                    <td><i class="material-icons left">stars</i><b>{{ $usuario->name }}</b><br>{{ $usuario->email }}</td>
+                @else
+                    <td><b>{{ $usuario->name }}</b><br>{{ $usuario->email }}</td>
+                @endif
+                <td><img src="{{ empty($usuario->foto) ? asset('storage/static/images/img_avatar.png') :  asset('storage/' . $usuario->foto) }}" class="responsive-img circle avatar-cell"></td>
                 <td>{{ $levels[$usuario->level] }}</td>
-                <td>{{ $usuario->endereco }}</td>
-                <td>{{ $usuario->cidade }}</td>
+                <td>{{ $usuario->endereco }}, {{ $usuario->numero }} - {{ $usuario->bairro }} - {{ $usuario->cidade }} ({{ $usuario->uf }})</td>
                 <td>{{ $usuario->celular }}</td>
             </tr>
             @endforeach

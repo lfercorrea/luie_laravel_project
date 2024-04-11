@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
@@ -56,8 +57,14 @@ class AdminController extends Controller
         
         $request->validate([
             'nome' => 'required|string|max:255',
-            'descricao' => 'nullable|string',
+            'descricao' => 'required|string',
             'imagem' => 'nullable|image|mimes:jpeg,png|max:2048',
+        ], [
+            'nome.string' => 'O nome precisa ser um texto de até 255 caracteres',
+            'nome.required' => 'O nome é obrigatório e precisa ser um texto de até 255 caracteres',
+            'descricao.required' => 'A descrição é obrigatório e precisa ser um texto de até 255 caracteres',
+            'descricao.string' => 'A descrição precisa ser um texto de até 255 caracteres',
+            'imagem.image' => 'O arquivo enviado não está no formato de imagem aceito (JPEG, PNG) ou ultrapassa 2 MB',
         ]);
         
         Log::info('Completada validação de cadastro de categoria... (AdminController@cadastrar_categoria_store)');
@@ -67,6 +74,14 @@ class AdminController extends Controller
         }
         elseif ($request->modo === 'alterar') {
             $categoria = Categoria::findOrFail($request->id);
+            
+            if ($request->hasFile('imagem')) {
+                $imagem = storage_path('app/public/' . $categoria->imagem);
+
+                if (File::exists($imagem)) {
+                    File::delete($imagem);
+                }
+            }
         }
         
         $categoria->nome = $request->nome;
@@ -74,7 +89,7 @@ class AdminController extends Controller
         
         if ($request->hasFile('imagem')) {
             $imagem = $request->file('imagem');
-            $nomeImagem = time() . '_' . $imagem->getClientOriginalName();
+            $nomeImagem = $categoria->id . '_' . time() . '_' . $imagem->getClientOriginalName();
             $caminhoImagem = $imagem->storeAs('categorias/imagens', $nomeImagem);
             $categoria->imagem = $caminhoImagem;
         }
@@ -97,6 +112,12 @@ class AdminController extends Controller
 
     public function excluir_categoria ($id) {
         $categoria = Categoria::find($id);
+        $imagem = storage_path('app/public/' . $categoria->imagem);
+        
+        if (File::exists($imagem)) {
+            File::delete($imagem);
+        }
+
         $categoria->delete();
 
         return redirect()
@@ -114,7 +135,7 @@ class AdminController extends Controller
 
     public function estoque()
     {
-        $produtos = Produto::paginate(30);
+        $produtos = Produto::orderBy('updated_at', 'desc')->paginate(30);
 
         return view('admin.estoque', [
             'produtos' => $produtos,
@@ -161,8 +182,19 @@ class AdminController extends Controller
             'quantidade' => 'required|integer',
             'id_categoria' => 'required|exists:categorias,id',
             'id_user' => 'required|exists:users,id',
-            'descricao' => 'nullable|string',
-            'imagem_produto' => 'nullable|image|mimes:jpeg,png|max:2048',
+            'descricao' => 'required|string',
+            'imagem' => 'nullable|image|mimes:jpeg,png|max:2048',
+        ], [
+            'nome.string' => 'O nome precisa ser um texto de até 255 caracteres',
+            'nome.required' => 'O nome é obrigatório e precisa ser um texto de até 255 caracteres',
+            'preco.required' => 'O preço é obrigatório e precisa ser numérico',
+            'preco.numeric' => 'O preço precisa ser numérico',
+            'quantidade.required' => 'A quantidade é obrigatória e precisa ser numérica',
+            'quantidade.integer' => 'A quantidade precisa ser um número inteiro',
+            'id_categoria.required' => 'É obrigatório selecionar uma categoria',
+            'descricao.required' => 'A descrição é obrigatória e precisa ser um texto de até 255 caracteres',
+            'descricao.string' => 'A descrição precisa ser um texto de até 255 caracteres',
+            'imagem.image' => 'O arquivo enviado não está no formato de imagem aceito (JPEG, PNG) ou ultrapassa 2 MB',
         ]);
         
         Log::info('Completada validação de cadastro de produto... (AdminController@store)');
@@ -172,6 +204,14 @@ class AdminController extends Controller
         }
         elseif ($request->modo === 'alterar') {
             $produto = Produto::findOrFail($request->id);
+
+            if ($request->hasFile('imagem')) {
+                $imagem = storage_path('app/public/' . $produto->imagem);
+
+                if (File::exists($imagem)) {
+                    File::delete($imagem);
+                }
+            }
         }
 
         $produto->quantidade = abs($request->quantidade);
@@ -184,7 +224,7 @@ class AdminController extends Controller
         
         if ($request->hasFile('imagem')) {
             $imagem = $request->file('imagem');
-            $nomeImagem = time() . '_' . $imagem->getClientOriginalName();
+            $nomeImagem = $produto->id . '_' . time() . '_' . $imagem->getClientOriginalName();
             $caminhoImagem = $imagem->storeAs('produtos/imagens', $nomeImagem);
             $produto->imagem = $caminhoImagem;
         }
@@ -208,15 +248,18 @@ class AdminController extends Controller
             'categorias' => $categorias, 
             'modo' => 'alterar',
         ]);
-        // return view('admin.alterar_produto', [
-        //     'produtos' => $produtos,
-        // ]);
     }
 
     public function excluir_produto ($id) {
         $produto = Produto::find($id);
-        $produto->delete();
+        $imagem = storage_path('app/public/' . $produto->imagem);
+        
+        if (File::exists($imagem)) {
+            File::delete($imagem);
+        }
 
+        $produto->delete();
+        
         return redirect()
             ->route('admin.estoque')
             ->with('success', 'Produto excluído com sucesso.');
@@ -226,7 +269,7 @@ class AdminController extends Controller
      * Usuários
      */
     public function usuarios () {
-        $usuarios = User::paginate(30);
+        $usuarios = User::orderBy('name')->paginate(30);
 
         return view('admin.usuarios', [
             'usuarios' => $usuarios,
@@ -244,9 +287,15 @@ class AdminController extends Controller
 
     public function excluir_usuario ($id) {
         $user = User::find($id);
-
+        
         if( $user->level == 1 ) {
             return back()->with('fail', 'O proprietário não pode ser excluído.');
+        }
+        
+        $imagem = storage_path('app/public/' . $user->foto);
+
+        if (File::exists($imagem)) {
+            File::delete($imagem);
         }
 
         $user->delete();

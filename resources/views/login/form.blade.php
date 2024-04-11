@@ -8,12 +8,6 @@
             <h4>Entrar</h4>
             <div class="col s12">
 
-                @if ($msg = Session::get('fail') || $errors->any())
-
-                    @include('messages.fail')
-                    
-                @endif
-
                 <form action="{{ route('login.auth') }}" method="POST">
                 @csrf
                     <div class="container">

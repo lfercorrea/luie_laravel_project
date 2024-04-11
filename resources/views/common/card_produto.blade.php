@@ -22,7 +22,7 @@
     <div class="card">
         <div class="card-image">
             <a href="{{ route('site.ver.produto', ['slug' => $produto->slug]) }}" class="waves-effect waves-light red">
-                <img src="{{ asset('storage/' . $produto->imagem) }}">
+                <img src="{{ empty($produto->imagem) ? asset('storage/static/images/no_photo.gif') :  asset('storage/' . $produto->imagem) }}">
                 <span class="card-title">R$ {{ number_format($produto->preco, 2, ',', '.') }}</span>
             </a>
             <a href="#zoom_img_{{ $produto->slug }}" class="btn-floating halfway-fab waves-effect waves-light pink lighten-2 modal-trigger"><i class="material-icons black-text">zoom_in</i></a>

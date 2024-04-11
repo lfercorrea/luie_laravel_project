@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -71,7 +72,7 @@ class UserController extends Controller
 
         if ($request->hasFile('foto')) {
             $foto = $request->file('foto');
-            $nome_foto = time() . '_' . $foto->getClientOriginalName();
+            $nome_foto = $arr_user['email'] . '_' . time() . '_' . $foto->getClientOriginalName();
             $caminho_foto = $foto->storeAs('usuarios/fotos', $nome_foto);
             $arr_user['foto'] = $caminho_foto;
         }
@@ -93,6 +94,14 @@ class UserController extends Controller
         elseif ($request->modo === 'alterar') {
             $arr_user['level'] = $request->level;
             $user = User::findOrFail($request->id);
+
+            if ($request->hasFile('foto')) {
+                $imagem = storage_path('app/public/' . $user->foto);
+
+                if (File::exists($imagem)) {
+                    File::delete($imagem);
+                }
+            }
             
             $user->update($arr_user);
             

@@ -11,7 +11,7 @@
     <hr>
 </div>
 
-<div class="row">
+<div class="col s12">
     <form id="form-categoria" class="col s12" action="{{ $modo === 'cadastrar' ? route('admin.cadastrar_categoria_store') : route('admin.alterar_categoria_store', ['id' => $categoria->id] ) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @if($modo === 'alterar')
@@ -22,7 +22,7 @@
         <div class="row">
             <div class="input-field col s6 m6">
                 <input id="nome" type="text" class="validate" name="nome" value="{{ old('nome', $categoria->nome) }}">
-                <label for="nome">Título da categoria</label>
+                <label for="nome">Nome da categoria</label>
             </div>
         </div>
         <div class="row">
@@ -38,7 +38,7 @@
             Imagem atual: 
             <div class="row center">
                 <div class="col s12">
-                    <img src="{{ asset('storage/' . $categoria->imagem) }}" class="responsive-img">
+                    <img src="{{ empty($categoria->imagem) ? asset('storage/static/images/no_photo.gif') :  asset('storage/' . $categoria->imagem) }}" class="responsive-img">
                 </div>
             </div>
         @endif
@@ -61,12 +61,6 @@
         <a class="waves-effect waves-black btn-flat" onclick="history.back()">Voltar</a>
         <button class="btn waves-effect waves-light white-text black" type="submit" form="form-categoria">{{ $modo }}</button>
     </div>
-
-    @if ($msg = Session::get('fail') || $errors->any() )
-        
-        @include('messages.fail')
-
-    @endif
 
 </div>
 

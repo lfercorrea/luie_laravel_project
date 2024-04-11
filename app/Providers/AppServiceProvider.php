@@ -21,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $categorias = Categoria::all();
+
         $levels = [
             1 => 'Proprietário',
             2 => 'Administrador',

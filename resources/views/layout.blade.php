@@ -11,6 +11,7 @@
 <body>
     <header>
     <nav>
+        {{-- BEGIN Navbar --}}
         <div class="nav-wrapper black">
             {{-- <a href="#" data-target="mobile-btn" class="sidenav-trigger"><i class="material-icons">menu</i></a> --}}
             <a href="{{ route('site.index') }}" class="brand-logo waves-effect waves-light"><img src="{{ asset('storage/static/images/brand_logo.jpg') }}" class="responsive-img brand-logo"></a>
@@ -30,9 +31,11 @@
                 {{-- <!-- Dropdown Structure --> --}}
                 <ul id='user-menu' class='dropdown-content'>
 
-                  <li><a href="{{ route('admin.index') }}" class="red-text text-darken-4"><i class="material-icons left">build</i>Administração</a></li>
+                  @if ( auth()->user()->level <= 2 )
+                    <li><a href="{{ route('admin.index') }}" class="red-text text-darken-4"><i class="material-icons left">build</i>Administração</a></li>
+                  @endif
+
                   <li><a href="{{ route('logout.auth') }}" class="black-text"><i class="material-icons left">logout</i>Sair</a></li>
-                  
                 </ul>
               @else
                 <li><a href="{{ route('user.create') }}" class="waves-effect waves-light"><i class="material-icons left">how_to_reg</i>Cadastro</a></li>
@@ -49,15 +52,20 @@
                 @endforeach
               </ul>
               {{-- END categorias Dropdown --}}
-
               <li><a href="{{ route('site.produtos') }}" class="waves-effect waves-light">Produtos</a></li>
             </ul>
+            {{-- END Navbar --}}
 
             {{-- BEGIN sidenav --}}
             <ul id="slide-out" class="sidenav">
               @include('common.sidenav_head')
                 
               <li><a href="{{ route('site.index') }}"><i class="material-icons left">home</i>Início do site</a></li>
+              
+              @guest
+                <li><a href="{{ route('user.create') }}"><i class="material-icons left">how_to_reg</i>Cadastro</a></li>
+              @endguest
+              
               <li><div class="divider"></div></li>
               <li><a href="{{ route('site.produtos') }}"><i class="material-icons left">shopping_cart</i>Produtos</a></li>
               <li class="no-padding">
@@ -118,10 +126,10 @@
         <p>@yield('content')</p>
       </div>
 
-      @if ($msg = Session::get('success'))
-          @include('messages.success')
-      @elseif ($msg = Session::get('fail'))
+      @if ( $msg = Session::get('fail') || $errors->any() )
           @include('messages.fail')
+      @elseif ( $msg = Session::get('success') )
+          @include('messages.success')
       @endif
 
     </main>

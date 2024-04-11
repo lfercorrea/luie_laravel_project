@@ -33,17 +33,17 @@
 
 <body>
     <main>
-        <div class="container">
-          <div class="left">
-              <a href="#" data-target="slide-out" class="ml-3 waves-effect waves-light sidenav-trigger red black left btn"><i class="material-icons right">chevron_right</i>Abrir menu</a>
+        <div class="row">
+          <div class="col s12">
+              <p><a href="#" data-target="slide-out" class="ml-3 waves-effect waves-light sidenav-trigger red black left btn"><i class="material-icons right">chevron_right</i>Abrir menu</a></p>
+              @yield('content')
           </div>
-            @yield('content')<br />
         </div>
 
-        @if ($msg = Session::get('success'))
-            @include('messages.success')
-        @elseif ($msg = Session::get('fail'))
+        @if ( $msg = Session::get('fail') || $errors->any() )
             @include('messages.fail')
+        @elseif ( $msg = Session::get('success') )
+            @include('messages.success')
         @endif
 
     </main>

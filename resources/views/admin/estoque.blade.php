@@ -42,7 +42,7 @@
                 <th>Descrição</th>
                 <th>Preço</th>
                 <th>Categoria</th>
-                <th>Imagem</th>
+                <th class="center">Imagem</th>
             </tr>
         </thead>
 
@@ -74,7 +74,7 @@
                 <td>{{ $produto->descricao }}</td>
                 <td>{{ $produto->preco }}</td>
                 <td>{{ $produto->categoria->nome }}</td>
-                <td><img src="{{ asset('storage/' . $produto->imagem) }}" class="responsive-img image-cell"></td>
+                <td><img src="{{ empty($produto->imagem) ? asset('storage/static/images/no_photo.gif') :  asset('storage/' . $produto->imagem) }}" class="responsive-img image-cell"></td>
             </tr>
             @endforeach
         </tbody>

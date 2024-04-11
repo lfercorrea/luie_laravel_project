@@ -17,13 +17,11 @@ class CategoriaSeeder extends Seeder
         Categoria::create([
             'nome' => 'Lingeries',
             'descricao' => 'Descrição para lingeries',
-            'imagem' => 'static/images/no_photo.gif',
         ]);
 
         Categoria::create([
             'nome' => 'Pijamas',
             'descricao' => 'Descrição para pijamas',
-            'imagem' => 'static/images/no_photo.gif',
         ]);
     }
 }
