@@ -73,3 +73,25 @@ main {
     width: 80%; /* Largura do popup, em relação ao container em que estiver inscrito */
     max-width: 400px; /* Largura máxima do popup. testar em celulares, ajustar conforme necessário */
 }
+
+/** 
+* para ajuste de imagens em algumas seções específicas como navbars, tabelas, etc
+*/
+.responsive-img.brand-logo {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    max-width: 100px;
+}
+.responsive-img.image-cell {
+    max-width: 200px;
+}
+.responsive-img.avatar-cell {
+    width: 80px;
+    height: 80px;
+}
+.responsive-img.avatar-navbar {
+    width: 63px;
+    height: 63px;
+}

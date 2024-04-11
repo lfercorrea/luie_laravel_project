@@ -60,7 +60,7 @@
                 </td>
                 <td>{{ $usuario->id }}</td>
                 <td><b>{{ $usuario->name }}</b></td>
-                <td><img src="{{ asset('storage/' . $usuario->foto) }}" class="responsive-img circle" style="width: 80px; height: 80px;"></td>
+                <td><img src="{{ asset('storage/' . $usuario->foto) }}" class="responsive-img circle avatar-cell"></td>
                 <td>{{ $levels[$usuario->level] }}</td>
                 <td>{{ $usuario->endereco }}</td>
                 <td>{{ $usuario->cidade }}</td>

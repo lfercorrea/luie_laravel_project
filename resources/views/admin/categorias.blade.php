@@ -54,7 +54,7 @@
                 </td>
                 <td><b>{{ $categoria->nome }}</b></td>
                 <td>{{ $categoria->descricao }}</td>
-                <td><img src="{{ asset('storage/' . $categoria->imagem) }}" class="responsive-img"></td>
+                <td><img src="{{ asset('storage/' . $categoria->imagem) }}" class="responsive-img image-cell"></td>
             </tr>
             @endforeach
         </tbody>

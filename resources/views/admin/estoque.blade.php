@@ -50,19 +50,31 @@
             @foreach ($produtos as $produto)
             <tr>
                 <td>
+                    <form action="{{ route('admin.decrement_produto', $produto->id) }}" method="POST">
+                        @csrf
+                        <button class="btn-small waves-effect green" type="submit">
+                            <i class="material-icons center">remove</i>
+                        </button>
+                    </form>
                     <a href="/admin/alterar/produto/{{ $produto->id }}" class="btn-small waves-effect blue darken-1">
                         <i class="material-icons center">edit</i>
                     </a>
                     <button class="btn-small waves-effect red darken-1 modal-trigger" data-target="confirm-delete-modal" data-target-url="/admin/excluir/produto/" data-target-id="{{ $produto->id }}">
                         <i class="material-icons center">delete</i>
                     </button>
+                    <form action="{{ route('admin.increment_produto', $produto->id) }}" method="POST">
+                        @csrf
+                        <button class="btn-small waves-effect green" type="submit">
+                            <i class="material-icons center">add</i>
+                        </button>
+                    </form>
                 </td>
                 <td>{{ $produto->quantidade }}</td>
                 <td><b>{{ $produto->nome }}</b></td>
                 <td>{{ $produto->descricao }}</td>
                 <td>{{ $produto->preco }}</td>
                 <td>{{ $produto->categoria->nome }}</td>
-                <td><img src="{{ asset('storage/' . $produto->imagem) }}" class="responsive-img"></td>
+                <td><img src="{{ asset('storage/' . $produto->imagem) }}" class="responsive-img image-cell"></td>
             </tr>
             @endforeach
         </tbody>

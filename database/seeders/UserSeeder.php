@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
         User::create([
             'level' => 1,
             'name' => 'nando',
+            'foto' => 'static/images/img_avatar.png',
             'endereco' => 'Rua Dominique Danesi',
             'numero' => 34,
             'cidade' => 'São Paulo',

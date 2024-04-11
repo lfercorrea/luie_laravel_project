@@ -134,8 +134,24 @@ class AdminController extends Controller
             'modo' => 'cadastrar',
         ]);
     }
+
+    public function decrement_produto ($id) {
+        $produto = Produto::FindOrFail($id);
+        $produto->quantidade -= 1;
+        $produto->save();
+
+        return redirect()->route('admin.estoque')->with('success', 'Produto decrementado.');
+    }
+
+    public function increment_produto ($id) {
+        $produto = Produto::FindOrFail($id);
+        $produto->quantidade += 1;
+        $produto->save();
+
+        return redirect()->route('admin.estoque')->with('success', 'Produto incrementado.');
+    }
     
-    public function store(Request $request)
+    public function produto_store(Request $request)
     {
         Log::info('Iniciando validação de cadastro de produto... (AdminController@store)');
         

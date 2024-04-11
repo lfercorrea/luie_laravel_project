@@ -28,7 +28,8 @@ class ProdutoFactory extends Factory
             'descricao' => $this->faker->text,
             'preco' => $this->faker->randomFloat(2, 0, 1000),  // randomFloat(casas, inicio, fim)
             'slug' => Str::slug($nome),
-            'imagem' => $this->faker->imageUrl(400, 400),
+            // 'imagem' => $this->faker->imageUrl(400, 400),
+            'imagem' => 'static/images/no_photo.gif',
             'id_user' => User::pluck('id')->random(),
             'id_categoria' => Categoria::pluck('id')->random(),
         ];
