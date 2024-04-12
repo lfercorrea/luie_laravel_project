@@ -21,13 +21,19 @@
         </div>
     @endif
 
-    <div class="row">
-        @foreach ($produtos as $produto)
-        
-            @include('common.card_produto')
+    @if (count($produtos) > 0)
+        <div class="row">
+            @foreach ($produtos as $produto)
+            
+                @include('common.card_produto')
 
-        @endforeach
-    </div>
+            @endforeach
+        </div>
+    @else
+        <div class="container center">
+            <h5>Nenhum produto encontrado.</h5>
+        </div>
+    @endif
 
     <div class="row">
         @if (request()->input('search'))
