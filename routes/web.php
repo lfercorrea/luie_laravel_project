@@ -52,11 +52,11 @@ Route::middleware(['auth_prop'])->prefix('admin')->group(function () {
 // Route::get('/', function () {
 //     return view('index');
 // });
-Route::view('/', 'index')->name('site.index');
+Route::get('/', [SiteController::class, 'index'])->name('site.index');
 /** 
  * login system
  */
-Route::view('/entrar', 'login.form')->name('login');
+Route::get('/entrar', [LoginController::class, 'index'])->name('login');
 Route::post('/entrar/auth', [LoginController::class, 'auth'])->name('login.auth');
 Route::get('/sair', [LoginController::class, 'logout'])->name('logout.auth');
 

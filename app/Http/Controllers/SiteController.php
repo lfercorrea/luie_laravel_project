@@ -8,6 +8,12 @@ use App\Models\Produto;
 
 class SiteController extends Controller
 {
+    public function index () {
+        return view('index', [
+            // 'page_title' => 'Início',
+        ]);
+    }
+
     public function produtos(Request $request)
     {
         $count_produtos = 0;
@@ -21,6 +27,7 @@ class SiteController extends Controller
         }
         
         return view('produtos', [
+            'page_title' => 'Produtos',
             'produtos' => $produtos,
             'count_produtos' => $count_produtos,
         ]);
@@ -34,7 +41,11 @@ class SiteController extends Controller
         $categoria = Categoria::where('id', $id)->first();
         $produtos = Produto::where('id_categoria', $id)->paginate(20);
 
-        return view('ver_categoria', compact('categoria', 'produtos'));
+        return view('ver_categoria', [
+            'page_title' => $categoria->nome,
+            'categoria' => $categoria,
+            'produtos' => $produtos,
+        ]);
     }
 
     /**
@@ -45,6 +56,7 @@ class SiteController extends Controller
         $produto = Produto::where('slug', $slug)->first();
 
         return view('ver_produto', [
+            'page_title' => $produto->nome,
             'quantidade' => $produto->quantidade,
             'nome' => $produto->nome,
             'descricao' => $produto->descricao,
@@ -55,9 +67,5 @@ class SiteController extends Controller
             'user_produto' => $produto->user->name,
             'id_categoria' => $produto->id_categoria,
         ]);
-    }
-
-    public function login () {
-        //
     }
 }

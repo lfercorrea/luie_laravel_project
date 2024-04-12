@@ -24,7 +24,9 @@ class AdminController extends Controller
     // }
     public function index()
     {
-        return view('admin.index');
+        return view('admin.index', [
+            'page_title' => 'ACP',
+        ]);
     }
 
     /**
@@ -34,6 +36,7 @@ class AdminController extends Controller
         $categorias = Categoria::paginate(20);
 
         return view('admin.categorias', [
+            'page_title' => 'Categorias',
             'categorias' => $categorias,
         ]);
     }
@@ -43,6 +46,7 @@ class AdminController extends Controller
         $categoria = new Categoria();
 
         return view('admin.form_categoria', [
+            'page_title' => 'Cadastro de categoria',
             'categoria' => $categoria,
             'modo' => 'cadastrar',
         ]);
@@ -102,6 +106,7 @@ class AdminController extends Controller
         $categoria = Categoria::findOrFail($id);
 
         return view('admin.form_categoria', [
+            'page_title' => 'Alterar categoria - ' . $categoria->nome,
             'categoria' => $categoria,
             'modo' => 'alterar',
         ]);
@@ -138,6 +143,7 @@ class AdminController extends Controller
         }
         
         return view('admin.estoque', [
+            'page_title' => 'Estoque',
             'produtos' => $produtos,
             'count_produtos' => $count_produtos,
         ]);
@@ -145,11 +151,11 @@ class AdminController extends Controller
 
     public function cadastrar_produto()
     {
-        $title = "Cadastro de produto";
         $produto = new Produto();
         $categorias = Categoria::all();
 
         return view('admin.form_produto', [
+            'page_title' => 'Cadastro de produto',
             'produto' => $produto,
             'categorias' => $categorias, 
             'modo' => 'cadastrar',
@@ -242,6 +248,7 @@ class AdminController extends Controller
         $categorias = Categoria::all();
 
         return view('admin.form_produto', [
+            'page_title' => 'Alterar produto - ' . $produto->nome,
             'produto' => $produto, 
             'produtos' => $produtos,
             'categorias' => $categorias, 
@@ -279,6 +286,7 @@ class AdminController extends Controller
         }
         
         return view('admin.usuarios', [
+            'page_title' => 'Gestão de usuários',
             'usuarios' => $usuarios,
             'count_usuarios' => $count_usuarios,
         ]);
@@ -293,6 +301,7 @@ class AdminController extends Controller
         $usuario = User::findOrFail($id);
 
         return view('common.form_usuario', [
+            'page_title' => 'Alterar usuário - ' . $usuario->name,
             'usuario' => $usuario,
             'modo' => 'alterar',
         ]);

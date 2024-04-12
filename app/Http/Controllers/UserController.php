@@ -14,6 +14,7 @@ class UserController extends Controller
         $usuario = new User();
 
         return view('common.form_usuario', [
+            'page_title' => 'Cadastro',
             'usuario' => $usuario,
             'modo' => 'cadastrar',
         ]);

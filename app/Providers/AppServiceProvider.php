@@ -20,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $brand = 'Luiê';
         $categorias = Categoria::all();
 
         $levels = [
@@ -29,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
         ];
         
         view()->share([
+            'brand' => $brand,
             'categorias' => $categorias,
             'levels' => $levels,
         ]);
