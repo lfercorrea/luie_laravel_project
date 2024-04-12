@@ -142,15 +142,17 @@
               {{ $siteconfig_endereco }}
               <br>
               @if ( !empty($siteconfig_telefone) )
-              Telefone: {{ $siteconfig_telefone }}
+                Telefone: {{ $siteconfig_telefone }}
               @endif
               @if ( !empty($siteconfig_telefone) AND !empty($siteconfig_celular) )
-                  -
+                -
               @endif
               @if ( !empty($siteconfig_celular) )
-                  Celular: {{ $siteconfig_celular }}
+                Celular: {{ $siteconfig_celular }}
               @endif
-              <br>
+              @if ( !empty($siteconfig_telefone) OR !empty($siteconfig_celular) )
+                <br>
+              @endif
               {{ $siteconfig_email }}
             </p>
           </div>
