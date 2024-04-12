@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $brand }} {{ isset($page_title) ? ' - ' . $page_title : '' }}</title>
+    <title>{{ $siteconfig_brand }} {{ isset($page_title) ? ' - ' . $page_title : '' }}</title>
     <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -14,7 +14,7 @@
         {{-- BEGIN Navbar --}}
         <div class="nav-wrapper black">
             {{-- <a href="#" data-target="mobile-btn" class="sidenav-trigger"><i class="material-icons">menu</i></a> --}}
-            <a href="{{ route('site.index') }}" class="brand-logo waves-effect waves-light"><img src="{{ asset('storage/static/images/brand_logo.jpg') }}" class="responsive-img brand-logo"></a>
+            <a href="{{ route('site.index') }}" class="brand-logo waves-effect waves-light"><img src="{{ asset('storage/' . $siteconfig_brand_logo) }}" class="responsive-img brand-logo"></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
               
               {{-- BEGIN user-menu Dropdown --}}
@@ -137,10 +137,22 @@
       <div class="container">
         <div class="row">
           <div class="col l6 s12">
-            <h5 class="black-text">Luiê lingerie</h5>
+            <h5 class="black-text">{{ $siteconfig_brand }}</h5>
             <p class="black-text">
-              Av. João Lemos, 1.795 - 17257-000 - Bariri - São Paulo<br>
-              Informações de contato como telefone, email, etc.</p>
+              {{ $siteconfig_endereco }}
+              <br>
+              @if ( !empty($siteconfig_telefone) )
+              Telefone: {{ $siteconfig_telefone }}
+              @endif
+              @if ( !empty($siteconfig_telefone) AND !empty($siteconfig_celular) )
+                  -
+              @endif
+              @if ( !empty($siteconfig_celular) )
+                  Celular: {{ $siteconfig_celular }}
+              @endif
+              <br>
+              {{ $siteconfig_email }}
+            </p>
           </div>
           <!-- <div class="col l4 offset-l2 s12">
             <h5 class="white-text">Parceiros</h5>
@@ -155,7 +167,7 @@
       </div>
       <div class="footer-copyright red black">
         <div class="container">
-        <p>&copy; {{ date('Y') }} Luiê lingerie. Todos os direitos reservados.</p>
+        <p>&copy; {{ date('Y') }} {{ $siteconfig_brand }}. Todos os direitos reservados.</p>
         {{-- <a class="white-text right" href="#!">Mais links</a> --}}
         </div>
       </div>

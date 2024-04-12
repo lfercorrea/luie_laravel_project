@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CategoriaSeeder::class,
             ProdutoSeeder::class,
+            SiteconfigSeeder::class,
         ]);
 
         // seed default do laravel

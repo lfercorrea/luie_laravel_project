@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h3>Produtos</h3>
+    <h4>Produtos</h4>
 
     <div class="row">
         <form action="{{ route('site.produtos') }}" method="GET">
@@ -30,8 +30,11 @@
             @endforeach
         </div>
     @else
+        <br>
         <div class="container center">
             <h5>Nenhum produto encontrado.</h5>
+            <br>
+            <a href="{{ route('site.produtos') }}" class="btn waves-effect waves-light black">Voltar</a>
         </div>
     @endif
 

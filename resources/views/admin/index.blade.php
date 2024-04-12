@@ -51,6 +51,14 @@
         <div class="row">
             <div class="col s6 m4 center">
                 <div class="container">
+                    <a href="{{ route('admin.siteconfig') }}" class="waves-effect"><i class="material-icons center large black-text text-darken-4">settings</i></a>
+                </div>
+                <div class="container">
+                    Configurações do site
+                </div>
+            </div>
+            <div class="col s6 m4 center">
+                <div class="container">
                     <a href="{{ route('admin.usuarios') }}" class="waves-effect"><i class="material-icons center large black-text text-darken-4">people_alt</i></a>
                 </div>
                 <div class="container">

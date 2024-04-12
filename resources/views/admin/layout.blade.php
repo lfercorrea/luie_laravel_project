@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $brand }} {{ isset($page_title) ? ' - ' . $page_title : '' }}</title>
+    <title>{{ $siteconfig_brand }} {{ isset($page_title) ? ' - ' . $page_title : '' }}</title>
     <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -24,6 +24,7 @@
     
     <li><div class="divider"></div></li>
     <li class="center"><a class="subheader" class="waves-effect">Gestão do site</a></li>
+    <li><a href="{{ route('admin.siteconfig') }}" class="waves-effect"><i class="material-icons">settings</i>Configurações do site</a></li>
     <li><a href="{{ route('admin.usuarios') }}" class="waves-effect"><i class="material-icons">people_alt</i>Usuários/clientes</a></li>
   </ul>
   <!-- <div class="container">

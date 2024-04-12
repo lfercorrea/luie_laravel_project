@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\Categoria;
+use App\Models\Siteconfig;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,9 +21,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $brand = 'Luiê';
+        $site_configs = Siteconfig::first();
         $categorias = Categoria::all();
-
+        
         $levels = [
             1 => 'Proprietário',
             2 => 'Administrador',
@@ -30,7 +31,12 @@ class AppServiceProvider extends ServiceProvider
         ];
         
         view()->share([
-            'brand' => $brand,
+            'siteconfig_brand' => $site_configs->brand,
+            'siteconfig_brand_logo' => $site_configs->brand_logo,
+            'siteconfig_endereco' => $site_configs->endereco,
+            'siteconfig_email' => $site_configs->email,
+            'siteconfig_telefone' => $site_configs->telefone,
+            'siteconfig_celular' => $site_configs->celular,
             'categorias' => $categorias,
             'levels' => $levels,
         ]);

@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col s12">
             <div class="image-padding black z-depth-5">
-                <img src="{{ asset('storage/static/images/brand_logo.jpg') }}" class="responsive-img">
+                <img src="{{ asset('storage/' . $siteconfig_brand_logo) }}" class="responsive-img">
             </div>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pulvinar gravida ante. Ut pellentesque, eros in vestibulum dapibus, elit risus volutpat elit, quis iaculis justo nibh non tellus. Nulla est enim, dapibus consequat metus at, condimentum finibus sem. Phasellus ut lacus massa. Quisque lectus mauris, volutpat quis justo vel, aliquam consectetur sem. Vestibulum vulputate eros et massa mattis laoreet. Suspendisse id est et est gravida ornare.
 
@@ -30,7 +30,7 @@ Ut consectetur, erat eget congue aliquet, velit ex hendrerit massa, quis consect
         </div>
     </div>
     <div class="container center">
-        <p><a href="produtos" class="btn waves-effect large red black">Link qualquer</a></p>
+        <p><a href="produtos" class="btn waves-effect waves-light black">Link qualquer</a></p>
     </div>
     
 @endsection

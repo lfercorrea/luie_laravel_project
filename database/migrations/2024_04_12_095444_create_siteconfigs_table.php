@@ -11,9 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('admins', function (Blueprint $table) {
+        Schema::create('siteconfigs', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('brand');
+            $table->string('brand_logo');
+            $table->string('endereco');
+            $table->string('email')->unique();
+            $table->string('telefone')->unique();
+            $table->string('celular')->unique();
         });
     }
 
@@ -22,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('admins');
+        Schema::dropIfExists('siteconfigs');
     }
 };

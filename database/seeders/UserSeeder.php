@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
             'cep' => 14033035,
             'celular' => 18996073988,
             'email' => 'lfercorrea@gmail.com',
-            'password' => bcrypt('luiscorrea'),
+            'password' => bcrypt('123'),
         ]);
     }
 }

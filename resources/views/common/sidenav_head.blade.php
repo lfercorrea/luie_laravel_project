@@ -2,7 +2,7 @@
     <li>
         <div class="user-view">
         <div class="background">
-            <img src="{{ asset('storage/static/images/brand_logo.jpg') }}">
+            <img src="{{ asset('storage/' . $siteconfig_brand_logo) }}">
         </div>
         <img class="circle" src="{{ isset(auth()->user()->foto) ? asset('storage/'. auth()->user()->foto) : asset('storage/static/images/img_avatar.png') }}">
         <a href="#name" class="waves-effect"><span class="white-text name">{{ auth()->user()->name }}</span></a>
@@ -19,7 +19,7 @@
     <li>
         <div class="user-view">
         <div class="background">
-            <img src="{{ asset('storage/static/images/brand_logo.jpg') }}">
+            <img src="{{ asset('storage/' . $siteconfig_brand_logo) }}">
         </div>
         <span class="white-text center"><h4>Bem-vindo</h4></span>
         <div class="container center">

@@ -82,7 +82,7 @@ main {
     margin-right: 20px;
     margin-top: 5px;
     margin-bottom: 5px;
-    max-width: 100px;
+    max-height: 50px;
 }
 .responsive-img.image-cell {
     max-width: 200px;

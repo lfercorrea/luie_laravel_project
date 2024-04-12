@@ -102,6 +102,8 @@
     @else
         <div class="container center">
             <h5>Nenhum produto encontrado.</h5>
+            <br>
+            <a href="{{ route('admin.estoque') }}" class="btn waves-effect waves-light black">Voltar</a>
         </div>
     @endif
 
