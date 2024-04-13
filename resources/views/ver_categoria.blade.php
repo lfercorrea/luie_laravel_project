@@ -5,12 +5,17 @@
     <h2>{{ $categoria->nome }}</h2>
     <h6><p>{{ $categoria->descricao }}</p></h6>
 
-    <div class="row">
-        @foreach ($produtos as $produto)
-        
-            @include('common.card_produto')
+    @if (count($produtos) === 0)
+        <br>
+        <p><h5>Não há nenhum produto nesta categoria.</h5></p>
+    @endif
 
+    <div class="row">
+
+        @foreach ($produtos as $produto)
+            @include('common.card_produto')
         @endforeach
+
     </div>
 
     <div class="row">

@@ -188,18 +188,20 @@ class AdminController extends Controller
             'quantidade' => 'required|integer',
             'id_categoria' => 'required|exists:categorias,id',
             'descricao' => 'required|string',
-            'imagem' => 'nullable|image|mimes:jpeg,png|max:2048',
+            'imagem' => 'nullable|image|mimes:jpeg,png,webp|max:2048',
         ], [
-            'nome.string' => 'O nome precisa ser um texto de até 255 caracteres',
-            'nome.required' => 'O nome é obrigatório e precisa ser um texto de até 255 caracteres',
-            'preco.required' => 'O preço é obrigatório e precisa ser numérico',
-            'preco.numeric' => 'O preço precisa ser numérico',
-            'quantidade.required' => 'A quantidade é obrigatória e precisa ser numérica',
-            'quantidade.integer' => 'A quantidade precisa ser um número inteiro',
-            'id_categoria.required' => 'É obrigatório selecionar uma categoria',
-            'descricao.required' => 'A descrição é obrigatória e precisa ser um texto de até 255 caracteres',
-            'descricao.string' => 'A descrição precisa ser um texto de até 255 caracteres',
-            'imagem.image' => 'O arquivo enviado não está no formato de imagem aceito (JPEG, PNG) ou ultrapassa 2 MB',
+            'nome.string' => 'O nome precisa ser um texto de até 255 caracteres.',
+            'nome.required' => 'O nome é obrigatório e precisa ser um texto de até 255 caracteres.',
+            'preco.required' => 'O preço é obrigatório e precisa ser numérico.',
+            'preco.numeric' => 'O preço precisa ser numérico.',
+            'quantidade.required' => 'A quantidade é obrigatória e precisa ser numérica.',
+            'quantidade.integer' => 'A quantidade precisa ser um número inteiro.',
+            'id_categoria.required' => 'É obrigatório selecionar uma categoria.',
+            'descricao.required' => 'A descrição é obrigatória e precisa ser um texto de até 255 caracteres.',
+            'descricao.string' => 'A descrição precisa ser um texto de até 255 caracteres.',
+            'imagem.image' => 'O arquivo enviado não é uma imagem.',
+            'imagem.mimes' => 'A imagem deve estar nos formatos JPG, PNG ou WEBP.',
+            'imagem.max' => 'A imagem deve ser menor do que 2 MB.',
         ]);
         
         Log::info('Completada validação de cadastro de produto... (AdminController@store)');
@@ -304,6 +306,7 @@ class AdminController extends Controller
             'page_title' => 'Alterar usuário - ' . $usuario->name,
             'usuario' => $usuario,
             'modo' => 'alterar',
+            'disable_switch' => 'disabled',
         ]);
     }
 

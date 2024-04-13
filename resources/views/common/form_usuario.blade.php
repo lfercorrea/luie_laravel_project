@@ -66,11 +66,11 @@
                     <label for="celular">Celular</label>
                 </div>
                 <div class="input-field col s6 m3">
-                    <input id="email" type="email" name="email" class="validate" value="{{ old('email', $usuario->email) }}">
+                    <input id="email" type="email" name="email" class="validate" value="{{ old('email', $usuario->email) }}" {{ $disable_switch }}>
                     <label for="email">E-mail</label>
                 </div>
                 <div class="input-field col s6 m3">
-                    <input id="confirmar_email" type="email" name="email_confirmation" class="validate" value="{{ old('email', $usuario->email) }}">
+                    <input id="confirmar_email" type="email" name="email_confirmation" class="validate" value="{{ old('email', $usuario->email) }}" {{ $disable_switch }}>
                     <label for="confirmar_email">Confirme o e-mail</label>
                 </div>
                 <div class="input-field col s6 m2">
