@@ -117,11 +117,19 @@ class AdminController extends Controller
     public function excluir_categoria ($id) {
         $categoria = Categoria::find($id);
         $imagem = storage_path('app/public/' . $categoria->imagem);
-        
+
+        foreach ($categoria->produtos as $produto) {
+            $produto_imagem = storage_path('app/public/' . $produto->imagem);
+
+            if (File::exists($produto_imagem)) {
+                File::delete($produto_imagem);
+            }
+        }
+
         if (File::exists($imagem)) {
             File::delete($imagem);
         }
-
+        
         $categoria->delete();
 
         return redirect()
