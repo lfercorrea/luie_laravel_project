@@ -33,7 +33,7 @@ class AdminController extends Controller
      * categorias
      */
     public function categorias () {
-        $categorias = Categoria::paginate(20);
+        $categorias = Categoria::orderBy('nome', 'asc')->paginate(20);
 
         return view('admin.categorias', [
             'page_title' => 'Categorias',

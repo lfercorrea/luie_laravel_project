@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $site_configs = Siteconfig::first();
-        $categorias = Categoria::all();
+        $categorias = Categoria::orderBy('nome', 'asc')->get();
         
         $levels = [
             1 => 'Proprietário',
