@@ -17,7 +17,6 @@
         @if($modo === 'alterar')
             @method('PUT')
         @endif
-        <input type="hidden" name="modo" value="{{ $modo }}">
 
         <div class="row">
             <div class="input-field col s6 m6">

@@ -74,7 +74,7 @@ class UserController extends Controller
             'foto.max' => 'A foto não pode ser maior do que 2 MB.',
         ];
 
-        if ($request->modo == 'alterar') {
+        if ($request->route()->named('admin.alterar_usuario.store')) {
             $rules['email'] = 'nullable|email|max:255|string|confirmed';
             $rules['email_confirmation'] = 'nullable';
         }
@@ -95,7 +95,7 @@ class UserController extends Controller
         $arr_user['level'] = 3;
         $arr_user['password'] = bcrypt($request->password);
 
-        if ($request->modo === 'cadastrar') {
+        if ($request->route()->named('users.store')) {
             $user = User::create($arr_user);
 
             Log::info('Usuário criado com sucesso (UserController@store)');
@@ -106,7 +106,7 @@ class UserController extends Controller
             }
 
         }
-        elseif ($request->modo === 'alterar') {
+        elseif ($request->route()->named('admin.alterar_usuario.store')) {
             unset($arr_user['email']);
             $arr_user['level'] = $request->level;
             $user = User::findOrFail($request->id);

@@ -18,7 +18,6 @@
             @if($modo === 'alterar')
                 @method('PUT')
             @endif
-            <input type="hidden" name="modo" value="{{ $modo }}">
 
             @if($modo === 'alterar')
                 <div class="row">
@@ -63,7 +62,7 @@
                     <label for="bairro">Bairro</label>
                 </div>
                 <div class="input-field col s3 m2">
-                    <input id="cep" type="text" name="cep" placeholder="19123-000" class="validate" pattern="^\d{5}-\d{3}$" title="000000-000" value="{{ old('cep', $usuario->cep) }}" required>
+                    <input id="cep" type="text" name="cep" placeholder="19123-000" class="validate" pattern="^\d{5}-\d{3}$" title="00000-000" value="{{ old('cep', $usuario->cep) }}" required>
                     <label for="cep">CEP</label>
                 </div>
             </div>

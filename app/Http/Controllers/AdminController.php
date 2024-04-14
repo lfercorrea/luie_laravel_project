@@ -59,21 +59,23 @@ class AdminController extends Controller
         $request->validate([
             'nome' => 'required|string|max:255',
             'descricao' => 'required|string',
-            'imagem' => 'nullable|image|mimes:jpeg,png|max:2048',
+            'imagem' => 'nullable|image|mimes:jpeg,png,webp|max:2048',
         ], [
-            'nome.string' => 'O nome precisa ser um texto de até 255 caracteres',
-            'nome.required' => 'O nome é obrigatório e precisa ser um texto de até 255 caracteres',
-            'descricao.required' => 'A descrição é obrigatório e precisa ser um texto de até 255 caracteres',
-            'descricao.string' => 'A descrição precisa ser um texto de até 255 caracteres',
-            'imagem.image' => 'O arquivo enviado não está no formato de imagem aceito (JPEG, PNG) ou ultrapassa 2 MB',
+            'nome.string' => 'O nome precisa ser um texto de até 255 caracteres.',
+            'nome.required' => 'O nome é obrigatório e precisa ser um texto de até 255 caracteres.',
+            'descricao.required' => 'A descrição é obrigatório e precisa ser um texto de até 255 caracteres.',
+            'descricao.string' => 'A descrição precisa ser um texto de até 255 caracteres.',
+            'imagem.image' => 'O arquivo enviado não não é uma imagem.',
+            'imagem.mimes' => 'A imagem deve ser do tipo JPEG, PNG ou WEBP.',
+            'imagem.max' => 'A imagem deve ter até 2 MB de tamanho.',
         ]);
         
         Log::info('Completada validação de cadastro de categoria... (AdminController@cadastrar_categoria_store)');
         
-        if ($request->modo === 'cadastrar') {
+        if ($request->route()->named('admin.cadastrar_categoria_store')) {
             $categoria = new Categoria();
         }
-        elseif ($request->modo === 'alterar') {
+        elseif ($request->route()->named('admin.alterar_categoria_store')) {
             $categoria = Categoria::findOrFail($request->id);
             
             if ($request->hasFile('imagem')) {
@@ -90,7 +92,7 @@ class AdminController extends Controller
         
         if ($request->hasFile('imagem')) {
             $imagem = $request->file('imagem');
-            $nomeImagem = $categoria->id . '_' . time() . '_' . $imagem->getClientOriginalName();
+            $nomeImagem = 'categoria_' . time() . '.' . $imagem->getClientOriginalExtension();
             $caminhoImagem = $imagem->storeAs('categorias/imagens', $nomeImagem);
             $categoria->imagem = $caminhoImagem;
         }
@@ -208,10 +210,10 @@ class AdminController extends Controller
         
         Log::info('Completada validação de cadastro de produto... (AdminController@store)');
         
-        if ($request->modo === 'cadastrar') {
+        if ($request->route()->named('admin.cadastrar_produto_store')) {
             $produto = new Produto();
         }
-        elseif ($request->modo === 'alterar') {
+        elseif ($request->route()->named('admin.alterar_produto.store')) {
             $produto = Produto::findOrFail($request->id);
 
             if ($request->hasFile('imagem')) {
@@ -233,7 +235,7 @@ class AdminController extends Controller
         
         if ($request->hasFile('imagem')) {
             $imagem = $request->file('imagem');
-            $nomeImagem = $produto->id . '_' . time() . '_' . $imagem->getClientOriginalName();
+            $nomeImagem = 'produto_' . time() . '.' . $imagem->getClientOriginalExtension();
             $caminhoImagem = $imagem->storeAs('produtos/imagens', $nomeImagem);
             $produto->imagem = $caminhoImagem;
         }
@@ -294,11 +296,6 @@ class AdminController extends Controller
             'usuarios' => $usuarios,
             'count_usuarios' => $count_usuarios,
         ]);
-        
-
-        // return view('admin.usuarios', [
-        //     'usuarios' => $usuarios,
-        // ]);
     }
 
     public function alterar_usuario ($id) {
