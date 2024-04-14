@@ -73,9 +73,11 @@
                         </a>
 
                         @if ($usuario->level >= 1)
-                            <button class="btn-small waves-effect red darken-1 modal-trigger" data-target="confirm-delete-modal" data-target-url="/admin/excluir/usuario/" data-target-id="{{ $usuario->id }}">
-                                <i class="material-icons center">delete</i>
-                            </button>
+                            @if ( $usuario->id !== 1 )
+                                <button class="btn-small waves-effect red darken-1 modal-trigger" data-target="confirm-delete-modal" data-target-url="/admin/excluir/usuario/" data-target-id="{{ $usuario->id }}">
+                                    <i class="material-icons center">delete</i>
+                                </button>
+                            @endif
                         @endif
 
                     </td>
