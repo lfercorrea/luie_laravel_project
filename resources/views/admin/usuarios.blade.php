@@ -7,14 +7,14 @@
     </div>
 
     <div class="row">
-        <div class="col s3">
+        <div class="input-field col s3">
             <a href="{{ route('user.create') }}" class="btn green">Novo usuário</a>
         </div>
         <form action="{{ route('admin.usuarios') }}" method="GET">
-            <div class="col s6">
+            <div class="input-field col s6">
                 <input type="text" name="search"> 
             </div>
-            <div class="col s3">
+            <div class="input-field col s3">
                 <button class="btn waves-effect waves-light black" type="submit">Buscar</button> 
             </div>
         </form>

@@ -84,39 +84,7 @@
               </li>
             </ul>
             {{-- BEGIN sidenav --}}
-
-            {{-- <ul class="right hide-on-med-and-down">
-              <li><a href="#!">First Sidebar Link</a></li>
-              <li><a href="#!">Second Sidebar Link</a></li>
-              <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
-              <ul id='dropdown1' class='dropdown-content'>
-                <li><a href="#!">First</a></li>
-                <li><a href="#!">Second</a></li>
-                <li><a href="#!">Third</a></li>
-                <li><a href="#!">Fourth</a></li>
-              </ul>
-            </ul> --}}
             <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            {{-- <ul id="mobile-btn" class="sidenav">
-              <li><a href="{{ route('admin.index') }}"><i class="material-icons left">build</i>Administração</a></li>
-              <li>
-                <ul class="collapsible">
-                  <li>
-                    <div class="collapsible-header"><i class="material-icons black-text">expand_more</i><span class="black-text">Categorias</span></div>
-                    <ul>
-                      <div class="collapsible-body">
-                        @foreach ($categorias as $categoria)
-                          <li><a href="{{ route('site.ver.categoria', $categoria->id) }}"><span class="black-text">{{ $categoria->nome }}</span></a></li>
-                        @endforeach
-                      </div>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li><a href="{{ route('site.produtos') }}"><i class="material-icons">shopping_cart</i>Produtos</a></li>
-              <li><a href="{{ route('login') }}">Entrar</a></li>
-              <li><a href="collapsible.html">Menu</a></li>
-            </ul> --}}
         </div>
     </nav>
     </header>

@@ -39,7 +39,7 @@ class SiteController extends Controller
     public function ver_categoria($id)
     {
         $categoria = Categoria::where('id', $id)->first();
-        $produtos = Produto::where('id_categoria', $id)->paginate(20);
+        $produtos = Produto::where('id_categoria', $id)->paginate(30);
 
         return view('ver_categoria', [
             'page_title' => $categoria->nome,

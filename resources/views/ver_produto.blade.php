@@ -11,7 +11,6 @@
         <span class="green-text"><h6>R$ {{ $preco }}</h6></span>
         <h6>{{ $descricao }}</h6>
         <p>Categoria: {{ $categoria }}</p>
-        <p><i>(cadastrado por: <b>{{ $user_produto }})</b></i></p>
     </div>
   </div>
   

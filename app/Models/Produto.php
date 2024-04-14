@@ -21,9 +21,23 @@ class Produto extends Model
         return $this->belongsTo(Categoria::class, 'id_categoria');
     }
 
-    public static function search ($search) {
-        return self::where('nome', 'like', '%' . $search . '%')
-            ->orWhere('descricao', 'like', '%' . $search . '%');
+    public static function search ($search, $id_categoria = null) {
+        $query = self::query();
+
+        if ($search) {
+            $query->where(function ($query) use ($search) {
+                $query->where('nome', 'like', '%' . $search . '%')
+                    ->orWhere('descricao', 'like', '%' . $search . '%');
+            });
+        }
+
+        if ($id_categoria) {
+            $query->whereHas('categoria', function ($query) use ($id_categoria) {
+                $query->where('id', $id_categoria);
+            });
+        }
+
+        return $query;
     }
 
     protected $fillable = [

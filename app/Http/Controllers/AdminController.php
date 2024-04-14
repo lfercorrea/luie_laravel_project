@@ -134,9 +134,9 @@ class AdminController extends Controller
     {
         $count_produtos = 0;
 
-        if ($request->search){
-            $produtos = Produto::search($request->search)->paginate(30);
-            $count_produtos = Produto::search($request->search)->count();
+        if ($request->has('search') OR $request->has('id_categoria')){
+            $produtos = Produto::search($request->search, $request->id_categoria)->orderBy('updated_at', 'desc')->paginate(30);
+            $count_produtos = Produto::search($request->search, $request->id_categoria)->count();
         }
         else{
             $produtos = Produto::orderBy('updated_at', 'desc')->paginate(30);
@@ -146,6 +146,8 @@ class AdminController extends Controller
             'page_title' => 'Estoque',
             'produtos' => $produtos,
             'count_produtos' => $count_produtos,
+            'search_term' => $request->search,
+            'search_id_categoria' => $request->id_categoria,
         ]);
     }
 

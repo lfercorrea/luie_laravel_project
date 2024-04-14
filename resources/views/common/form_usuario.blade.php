@@ -30,39 +30,46 @@
 
             <div class="row">
                 <div class="input-field col s12 m5">
-                    <input id="nome" type="text" name="name" class="validate" value="{{ old('name', $usuario->name) }}">
+                    <input id="nome" type="text" name="name" class="validate" value="{{ old('name', $usuario->name) }}" required>
                     <label for="nome">Nome completo</label>
                 </div>
                 <div class="input-field col s10 m5">
-                    <input id="endereco" type="text" name="endereco" class="validate" value="{{ old('endereco', $usuario->endereco) }}">
+                    <input id="endereco" type="text" name="endereco" class="validate" value="{{ old('endereco', $usuario->endereco) }}" required>
                     <label for="endereco">Endereço</label>
                 </div>
                 <div class="input-field col s2 m2">
-                    <input id="numero" type="text" name="numero" class="validate" value="{{ old('numero', $usuario->numero) }}">
+                    <input id="numero" type="text" name="numero" class="validate" value="{{ old('numero', $usuario->numero) }}" required>
                     <label for="numero">Número</label>
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s10 m4">
-                    <input id="cidade" type="text" name="cidade" class="validate" value="{{ old('cidade', $usuario->cidade) }}">
+                <div class="input-field col s8 m4">
+                    <input id="cidade" type="text" name="cidade" class="validate" value="{{ old('cidade', $usuario->cidade) }}" required>
                     <label for="cidade">Cidade</label>
                 </div>
-                <div class="input-field col s2 m2">
-                    <input id="uf" type="text" name="uf" class="validate" value="{{ old('uf', $usuario->uf) }}">
-                    <label for="uf">Estado</label>
+                <div class="input-field col s4 m2">
+                    <select name="uf" class="validate">
+                    <option value="{{ old('uf', $usuario->uf) }}" selected>{{ $modo == 'cadastrar' ? 'Selecione' : old('uf', $ufs[$usuario->uf]) }}</option>
+            
+                    @foreach ($ufs as $key => $value)
+                        <option value="{{ $key }}">{{ $value }}</option>
+                    @endforeach
+
+                    </select>
+                    <label>Estado</label>
                 </div>
                 <div class="input-field col s9 m4">
-                    <input id="bairro" type="text" name="bairro" class="validate" value="{{ old('bairro', $usuario->bairro) }}">
+                    <input id="bairro" type="text" name="bairro" class="validate" value="{{ old('bairro', $usuario->bairro) }}" required>
                     <label for="bairro">Bairro</label>
                 </div>
                 <div class="input-field col s3 m2">
-                    <input id="cep" type="text" name="cep" placeholder="19123-000" class="validate"  value="{{ old('cep', $usuario->cep) }}">
+                    <input id="cep" type="text" name="cep" placeholder="19123-000" class="validate" pattern="^\d{5}-\d{3}$" title="000000-000" value="{{ old('cep', $usuario->cep) }}" required>
                     <label for="cep">CEP</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m2">
-                    <input id="celular" type="tel" name="celular" class="validate" value="{{ old('celular', $usuario->celular) }}">
+                    <input id="celular" type="tel" name="celular" class="validate" pattern="^0\d{2}9\d{8}$" title="Somente números, incluindo o zero e o DDD" value="{{ old('celular', $usuario->celular) }}" required>
                     <label for="celular">Celular</label>
                 </div>
                 <div class="input-field col s6 m3">
@@ -74,11 +81,11 @@
                     <label for="confirmar_email">Confirme o e-mail</label>
                 </div>
                 <div class="input-field col s6 m2">
-                    <input id="senha" type="password" name="password" class="validate">
+                    <input id="senha" type="password" name="password" pattern="(?=.*[a-zA-Z])(?=.*[\W_]).{8,}" title="A senha precisa ter no mínimo 8 caracteres, incluindo um símbolo ou espaço." class="validate" required>
                     <label for="senha">Senha</label>
                 </div>
                 <div class="input-field col s6 m2">
-                    <input id="confirmar_senha" type="password" name="password_confirmation" class="validate">
+                    <input id="confirmar_senha" type="password" name="password_confirmation" pattern="(?=.*[a-zA-Z])(?=.*[\W_]).{8,}" title="A senha precisa ter no mínimo 8 caracteres, incluindo um símbolo ou espaço." class="validate" required>
                     <label for="confirmar_senha">Confirme a senha</label>
                 </div>
             </div>
@@ -149,7 +156,7 @@
                     </div>
 
                 @else
-
+                    <input type="hidden" name="level" value="{{ old('level', $usuario->level) }}">
                     <div class="row">
                         <div class="col 12">
                             <div class="col s12 red lighten-3"><b>Proprietário</b></div>

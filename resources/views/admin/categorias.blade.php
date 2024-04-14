@@ -34,17 +34,17 @@
     <table class="striped responsive-table">
         <thead>
             <tr>
-                <th>Ações</th>
+                <th class="center-align">Ações</th>
                 <th>Categoria</th>
                 <th>Descrição</th>
-                <th>Imagem</th>
+                <th class="center-align">Imagem</th>
             </tr>
         </thead>
 
         <tbody>
             @foreach ($categorias as $categoria)
             <tr>
-                <td>
+                <td class="center-align">
                     <a href="{{ route('admin.alterar_categoria', $categoria->id) }}" class="btn-small waves-effect blue darken-1">
                         <i class="material-icons center">edit</i>
                     </a>
@@ -52,9 +52,9 @@
                         <i class="material-icons center">delete</i>
                     </button>
                 </td>
-                <td><b>{{ $categoria->nome }}</b></td>
+                <td><h5>{{ $categoria->nome }}</h5></td>
                 <td>{{ $categoria->descricao }}</td>
-                <td><img src="{{ empty($categoria->imagem) ? asset('storage/static/images/no_photo.gif') :  asset('storage/' . $categoria->imagem) }}" class="responsive-img image-cell"></td>
+                <td class="center-align"><img src="{{ empty($categoria->imagem) ? asset('storage/static/images/no_photo.gif') :  asset('storage/' . $categoria->imagem) }}" class="responsive-img image-cell"></td>
             </tr>
             @endforeach
         </tbody>

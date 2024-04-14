@@ -22,14 +22,13 @@
       <li><a href="{{ route('admin.estoque') }}"><i class="material-icons">production_quantity_limits</i>Estoque</a></li>
     </li>
     
-    <li><div class="divider"></div></li>
-    <li class="center"><a class="subheader" class="waves-effect">Gestão do site</a></li>
-    <li><a href="{{ route('admin.siteconfig') }}" class="waves-effect"><i class="material-icons">settings</i>Configurações do site</a></li>
-    <li><a href="{{ route('admin.usuarios') }}" class="waves-effect"><i class="material-icons">people_alt</i>Usuários/clientes</a></li>
+    @if ( auth()->user()->level === 1 )
+      <li><div class="divider"></div></li>
+      <li class="center"><a class="subheader" class="waves-effect">Gestão do site</a></li>
+      <li><a href="{{ route('admin.siteconfig') }}" class="waves-effect"><i class="material-icons">settings</i>Configurações do site</a></li>
+      <li><a href="{{ route('admin.usuarios') }}" class="waves-effect"><i class="material-icons">people_alt</i>Usuários</a></li>
+    @endif
   </ul>
-  <!-- <div class="container">
-      <a href="#" data-target="slide-out" class="ml-3 waves-effect sidenav-trigger red black left btn"><i class="material-icons right">arrow_forward</i>Abrir painel</a>
-  </div> -->
 </header>
 
 <body>
@@ -54,16 +53,11 @@
         <i class="large material-icons red black">menu</i>
       </a>
       <ul>
-        <!-- <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-        <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li> -->
         <li><a class="btn-floating blue btn waves-effect waves-light" href="/"><i class="large material-icons">home</i></a></li>
         <li><a class="btn-floating green btn waves-effect waves-light" href="/admin"><i class="large material-icons">build</i></a></li>
         <li><a class="btn-floating btn waves-effect waves-light red" onclick="history.back()"><i class="large material-icons">arrow_back</i></a></li>
       </ul>
     </div>
-    <!-- teste -->
 
     <script src="{{ asset('js/materialize.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>

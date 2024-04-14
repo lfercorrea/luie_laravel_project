@@ -7,28 +7,45 @@
     </div>
 
     <div class="row">
-        <div class="col s3">
+        <div class="col s12 m3">
             <a href="{{ route('admin.cadastrar_produto') }}" class="btn green">Novo produto</a>
         </div>
         <form action="{{ route('admin.estoque') }}" method="GET">
-            <div class="col s6">
-                <input type="text" name="search"> 
+            <div class="col s4 m4 input-field">
+                <input type="text" name="search" placeholder="Buscar produto"> 
             </div>
-            <div class="col s3">
-                <button class="btn waves-effect waves-light black" type="submit">Buscar produto</button> 
+            <div class="col s4 m2 input-field">
+                <select name="id_categoria"><option value="">Todas</option>
+                    
+                    @foreach ($categorias as $categoria)
+                        {{ $categoria_nome[$categoria->id] = $categoria->nome }}
+                        <option value="{{ $categoria->id }}">{{ $categoria->nome }}</option>
+                    @endforeach
+                    
+                </select>
+                <label>Categoria</label>
+            </div>
+            <div class="col s4 m3 input-field">
+                <button class="btn waves-effect waves-light black" type="submit">Buscar</button> 
             </div>
         </form>
     </div>
 
     @if ( $count_produtos > 0 )
         <div class="container center">
-            <h5>{{ $count_produtos }} produtos encontrados</h5>
+            @if (!empty($search_term) AND !empty($search_id_categoria))
+                <h5>{{ $count_produtos }} itens para "{{ $search_term }}" em {{ $categoria_nome[$search_id_categoria] }}</h5>
+            @elseif (!empty($search_term))
+                <h5>{{ $count_produtos }} itens encontrados para "{{ $search_term }}"</h5>
+            @elseif (!empty($search_id_categoria))
+                <h5>{{ $count_produtos }} itens em {{ $categoria_nome[$search_id_categoria] }}</h5>
+            @endif
         </div>
     @endif
 
     <div class="row">
-        @if (request()->input('search'))
-            {{ $produtos->appends(['search' => request()->input('search')])->links('common/pagination') }}
+        @if (request()->input('search') OR request()->input('id_categoria'))
+            {{ $produtos->appends(['search' => request()->input('search'), 'id_categoria' => request()->input('id_categoria')])->links('common/pagination') }}
         @else
             {{ $produtos->links('common/pagination') }}
         @endif
@@ -55,20 +72,20 @@
         <table class="striped responsive-table">
             <thead>
                 <tr>
-                    <th>Ações</th>
-                    <th>Qtde.</th>
+                    <th class="center-align">Ações</th>
+                    <th>Qtde</th>
                     <th>Produto</th>
                     <th>Descrição</th>
                     <th>Preço</th>
-                    <th>Categoria</th>
-                    <th class="center">Imagem</th>
+                    <th class="center-align">Categoria</th>
+                    <th class="center-align">Imagem</th>
                 </tr>
             </thead>
 
             <tbody>
                 @foreach ($produtos as $produto)
                 <tr>
-                    <td>
+                    <td class="center-align">
                         <form action="{{ route('admin.decrement_produto', $produto->id) }}" method="POST">
                             @csrf
                             <button class="btn-small waves-effect green" type="submit">
@@ -91,9 +108,9 @@
                     <td>{{ $produto->quantidade }}</td>
                     <td><b>{{ $produto->nome }}</b></td>
                     <td>{{ $produto->descricao }}</td>
-                    <td>{{ $produto->preco }}</td>
-                    <td>{{ $produto->categoria->nome }}</td>
-                    <td><img src="{{ empty($produto->imagem) ? asset('storage/static/images/no_photo.gif') :  asset('storage/' . $produto->imagem) }}" class="responsive-img image-cell"></td>
+                    <td>R$&nbsp;{{ number_format($produto->preco, 2, ',', '.') }}</td>
+                    <td class="center-align">{{ $produto->categoria->nome }}</td>
+                    <td class="center-align"><img src="{{ empty($produto->imagem) ? asset('storage/static/images/no_photo.gif') :  asset('storage/' . $produto->imagem) }}" class="responsive-img image-cell"></td>
                 </tr>
                 @endforeach
             </tbody>
@@ -108,8 +125,8 @@
     @endif
 
     <div class="row">
-        @if (request()->input('search'))
-            {{ $produtos->appends(['search' => request()->input('search')])->links('common/pagination') }}
+        @if (request()->input('search') OR request()->input('id_categoria'))
+            {{ $produtos->appends(['search' => request()->input('search'), 'id_categoria' => request()->input('id_categoria')])->links('common/pagination') }}
         @else
             {{ $produtos->links('common/pagination') }}
         @endif
