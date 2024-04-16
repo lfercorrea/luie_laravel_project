@@ -16,16 +16,15 @@ class UserSeeder extends Seeder
         // cria o usuário que tem poder total no sistema
         User::create([
             'level' => 1,
-            'name' => 'nando',
-            // 'foto' => 'static/images/img_avatar.png',
-            'endereco' => 'Rua Dominique Danesi',
-            'numero' => 34,
-            'cidade' => 'São Paulo',
+            'name' => 'Luiê',
+            'endereco' => 'Av. João Lemos',
+            'numero' => 1795,
+            'cidade' => 'Bariri',
             'uf' => 'SP',
-            'bairro' => 'Parque Maria Fernanda',
-            'cep' => 14033035,
-            'celular' => 18996073988,
-            'email' => 'lfercorrea@gmail.com',
+            'bairro' => 'SB',
+            'cep' => '17257-000',
+            'celular' => '000000000000',
+            'email' => 'luie@example.com',
             'password' => bcrypt('123'),
         ]);
     }
