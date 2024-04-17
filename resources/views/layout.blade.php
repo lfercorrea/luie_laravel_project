@@ -6,6 +6,7 @@
     <title>{{ $siteconfig_brand }} {{ isset($page_title) ? ' - ' . $page_title : '' }}</title>
     <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('storage/static/images/favicon.ico') }}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
