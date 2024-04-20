@@ -36,6 +36,7 @@
                     <li><a href="{{ route('admin.index') }}" class="red-text text-darken-4"><i class="material-icons left">build</i>Administração</a></li>
                   @endif
 
+                  <li><a href="{{ route('users.alterar_senha', ['id' => $user->id]) }}" class="black-text"><i class="material-icons left">key</i>Alterar senha</a></li>
                   <li><a href="{{ route('logout.auth') }}" class="black-text"><i class="material-icons left">logout</i>Sair</a></li>
                 </ul>
               @else
@@ -62,6 +63,9 @@
               @include('common.sidenav_head')
                 
               <li><a href="{{ route('site.index') }}"><i class="material-icons left">home</i>Início do site</a></li>
+              @auth
+                <li><a href="{{ route('users.alterar_senha', ['id' => $user->id]) }}" class="black-text"><i class="material-icons left">key</i>Alterar senha</a></li>
+              @endauth
               
               @guest
                 <li><a href="{{ route('user.create') }}"><i class="material-icons left">how_to_reg</i>Cadastro</a></li>
@@ -84,7 +88,7 @@
                 </ul>
               </li>
             </ul>
-            {{-- BEGIN sidenav --}}
+            {{-- END sidenav --}}
             <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         </div>
     </nav>

@@ -15,6 +15,7 @@
     @if ( auth()->user()->level <= 2 )
         <li><a href="{{ route('admin.index') }}" class="red-text text-darken-4"><i class="material-icons left red-text text-darken-4">build</i>Administração</a></li>
     @endif
+    
 @else
     <li>
         <div class="user-view">

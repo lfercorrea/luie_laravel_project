@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\SiteconfigController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AlterarSenhaController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 
@@ -62,6 +63,8 @@ Route::get('/sair', [LoginController::class, 'logout'])->name('logout.auth');
  */
 Route::get('/cadastro', [UserController::class, 'create'])->name('user.create');
 Route::post('/cadastrar', [UserController::class, 'store'])->name('users.store');
+Route::get('/alterar_senha/{id}', [AlterarSenhaController::class, 'alterar_senha'])->name('users.alterar_senha');
+Route::post('/alterar_senha/{id}/store', [AlterarSenhaController::class, 'store'])->name('users.alterar_senha.store');
 /**
  * produtos
  */
@@ -69,17 +72,5 @@ Route::get('/categorias', [SiteController::class, 'categorias'])->name('site.cat
 Route::get('/categorias/ver/{id}', [SiteController::class, 'ver_categoria'])->name('site.ver.categoria');
 Route::get('/produtos', [SiteController::class, 'produtos'])->name('site.produtos');
 Route::get('/produtos/ver/{slug}', [SiteController::class, 'ver_produto'])->name('site.ver.produto');
-/*
-* rotas padrão do laravel
-*/
-Route::view('/welcome', 'welcome');
-
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
-
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
 
 require __DIR__.'/auth.php';
