@@ -54,9 +54,12 @@
     <div id="confirm-delete-modal" class="modal">
         <div class="modal-content">
             <h4>Confirmar exclusão</h4>
-            <p>Tem certeza que deseja <b>excluir</b> este produto?
-                Isto excluirá <b>todos</b> os produtos deste tipo. Se quiser apenas excluir algumas unidades em estoque, 
-                você deve clicar em <i class="material-icons center">edit</i> e fazer as alterações pelo formulário.</p>
+            <p>Tem certeza que deseja excluir este produto?
+                <span class="red-text">Isto excluirá <b>todas</b> as unidades do estoque</span>. Se quiser apenas excluir algumas delas, 
+                você deve clicar em <span class="btn-small blue"><i class="material-icons center">edit</i></span> e fazer as alterações pelo formulário.
+                Você também pode adicionar ou remover unidades de estoque de forma incremental clicando em 
+                <span class="btn-small green"><i class="material-icons center">add</i></span> e 
+                    <span class="btn-small green"><i class="material-icons center">remove</i></span>.</p>
         </div>
         <div class="modal-footer">
             <form id="delete-form" action="/admin/excluir/produto" method="POST">

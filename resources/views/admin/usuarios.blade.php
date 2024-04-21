@@ -37,7 +37,7 @@
     <div id="confirm-delete-modal" class="modal">
         <div class="modal-content">
             <h4>Confirmar exclusão</h4>
-            <p>Tem certeza que deseja <b>excluir</b> este usuário? Ao excluí-lo, TODOS os produtos cadastrados por ele serão excluídos em cadeia.</p>
+            <p>Tem certeza que deseja excluir este usuário? <span class="red-text">Ao excluí-lo, todos os produtos cadastrados por ele serão excluídos em cadeia</span>.</p>
         </div>
         <div class="modal-footer">
             <form id="delete-form" action="/admin/excluir/usuario" method="POST">

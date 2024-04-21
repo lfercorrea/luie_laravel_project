@@ -19,7 +19,7 @@
     <div id="confirm-delete-modal" class="modal">
         <div class="modal-content">
             <h4>Confirmar exclusão</h4>
-            <p>Tem certeza que deseja <b>excluir</b> esta categoria? Todos os produtos dela também serão removidos.</p>
+            <p>Tem certeza que deseja excluir esta categoria? <span class="red-text">Todos os produtos dela também serão removidos</span>.</p>
         </div>
         <div class="modal-footer">
             <form id="delete-form" action="/admin/excluir/categoria" method="POST">
