@@ -32,11 +32,11 @@
                     <input id="nome" type="text" name="name" class="validate" value="{{ old('name', $usuario->name) }}" required>
                     <label for="nome">Nome completo</label>
                 </div>
-                <div class="input-field col s10 m5">
+                <div class="input-field col s9 m5">
                     <input id="endereco" type="text" name="endereco" class="validate" value="{{ old('endereco', $usuario->endereco) }}" required>
                     <label for="endereco">Endereço</label>
                 </div>
-                <div class="input-field col s2 m2">
+                <div class="input-field col s3 m2">
                     <input id="numero" type="text" name="numero" class="validate" value="{{ old('numero', $usuario->numero) }}" required>
                     <label for="numero">Número</label>
                 </div>
@@ -57,11 +57,11 @@
                     </select>
                     <label>Estado</label>
                 </div>
-                <div class="input-field col s9 m4">
+                <div class="input-field col s8 m4">
                     <input id="bairro" type="text" name="bairro" class="validate" value="{{ old('bairro', $usuario->bairro) }}" required>
                     <label for="bairro">Bairro</label>
                 </div>
-                <div class="input-field col s3 m2">
+                <div class="input-field col s4 m2">
                     <input id="cep" type="text" name="cep" placeholder="19123-000" class="validate" pattern="^\d{5}-\d{3}$" title="00000-000" value="{{ old('cep', $usuario->cep) }}" required>
                     <label for="cep">CEP</label>
                 </div>
