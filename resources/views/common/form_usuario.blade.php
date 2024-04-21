@@ -102,12 +102,14 @@
             </div>
             @endif
 
-            <div class="col s12">
-                <h5><p>Enviar {{ $modo === 'alterar' ? 'nova' : 'uma' }} foto</p></h5>
+            <div class="row">
+                <div class="col s12">
+                    <h5><p>Enviar {{ $modo === 'alterar' ? 'nova' : 'uma' }} foto</p></h5>
+                </div>
             </div>
 
-            <div class="col s12">
-                <div class="file-field input-field">
+            <div class="row">
+                <div class="file-field input-field col s12">
                     <div class="waves-effect btn red black">
                         <span>Enviar arquivo</span>
                         <input type="file" id="foto" name="foto">

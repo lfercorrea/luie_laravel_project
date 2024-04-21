@@ -41,7 +41,7 @@
         @endif
 
         <div class="row">
-            <div class="file-field input-field">
+            <div class="file-field input-field col s12">
                 <div class="waves-effect btn red black">
                     <span>Enviar arquivo</span>
                     <input id="imagem" type="file" name="imagem">
