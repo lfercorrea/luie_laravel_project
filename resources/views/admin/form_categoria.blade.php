@@ -25,11 +25,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="row">
-                <div class="input-field col s12">
-                    <textarea id="descricao" class="materialize-textarea" name="descricao">{{ old('descricao', $categoria->descricao) }}</textarea>
-                    <label for="descricao">Descrição da categoria</label>
-                </div>
+            <div class="input-field col s12">
+                <textarea id="descricao" class="materialize-textarea" name="descricao">{{ old('descricao', $categoria->descricao) }}</textarea>
+                <label for="descricao">Descrição da categoria</label>
             </div>
         </div>
 
