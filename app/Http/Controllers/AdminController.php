@@ -192,7 +192,9 @@ class AdminController extends Controller
     
     public function produto_store(Request $request)
     {
-        Log::info('Iniciando validação de cadastro de produto... (AdminController@store)');
+        Log::info('Iniciando validação de cadastro de produto... (AdminController@store)', [
+            'usuario' => auth()->user()->name,
+        ]);
         
         $request->validate([
             'nome' => 'required|string|max:255',
@@ -215,8 +217,6 @@ class AdminController extends Controller
             'imagem.mimes' => 'A imagem deve estar nos formatos JPG, PNG ou WEBP.',
             'imagem.max' => 'A imagem deve ser menor do que 2 MB.',
         ]);
-        
-        Log::info('Completada validação de cadastro de produto... (AdminController@store)');
         
         if ($request->route()->named('admin.cadastrar_produto_store')) {
             $produto = new Produto();
@@ -250,7 +250,11 @@ class AdminController extends Controller
         
         $produto->save();
 
-        Log::info('Produto cadastrado. (AdminController@store)');
+        Log::info('Produto cadastrado. (AdminController@store)', [
+            'usuario' => auth()->user()->name,
+            'produto (id)' => $produto->id,
+            'produto (slug)' => $produto->slug,
+        ]);
 
         return redirect()->route('admin.estoque')->with('success', 'Produto salvo com sucesso.');
     }

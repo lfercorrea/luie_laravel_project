@@ -98,7 +98,10 @@ class UserController extends Controller
         if ($request->route()->named('users.store')) {
             $user = User::create($arr_user);
 
-            Log::info('Usuário criado com sucesso (UserController@store)');
+            Log::info('Usuário criado com sucesso (UserController@store)', [
+                'user_name' => $arr_user['name'],
+                'user_email' => $arr_user['email'],
+            ]);
 
             if ( isset(auth()->user()->level) ? auth()->user()->level === 1 : false ) {
 
