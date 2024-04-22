@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
@@ -27,10 +28,19 @@ class LoginController extends Controller
             $request->session()->regenerate();
             $user_logged_in = auth()->user()->name;
 
+            Log::info('Usuário fez login.', [
+                'user_ip' => $request->ip(),
+                'username' => $user_logged_in,
+            ]);
+
             return redirect()->intended(route('site.index'))->with('success', 'Login feito com sucesso.');
         }
         else{
-            return redirect()->back()->with('fail', 'Email ou senha incorretos.');
+            Log::info('Usuário errou a senha ao tentar fazer login.', [
+                'user_ip' => $request->ip(),
+                'username' => $user_logged_in,
+            ]);
+            return redirect()->back()->with('fail', 'E-mail ou senha incorretos.');
         }
     }
 
