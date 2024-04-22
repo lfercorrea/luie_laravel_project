@@ -38,7 +38,6 @@ class LoginController extends Controller
         else{
             Log::info('Usuário errou a senha ao tentar fazer login.', [
                 'user_ip' => $request->ip(),
-                'username' => $user_logged_in,
             ]);
             return redirect()->back()->with('fail', 'E-mail ou senha incorretos.');
         }
