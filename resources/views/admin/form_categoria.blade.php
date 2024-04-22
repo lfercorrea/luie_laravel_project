@@ -19,7 +19,7 @@
         @endif
 
         <div class="row">
-            <div class="input-field col s6 m6">
+            <div class="input-field col s12 m6">
                 <input id="nome" type="text" class="validate" name="nome" value="{{ old('nome', $categoria->nome) }}">
                 <label for="nome">Nome da categoria</label>
             </div>

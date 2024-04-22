@@ -11,11 +11,11 @@
             <a href="{{ route('admin.cadastrar_produto') }}" class="btn green">Novo produto</a>
         </div>
         <form action="{{ route('admin.estoque') }}" method="GET">
-            <div class="col s4 m4 input-field">
+            <div class="col s12 m4 input-field">
                 <input type="text" name="search" placeholder="Buscar produto"> 
             </div>
-            <div class="col s4 m2 input-field">
-                <select name="id_categoria"><option value="">Todas</option>
+            <div class="col s8 m2 input-field">
+                <select class="browser-default" name="id_categoria"><option value="">Todas as categorias</option>
                     
                     @foreach ($categorias as $categoria)
                         {{ $categoria_nome[$categoria->id] = $categoria->nome }}
@@ -23,7 +23,6 @@
                     @endforeach
                     
                 </select>
-                <label>Categoria</label>
             </div>
             <div class="col s4 m3 input-field">
                 <button class="btn waves-effect waves-light black" type="submit">Buscar</button> 

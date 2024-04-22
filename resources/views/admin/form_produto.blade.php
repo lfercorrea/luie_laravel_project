@@ -40,15 +40,15 @@
                     <label for="quantidade">Quantidade</label>
                 </div>
                 <div class="input-field col s6 m3">
-                    <select name="id_categoria" class="validate">
-                    <option value="{{ old('id_categoria', $produto->id_categoria) }}" selected>{{ $modo == 'cadastrar' ? 'Selecione' : old('id_categoria', $produto->categoria->nome) }}</option>
-            
-                    @foreach ($categorias as $categoria)
-                        <option value="{{ $categoria->id }}">{{ $categoria->nome }}</option>
-                    @endforeach
+                    <select name="id_categoria" class="browser-default" required>
+
+                        <option value="{{ old('id_categoria', $produto->id_categoria) }}" selected>{{ $modo == 'cadastrar' ? 'Categoria' : old('id_categoria', $produto->categoria->nome) }}</option>
+                
+                        @foreach ($categorias as $categoria)
+                            <option value="{{ $categoria->id }}">{{ $categoria->nome }}</option>
+                        @endforeach
 
                     </select>
-                    <label>Categoria</label>
                 </div>
             </div>
             <div class="row">

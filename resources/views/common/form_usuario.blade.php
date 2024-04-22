@@ -47,15 +47,15 @@
                     <label for="cidade">Cidade</label>
                 </div>
                 <div class="input-field col s4 m2">
-                    <select name="uf" class="validate">
-                    <option value="{{ old('uf', $usuario->uf) }}" selected>{{ $modo == 'cadastrar' ? 'Selecione' : old('uf', $ufs[$usuario->uf]) }}</option>
-            
-                    @foreach ($ufs as $key => $value)
-                        <option value="{{ $key }}">{{ $value }}</option>
-                    @endforeach
+                    <select name="uf" class="browser-default" required>
+
+                        <option value="{{ old('uf', $usuario->uf) }}" selected>{{ $modo == 'cadastrar' ? 'Estado' : old('uf', $ufs[$usuario->uf]) }}</option>
+                
+                        @foreach ($ufs as $key => $value)
+                            <option value="{{ $key }}">{{ $value }}</option>
+                        @endforeach
 
                     </select>
-                    <label>Estado</label>
                 </div>
                 <div class="input-field col s8 m4">
                     <input id="bairro" type="text" name="bairro" class="validate" value="{{ old('bairro', $usuario->bairro) }}" required>
@@ -144,7 +144,7 @@
                     
                     <div class="row">
                         <div class="col s12 m3">
-                            <select id="level" name="level">
+                            <select class="browser-default" id="level" name="level">
                             <option value="{{ old('level', $usuario->level) }}" selected>{{ $levels[$usuario->level] }}</option>
                     
                             @foreach ($levels as $level_id => $level_name)
@@ -152,7 +152,6 @@
                             @endforeach
                             
                             </select>
-                            <label for="level">Tipo de usuário</label>
                         </div>
                     </div>
 
