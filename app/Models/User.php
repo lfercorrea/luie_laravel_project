@@ -22,6 +22,8 @@ class User extends Authenticatable
         'foto',
         'endereco',
         'numero',
+        'complemento',
+        'ponto_referencia',
         'cidade',
         'uf',
         'bairro',

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('foto')->nullable();
             $table->string('endereco');
             $table->string('numero');
+            $table->string('complemento')->nullable();
+            $table->string('ponto_referencia')->nullable();
             $table->string('cidade');
             $table->string('uf');
             $table->string('bairro');

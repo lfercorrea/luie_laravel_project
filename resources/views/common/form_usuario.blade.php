@@ -42,6 +42,14 @@
                 </div>
             </div>
             <div class="row">
+                <div class="input-field col s6 m4">
+                    <input id="complemento" type="text" name="complemento" value="{{ old('complemento', $usuario->complemento) }}">
+                    <label for="complemento">Complemento</label>
+                </div>
+                <div class="input-field col s6 m4">
+                    <input id="ponto_referencia" type="text" name="ponto_referencia" value="{{ old('ponto_referencia', $usuario->ponto_referencia) }}">
+                    <label for="ponto_referencia">Ponto de referência</label>
+                </div>
                 <div class="input-field col s8 m4">
                     <input id="cidade" type="text" name="cidade" class="validate" value="{{ old('cidade', $usuario->cidade) }}" required>
                     <label for="cidade">Cidade</label>

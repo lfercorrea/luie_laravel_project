@@ -67,22 +67,30 @@
         <table class="striped responsive-table">
             <thead>
                 <tr>
-                    <th>Qtde</th>
+                    <th>#</th>
                     <th>Produto</th>
                     <th>Descrição</th>
                     <th>Tamanho</th>
+                    <th>Qtde</th>
                     <th>Preço</th>
                     <th class="center-align">Categoria</th>
                 </tr>
             </thead>
 
             <tbody>
+                @php
+                    $n = 0;
+                @endphp
                 @foreach ($produtos as $produto)
+                @php
+                    $n++;
+                @endphp
                 <tr>
-                    <td>{{ $produto->quantidade }}</td>
+                    <td><i>{{ $n }}</i></td>
                     <td><b>{{ $produto->nome }}</b></td>
                     <td>{{ $produto->descricao }}</td>
                     <td class="center-align">{{ $produto->tamanho->nome }}</td>
+                    <td class="center-align">{{ $produto->quantidade }}</td>
                     <td>R$&nbsp;{{ number_format($produto->preco, 2, ',', '.') }}</td>
                     <td class="center-align">{{ $produto->categoria->nome }}</td>
                 </tr>
@@ -107,6 +115,7 @@
             <table class="striped responsive-table">
                 <thead>
                     <tr>
+                        <th class="center-align">Produtos</th>
                         <th class="center-align">Unidades totais</th>
                         <th class="center-align">Valor total dos produtos</th>
                     </tr>
@@ -114,6 +123,7 @@
 
                 <tbody>
                     <tr>
+                        <td class="center-align">{{ $n }}</td>
                         <td class="center-align">{{ $total_quantidade }}</td>
                         <td class="center-align">R$&nbsp;{{ number_format($total_valor, 2, ',', '.') }}</td>
                     </tr>
