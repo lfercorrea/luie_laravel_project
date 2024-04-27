@@ -54,7 +54,7 @@
                     <input id="cidade" type="text" name="cidade" class="validate" value="{{ old('cidade', $usuario->cidade) }}" required>
                     <label for="cidade">Cidade</label>
                 </div>
-                <div class="input-field col s4 m2">
+                <div class="input-field col s4 m4">
                     <select name="uf" class="browser-default" required>
 
                         <option value="{{ old('uf', $usuario->uf) }}" selected>{{ $modo == 'cadastrar' ? 'Estado' : old('uf', $ufs[$usuario->uf]) }}</option>
