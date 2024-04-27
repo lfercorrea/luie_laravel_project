@@ -36,7 +36,7 @@
     <main>
         <div class="row">
           <div class="col s12">
-              <p><a href="#" data-target="slide-out" class="ml-3 waves-effect waves-light sidenav-trigger red black left btn"><i class="material-icons right">chevron_right</i>Abrir menu</a></p>
+              <p class="print-hidden"><a href="#" data-target="slide-out" class="ml-3 waves-effect waves-light sidenav-trigger red black left btn"><i class="material-icons right">chevron_right</i>Abrir menu</a></p>
               @yield('content')
           </div>
         </div>

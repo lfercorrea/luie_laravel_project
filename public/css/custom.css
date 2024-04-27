@@ -95,3 +95,18 @@ main {
     width: 63px;
     height: 63px;
 }
+
+/** estilos CSS especificos para impressao */
+
+/* Estilo normal */
+.content {
+    display: block;
+}
+
+/* Estilo para impressão */
+@media print {
+    .print-hidden {
+        /* visibility: hidden; */
+        display: none;
+    }
+}
