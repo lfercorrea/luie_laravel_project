@@ -49,7 +49,7 @@
 
     </main>
     
-    <div class="fixed-action-btn">
+    <div class="fixed-action-btn print-hidden">
       <a class="btn-floating btn-large red">
         <i class="large material-icons red black">menu</i>
       </a>
