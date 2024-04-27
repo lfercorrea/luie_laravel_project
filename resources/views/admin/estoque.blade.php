@@ -7,12 +7,23 @@
     </div>
 
     <div class="row">
-        <div class="col s12 m3">
+        <div class="col s12 m3 input-field">
             <a href="{{ route('admin.cadastrar_produto') }}" class="btn green">Novo produto</a>
+            <a href="{{ route('admin.estoque.imprimir') }}" class="btn black"><i class="material-icons waves-effect waves-light">print</i></a>
         </div>
         <form action="{{ route('admin.estoque') }}" method="GET">
-            <div class="col s12 m4 input-field">
+            <div class="col s12 m3 input-field">
                 <input type="text" name="search" placeholder="Buscar produto"> 
+            </div>
+            <div class="col s4 m2 input-field">
+                <select class="browser-default" name="id_tamanho"><option value="">Tamanho</option>
+                    
+                    @foreach ($tamanhos as $tamanho)
+                        {{ $tamanho_nome[$tamanho->id] = $tamanho->nome }}
+                        <option value="{{ $tamanho->id }}">{{ $tamanho->nome }}</option>
+                    @endforeach
+                    
+                </select>
             </div>
             <div class="col s8 m2 input-field">
                 <select class="browser-default" name="id_categoria"><option value="">Todas as categorias</option>
@@ -24,27 +35,45 @@
                     
                 </select>
             </div>
-            <div class="col s4 m3 input-field">
+            <div class="col s12 m2 input-field">
                 <button class="btn waves-effect waves-light black" type="submit">Buscar</button> 
             </div>
         </form>
     </div>
 
-    @if ( $count_produtos > 0 )
+    @if ($count_produtos > 0)
         <div class="container center">
-            @if (!empty($search_term) AND !empty($search_id_categoria))
-                <h5>{{ $count_produtos }} itens para "{{ $search_term }}" em {{ $categoria_nome[$search_id_categoria] }}</h5>
-            @elseif (!empty($search_term))
-                <h5>{{ $count_produtos }} itens encontrados para "{{ $search_term }}"</h5>
-            @elseif (!empty($search_id_categoria))
-                <h5>{{ $count_produtos }} itens em {{ $categoria_nome[$search_id_categoria] }}</h5>
-            @endif
+            @php
+                $count_message = [];
+
+                if (!empty($search_term)) {
+                    $count_message[] = "termo <b><i>\"$search_term\"</i></b>";
+                }
+
+                if (!empty($search_id_categoria)) {
+                    $count_message[] = "categoria <b><i>\"{$categoria_nome[$search_id_categoria]}\"</i></b>";
+                }
+
+                if (!empty($search_id_tamanho)) {
+                    $count_message[] = "tamanho <b><i>\"{$tamanho_nome[$search_id_tamanho]}\"</i></b>";
+                }
+
+                $plural = (count($count_message) > 0) ? ': ' : '';
+
+                echo "<h5>$count_produtos itens encontrados$plural " . implode(", ", $count_message) . "</h5>";
+            @endphp
         </div>
     @endif
 
+
     <div class="row">
-        @if (request()->input('search') OR request()->input('id_categoria'))
-            {{ $produtos->appends(['search' => request()->input('search'), 'id_categoria' => request()->input('id_categoria')])->links('common/pagination') }}
+        @if (request()->input('search') OR request()->input('id_categoria') OR request()->input('id_tamanho'))
+            {{ $produtos->appends([
+                'search' => request()->input('search'), 
+                'id_categoria' => request()->input('id_categoria'),
+                'id_tamanho' =>request()->input('id_tamanho'),
+                ])
+                ->links('common/pagination') }}
         @else
             {{ $produtos->links('common/pagination') }}
         @endif
@@ -129,8 +158,13 @@
     @endif
 
     <div class="row">
-        @if (request()->input('search') OR request()->input('id_categoria'))
-            {{ $produtos->appends(['search' => request()->input('search'), 'id_categoria' => request()->input('id_categoria')])->links('common/pagination') }}
+        @if (request()->input('search') OR request()->input('id_categoria') OR request()->input('id_tamanho'))
+            {{ $produtos->appends([
+                'search' => request()->input('search'), 
+                'id_categoria' => request()->input('id_categoria'),
+                'id_tamanho' =>request()->input('id_tamanho'),
+                ])
+                ->links('common/pagination') }}
         @else
             {{ $produtos->links('common/pagination') }}
         @endif

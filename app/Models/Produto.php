@@ -26,7 +26,7 @@ class Produto extends Model
         return $this->belongsTo(Tamanho::class, 'id_tamanho');
     }
 
-    public static function search ($search, $id_categoria = null) {
+    public static function search ($search, $id_categoria = null, $id_tamanho = null) {
         $query = self::query();
 
         if ($search) {
@@ -39,6 +39,12 @@ class Produto extends Model
         if ($id_categoria) {
             $query->whereHas('categoria', function ($query) use ($id_categoria) {
                 $query->where('id', $id_categoria);
+            });
+        }
+
+        if ($id_tamanho) {
+            $query->whereHas('tamanho', function ($query) use ($id_tamanho) {
+                $query->where('id', $id_tamanho);
             });
         }
 

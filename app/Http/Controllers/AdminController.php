@@ -144,21 +144,41 @@ class AdminController extends Controller
     {
         $count_produtos = 0;
 
-        if ($request->has('search') OR $request->has('id_categoria')){
-            $produtos = Produto::search($request->search, $request->id_categoria)->orderBy('updated_at', 'desc')->paginate(30);
-            $count_produtos = Produto::search($request->search, $request->id_categoria)->count();
+        if ($request->has('search') OR $request->has('id_categoria') OR $request->has('id_tamanho')){
+            $produtos = Produto::search($request->search, $request->id_categoria, $request->id_tamanho)->orderBy('updated_at', 'desc')->paginate(30);
+            $count_produtos = Produto::search($request->search, $request->id_categoria, $request->id_tamanho)->count();
         }
         else{
             $produtos = Produto::orderBy('updated_at', 'desc')->paginate(30);
         }
-        
-        return view('admin.estoque', [
+
+        $vars = [
             'page_title' => 'Estoque',
             'produtos' => $produtos,
             'count_produtos' => $count_produtos,
             'search_term' => $request->search,
             'search_id_categoria' => $request->id_categoria,
-        ]);
+            'search_id_tamanho' => $request->id_tamanho,
+        ];
+
+        if ( $request->route()->named('admin.estoque.imprimir') ){
+            $vars['page_title'] = "Extrato de estoque";
+
+            if ($request->has('search') OR $request->has('id_categoria') OR $request->has('id_tamanho')){
+                $produtos = Produto::search($request->search, $request->id_categoria, $request->id_tamanho)->orderBy('updated_at', 'desc');
+                $count_produtos = Produto::search($request->search, $request->id_categoria, $request->id_tamanho)->count();
+                $vars['produtos'] = $produtos->get();
+                $vars['count_produtos'] = $produtos->count();
+            }
+            else{
+                $produtos = Produto::orderBy('updated_at', 'desc');
+                $vars['produtos'] = $produtos->get();
+            }
+
+            return view('admin.relatorio_estoque', $vars);
+        }
+        
+        return view('admin.estoque', $vars);
     }
 
     public function cadastrar_produto()

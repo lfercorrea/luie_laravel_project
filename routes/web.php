@@ -27,6 +27,7 @@ Route::middleware(['auth', 'auth_admin'])->prefix('admin')->group(function () {
     Route::match(['put', 'post'], '/alterar/categoria/{id}/store', [AdminController::class, 'categoria_store'])->name('admin.alterar_categoria_store');
     Route::delete('/excluir/categoria/{id}', [AdminController::class, 'excluir_categoria'])->name('admin.excluir_categoria');
     Route::get('/estoque', [AdminController::class, 'estoque'])->name('admin.estoque');
+    Route::get('/estoque/imprimir', [AdminController::class, 'estoque'])->name('admin.estoque.imprimir');
     Route::get('/alterar/produto/{id}', [AdminController::class, 'alterar_produto'])->name('admin.alterar_produto');
     Route::post('/alterar/produto/{id}/decrement', [AdminController::class, 'decrement_produto'])->name('admin.decrement_produto');
     Route::post('/alterar/produto/{id}/increment', [AdminController::class, 'increment_produto'])->name('admin.increment_produto');
