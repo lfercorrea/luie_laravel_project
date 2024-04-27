@@ -164,12 +164,10 @@ class AdminController extends Controller
     public function cadastrar_produto()
     {
         $produto = new Produto();
-        $categorias = Categoria::all();
 
         return view('admin.form_produto', [
             'page_title' => 'Cadastro de produto',
             'produto' => $produto,
-            'categorias' => $categorias, 
             'modo' => 'cadastrar',
         ]);
     }
@@ -201,6 +199,7 @@ class AdminController extends Controller
             'preco' => 'required|numeric',
             'quantidade' => 'required|integer',
             'id_categoria' => 'required|exists:categorias,id',
+            'id_tamanho' => 'required|exists:tamanhos,id',
             'descricao' => 'required|string',
             'imagem' => 'nullable|image|mimes:jpeg,png,webp|max:2048',
         ], [
@@ -240,6 +239,7 @@ class AdminController extends Controller
         $produto->slug = Str::slug($request->nome . '-' . substr($request->descricao, 0, 30));
         $produto->id_user = auth()->user()->id;
         $produto->id_categoria = $request->id_categoria;
+        $produto->id_tamanho = $request->id_tamanho;
         
         if ($request->hasFile('imagem')) {
             $imagem = $request->file('imagem');
@@ -263,13 +263,11 @@ class AdminController extends Controller
     {
         $produto = Produto::findOrFail($id);
         $produtos = Produto::with('categoria');
-        $categorias = Categoria::all();
 
         return view('admin.form_produto', [
             'page_title' => 'Alterar produto - ' . $produto->nome,
             'produto' => $produto, 
             'produtos' => $produtos,
-            'categorias' => $categorias, 
             'modo' => 'alterar',
         ]);
     }

@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Categoria;
+use App\Models\Tamanho;
 use App\Models\User;
 
 /**
@@ -31,6 +32,7 @@ class ProdutoFactory extends Factory
             // 'imagem' => $this->faker->imageUrl(400, 400),
             'id_user' => User::pluck('id')->random(),
             'id_categoria' => Categoria::pluck('id')->random(),
+            'id_tamanho' => Tamanho::pluck('id')->random(),
         ];
     }
 }

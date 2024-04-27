@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Categoria;
+use App\Models\Tamanho;
 use App\Models\User;
 
 class Produto extends Model
@@ -19,6 +20,10 @@ class Produto extends Model
 
     public function categoria() {
         return $this->belongsTo(Categoria::class, 'id_categoria');
+    }
+
+    public function tamanho() {
+        return $this->belongsTo(Tamanho::class, 'id_tamanho');
     }
 
     public static function search ($search, $id_categoria = null) {

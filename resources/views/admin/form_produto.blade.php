@@ -40,6 +40,17 @@
                     <label for="quantidade">Quantidade</label>
                 </div>
                 <div class="input-field col s6 m3">
+                    <select name="id_tamanho" class="browser-default" required>
+
+                        <option value="{{ old('id_tamanho', $produto->id_tamanho) }}" selected>{{ $modo == 'cadastrar' ? 'Tamanho' : old('id_tamanho', $produto->tamanho->nome) }}</option>
+                
+                        @foreach ($tamanhos as $tamanho)
+                            <option value="{{ $tamanho->id }}">{{ $tamanho->nome }}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+                <div class="input-field col s6">
                     <select name="id_categoria" class="browser-default" required>
 
                         <option value="{{ old('id_categoria', $produto->id_categoria) }}" selected>{{ $modo == 'cadastrar' ? 'Categoria' : old('id_categoria', $produto->categoria->nome) }}</option>

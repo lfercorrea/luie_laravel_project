@@ -78,6 +78,7 @@
                     <th>Qtde</th>
                     <th>Produto</th>
                     <th>Descrição</th>
+                    <th>Tamanho</th>
                     <th>Preço</th>
                     <th class="center-align">Categoria</th>
                     <th class="center-align">Imagem</th>
@@ -110,6 +111,7 @@
                     <td>{{ $produto->quantidade }}</td>
                     <td><b>{{ $produto->nome }}</b></td>
                     <td>{{ $produto->descricao }}</td>
+                    <td class="center-align">{{ $produto->tamanho->nome }}</td>
                     <td>R$&nbsp;{{ number_format($produto->preco, 2, ',', '.') }}</td>
                     <td class="center-align">{{ $produto->categoria->nome }}</td>
                     <td class="center-align"><img src="{{ empty($produto->imagem) ? asset('storage/static/images/no_photo.gif') :  asset('storage/' . $produto->imagem) }}" class="responsive-img image-cell"></td>

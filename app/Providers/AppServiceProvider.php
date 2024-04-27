@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\Categoria;
+use App\Models\Tamanho;
 use App\Models\Siteconfig;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $site_configs = Siteconfig::first();
         $categorias = Categoria::orderBy('nome', 'asc')->get();
+        $tamanhos = Tamanho::orderBy('id', 'asc')->get();
         
         $levels = [
             1 => 'Proprietário',
@@ -68,6 +70,7 @@ class AppServiceProvider extends ServiceProvider
             'siteconfig_telefone' => $site_configs->telefone,
             'siteconfig_celular' => $site_configs->celular,
             'categorias' => $categorias,
+            'tamanhos' => $tamanhos,
             'levels' => $levels,
             'ufs' => $ufs,
         ]);
