@@ -8,8 +8,8 @@
 
     <div class="row">
         <div class="col s12 m3 input-field">
-            <a href="{{ route('admin.cadastrar_produto') }}" class="btn green">Novo produto</a>
-            <a href="{{ route('admin.estoque.imprimir') }}" class="btn black"><i class="material-icons waves-effect waves-light">print</i></a>
+            <a href="{{ route('admin.cadastrar_produto') }}" class="btn green waves-effect waves-light">Novo produto</a>
+            <a href="{{ route('admin.estoque.imprimir') }}" class="btn black waves-effect waves-light"><i class="material-icons">print</i></a>
         </div>
         <form action="{{ route('admin.estoque') }}" method="GET">
             <div class="col s12 m3 input-field">
