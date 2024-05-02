@@ -159,6 +159,7 @@ class AdminController extends Controller
             'search_term' => $request->search,
             'search_id_categoria' => $request->id_categoria,
             'search_id_tamanho' => $request->id_tamanho,
+            'arr_tamanhos' => [],
         ];
 
         if ( $request->route()->named('admin.estoque.imprimir') ){
