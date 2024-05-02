@@ -73,7 +73,6 @@ class AppServiceProvider extends ServiceProvider
             'tamanhos' => $tamanhos,
             'levels' => $levels,
             'ufs' => $ufs,
-            'arr_tamanhos' => [],
         ]);
     }
 }
