@@ -53,10 +53,6 @@
                         $count_message[] = "Categoria <b><i>\"{$categoria_nome[$search_id_categoria]}\"</i></b>";
                     }
 
-                    if (!empty($search_id_tamanho)) {
-                        $count_message[] = "Tamanho <b><i>\"{$tamanho_nome[$search_id_tamanho]}\"</i></b>";
-                    }
-
                     $plural = (count($count_message) > 0) ? ': ' : '';
 
                     echo implode("<br>", $count_message);
@@ -74,7 +70,7 @@
                             <th>#</th>
                             <th>Produto</th>
                             <th>Descrição</th>
-                            <th>Tamanho</th>
+                            <th>Tamanhos</th>
                             <th>Qtde</th>
                             <th>Preço</th>
                             <th class="center-align">Categoria</th>
@@ -93,7 +89,14 @@
                             <td><i>{{ $n }}</i></td>
                             <td><b>{{ $produto->nome }}</b></td>
                             <td>{{ $produto->descricao }}</td>
-                            <td class="center-align">{{ $produto->tamanho->nome }}</td>
+                            <td>
+                                @foreach ($produto->tamanho as $tamanho)
+                                    {{ $tamanho->nome }}
+                                    @if (!$loop->last)
+                                        ,
+                                    @endif
+                                @endforeach
+                            </td>
                             <td class="center-align">{{ $produto->quantidade }}</td>
                             <td>R$&nbsp;{{ number_format($produto->preco, 2, ',', '.') }}</td>
                             <td class="center-align">{{ $produto->categoria->nome }}</td>

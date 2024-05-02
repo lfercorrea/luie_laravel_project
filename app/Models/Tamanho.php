@@ -12,7 +12,7 @@ class Tamanho extends Model
 
     public function produtos()
     {
-        return $this->hasMany(Produto::class, 'id_tamanho');
+        return $this->belongsToMany(Produto::class, 'produto_tamanho');
     }
 
     protected $fillable = [

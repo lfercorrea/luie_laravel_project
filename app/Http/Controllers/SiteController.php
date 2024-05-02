@@ -55,11 +55,18 @@ class SiteController extends Controller
     {
         $produto = Produto::where('slug', $slug)->first();
 
+        foreach ( $produto->tamanho as $tamanho ) {
+            $arr_tamanhos[] = $tamanho->nome;
+        }
+
+        $tamanhos = implode(', ', $arr_tamanhos);
+
         return view('ver_produto', [
             'page_title' => $produto->nome,
             'quantidade' => $produto->quantidade,
             'nome' => $produto->nome,
             'descricao' => $produto->descricao,
+            'tamanhos' => $tamanhos,
             'preco' => number_format($produto->preco, 2, ',', '.'),
             'slug' => $produto->slug,
             'imagem' => $produto->imagem,

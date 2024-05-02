@@ -107,7 +107,7 @@
                     <th>Qtde</th>
                     <th>Produto</th>
                     <th>Descrição</th>
-                    <th>Tamanho</th>
+                    <th>Tamanhos</th>
                     <th>Preço</th>
                     <th class="center-align">Categoria</th>
                     <th class="center-align">Imagem</th>
@@ -140,7 +140,23 @@
                     <td>{{ $produto->quantidade }}</td>
                     <td><b>{{ $produto->nome }}</b></td>
                     <td>{{ $produto->descricao }}</td>
-                    <td class="center-align">{{ $produto->tamanho->nome }}</td>
+                    <td>
+
+                        @foreach ($produto->tamanho as $tamanho)
+                            @php
+                                $arr_tamanhos[] = $tamanho->nome;
+                            @endphp
+                            {{-- @if (!$loop->last)
+                                ,
+                                @endif --}}
+                        @endforeach
+
+                        @php
+                            $tamanhos_disp = implode(', ', $arr_tamanhos);
+                            $arr_tamanhos = [];
+                        @endphp
+                        {{ $tamanhos_disp }}
+                    </td>
                     <td>R$&nbsp;{{ number_format($produto->preco, 2, ',', '.') }}</td>
                     <td class="center-align">{{ $produto->categoria->nome }}</td>
                     <td class="center-align"><img src="{{ empty($produto->imagem) ? asset('storage/static/images/no_photo.gif') :  asset('storage/' . $produto->imagem) }}" class="responsive-img image-cell"></td>
@@ -162,7 +178,7 @@
             {{ $produtos->appends([
                 'search' => request()->input('search'), 
                 'id_categoria' => request()->input('id_categoria'),
-                'id_tamanho' =>request()->input('id_tamanho'),
+                'id_tamanho' => request()->input('id_tamanho'),
                 ])
                 ->links('common/pagination') }}
         @else

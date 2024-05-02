@@ -10,7 +10,10 @@
         <h4>{{ $nome }}</h4>
         <span class="green-text"><h6>R$ {{ $preco }}</h6></span>
         <h6>{{ $descricao }}</h6>
-        <p>Categoria: {{ $categoria }}</p>
+        <p>Categoria: <b>{{ $categoria }}</b></p>
+        <div class="chip">
+          Tamanhos disponíveis: <b>{{ $tamanhos }}</b>
+        </div>
     </div>
   </div>
   

@@ -23,7 +23,7 @@ class Produto extends Model
     }
 
     public function tamanho() {
-        return $this->belongsTo(Tamanho::class, 'id_tamanho');
+        return $this->belongsToMany(Tamanho::class, 'produto_tamanho')->orderBy('id');
     }
 
     public static function search ($search, $id_categoria = null, $id_tamanho = null) {
@@ -44,7 +44,7 @@ class Produto extends Model
 
         if ($id_tamanho) {
             $query->whereHas('tamanho', function ($query) use ($id_tamanho) {
-                $query->where('id', $id_tamanho);
+                $query->where('tamanho_id', $id_tamanho);
             });
         }
 

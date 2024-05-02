@@ -32,7 +32,6 @@ class ProdutoFactory extends Factory
             // 'imagem' => $this->faker->imageUrl(400, 400),
             'id_user' => User::pluck('id')->random(),
             'id_categoria' => Categoria::pluck('id')->random(),
-            'id_tamanho' => Tamanho::pluck('id')->random(),
         ];
     }
 }

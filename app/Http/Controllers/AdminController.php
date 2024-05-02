@@ -259,7 +259,6 @@ class AdminController extends Controller
         $produto->slug = Str::slug($request->nome . '-' . substr($request->descricao, 0, 30));
         $produto->id_user = auth()->user()->id;
         $produto->id_categoria = $request->id_categoria;
-        $produto->id_tamanho = $request->id_tamanho;
         
         if ($request->hasFile('imagem')) {
             $imagem = $request->file('imagem');
@@ -269,6 +268,13 @@ class AdminController extends Controller
         }
         
         $produto->save();
+
+        if ($request->has('id_tamanho')) {
+            $produto->tamanho()->sync($request->input('id_tamanho'));
+        }
+        else {
+            $produto->tamanho()->detach();
+        }
 
         Log::info('Produto cadastrado. (AdminController@store)', [
             'usuario' => auth()->user()->name,
