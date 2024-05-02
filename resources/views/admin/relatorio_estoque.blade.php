@@ -90,12 +90,18 @@
                             <td><b>{{ $produto->nome }}</b></td>
                             <td>{{ $produto->descricao }}</td>
                             <td>
+
                                 @foreach ($produto->tamanho as $tamanho)
-                                    {{ $tamanho->nome }}
-                                    @if (!$loop->last)
-                                        ,
-                                    @endif
+                                    @php
+                                        $arr_tamanhos[] = $tamanho->nome;
+                                    @endphp
                                 @endforeach
+        
+                                @php
+                                    $tamanhos_disp = implode(', ', $arr_tamanhos);
+                                    $arr_tamanhos = [];
+                                @endphp
+                                {{ $tamanhos_disp }}
                             </td>
                             <td class="center-align">{{ $produto->quantidade }}</td>
                             <td>R$&nbsp;{{ number_format($produto->preco, 2, ',', '.') }}</td>
