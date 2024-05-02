@@ -55,6 +55,8 @@ class SiteController extends Controller
     {
         $produto = Produto::where('slug', $slug)->first();
 
+        $arr_tamanhos = [];
+
         foreach ( $produto->tamanho as $tamanho ) {
             $arr_tamanhos[] = $tamanho->nome;
         }
