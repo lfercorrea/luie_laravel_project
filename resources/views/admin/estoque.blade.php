@@ -141,6 +141,9 @@
                     <td><b>{{ $produto->nome }}</b></td>
                     <td>{{ $produto->descricao }}</td>
                     <td>
+                        @php
+                            $arr_tamanhos = [];
+                        @endphp
 
                         @foreach ($produto->tamanho as $tamanho)
                             @php

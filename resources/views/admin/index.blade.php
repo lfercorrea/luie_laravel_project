@@ -14,7 +14,7 @@
     <div class="container">
         <div class="row">
             <div class="row">
-                <div class="col s6 m4 center">
+                <div class="col s6 m3 center">
                     <div class="container">
                         <a href="/admin/cadastrar/produto" class="waves-effect"><i class="material-icons center large large black-text text-darken-4">add_shopping_cart</i></a>
                     </div>
@@ -22,7 +22,7 @@
                         Cadastrar produto
                     </div>
                 </div>
-                <div class="col s6 m4 center">
+                <div class="col s6 m3 center">
                     <div class="container">
                         <a href="/admin/estoque" class="waves-effect"><i class="material-icons center large large black-text text-darken-4">production_quantity_limits</i></a>
                     </div>
@@ -30,12 +30,20 @@
                         Estoque
                     </div>
                 </div>
-                <div class="col s6 m4 center">
+                <div class="col s6 m3 center">
                     <div class="container">
                         <a href="/admin/categorias" class="waves-effect"><i class="material-icons center large large black-text text-darken-4">category</i></a>
                     </div>
                     <div class="container">
                         Categorias
+                    </div>
+                </div>
+                <div class="col s6 m3 center">
+                    <div class="container">
+                        <a href="/admin/tamanhos" class="waves-effect"><i class="material-icons center large large black-text text-darken-4">height</i></a>
+                    </div>
+                    <div class="container">
+                        Tamanhos
                     </div>
                 </div>
             </div>

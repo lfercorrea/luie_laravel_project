@@ -23,7 +23,7 @@ class Produto extends Model
     }
 
     public function tamanho() {
-        return $this->belongsToMany(Tamanho::class, 'produto_tamanho')->orderBy('id');
+        return $this->belongsToMany(Tamanho::class, 'produto_tamanho')->orderBy('posicao');
     }
 
     public static function search ($search, $id_categoria = null, $id_tamanho = null) {

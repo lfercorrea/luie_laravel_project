@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\SiteconfigController;
+use App\Http\Controllers\TamanhoController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AlterarSenhaController;
 use App\Http\Controllers\LoginController;
@@ -20,6 +21,13 @@ Route::middleware(['auth', 'auth_admin'])->prefix('admin')->group(function () {
     /**
      * produtos
      */
+    Route::get('/tamanhos', [TamanhoController::class, 'index'])->name('admin.tamanhos');
+    Route::get('/cadastrar/tamanho', [TamanhoController::class, 'create'])->name('admin.tamanho_create');
+    Route::post('/cadastrar/tamanho/store', [TamanhoController::class, 'store'])->name('admin.tamanho_store');
+    Route::get('/alterar/tamanho/{id}', [TamanhoController::class, 'edit'])->name('admin.tamanho_edit');
+    Route::match(['put', 'post'], '/alterar/tamanho/{id}/store', [TamanhoController::class, 'store'])->name('admin.tamanho_update');
+    Route::delete('/excluir/tamanho/{id}', [TamanhoController::class, 'destroy'])->name('admin.tamanho_destroy');
+
     Route::get('/categorias', [AdminController::class, 'categorias'])->name('admin.categorias');
     Route::get('/cadastrar/categoria', [AdminController::class, 'cadastrar_categoria'])->name('admin.cadastrar_categoria');
     Route::post('/cadastrar/categoria/store', [AdminController::class, 'categoria_store'])->name('admin.cadastrar_categoria_store');

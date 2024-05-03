@@ -14,11 +14,11 @@ class TamanhoSeeder extends Seeder
         public function run(): void
         {
             $tamanhos = [
-                ['nome' => 'P'],
-                ['nome' => 'M'],
-                ['nome' => 'G'],
-                ['nome' => 'GG'],
-                ['nome' => 'XXG'],
+                ['nome' => 'P', 'posicao' => 0],
+                ['nome' => 'M', 'posicao' => 1],
+                ['nome' => 'G', 'posicao' => 2],
+                ['nome' => 'GG', 'posicao' => 3],
+                ['nome' => 'XXG', 'posicao' => 4],
             ];
     
             Tamanho::insert($tamanhos);

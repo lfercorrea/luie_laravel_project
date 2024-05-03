@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('tamanhos', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
+            $table->integer('posicao')->unique();
             $table->timestamps();
         });
     }
