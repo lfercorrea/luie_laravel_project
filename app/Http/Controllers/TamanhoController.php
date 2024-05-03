@@ -46,7 +46,6 @@ class TamanhoController extends Controller
         $tamanho = $request->all();
 
         $rules = [
-            'nome' => 'required|string|max:255',
             'posicao' => 'required|integer|unique:tamanhos',
         ];
 
@@ -58,17 +57,18 @@ class TamanhoController extends Controller
             'posicao.unique' => 'A posição escolhida já está ocupada.',
         ];
         
-        $request->validate($rules, $messages);
-        
         if ($request->route()->named('admin.tamanho_store')) {
             $tamanho = new Tamanho();
+
+            $rules['nome'] = 'required|string|max:255';
         }
         elseif ($request->route()->named('admin.tamanho_update')) {
             $tamanho = Tamanho::findOrFail($request->id);
         }
+
+        $request->validate($rules, $messages);
         
-        $tamanho->nome = $request->nome;
-        $tamanho->posicao = $request->posicao;
+        $tamanho->fill($request->only(['nome', 'posicao']));
         
         $tamanho->save();
 

@@ -17,5 +17,6 @@ class Tamanho extends Model
 
     protected $fillable = [
         'nome',
+        'posicao',
     ];
 }
