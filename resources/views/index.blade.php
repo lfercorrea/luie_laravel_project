@@ -2,22 +2,45 @@
 
 @section('content')
 
-    <h2><p>Bem-vindo</p></h2>
+    <div class="row">
+        <div class="col s12">
+            <h4><p>Sobre a {{ $siteconfig_brand }}</p></h4>
+            <p>{{ $siteconfig_sobre_empresa }}</p>
+        </div>
+        <div class="image-padding black z-depth-5">
+            <img src="{{ asset('storage/' . $siteconfig_brand_logo) }}" class="responsive-img">
+        </div>
+    </div>
+
+    <br>
 
     <div class="row">
         <div class="col s12">
-            <div class="image-padding black z-depth-5">
-                <img src="{{ asset('storage/' . $siteconfig_brand_logo) }}" class="responsive-img">
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pulvinar gravida ante. Ut pellentesque, eros in vestibulum dapibus, elit risus volutpat elit, quis iaculis justo nibh non tellus. Nulla est enim, dapibus consequat metus at, condimentum finibus sem. Phasellus ut lacus massa. Quisque lectus mauris, volutpat quis justo vel, aliquam consectetur sem. Vestibulum vulputate eros et massa mattis laoreet. Suspendisse id est et est gravida ornare.
-
-Ut consectetur, erat eget congue aliquet, velit ex hendrerit massa, quis consectetur erat magna at urna. Cras vel urna elit. Pellentesque sodales consequat elementum. In hac habitasse platea dictumst. Integer nunc nunc, volutpat et urna nec, consectetur vulputate tortor. Ut viverra arcu vel sapien cursus feugiat nec vel risus. Sed ut nibh justo.</p>
-        </div>
-        <div class="col s6">
+            <h4>Nossos produtos</h4>
+            <p>{{ $siteconfig_sobre_produtos }}</p>
         </div>
     </div>
 
     <div class="row">
+        <div class="col s12">
+            <div class="carousel carousel-slider center">
+
+                @foreach ($last_items as $item)
+                    <div class="card">
+                        <div class="card-image">
+                            <a class="carousel-item" href="{{ route('site.ver.produto', ['slug' => $item->slug]) }}">
+                                <img class="responsive-img" src="{{ empty($item->imagem) ? asset('storage/static/images/no_photo.gif') :  asset('storage/' . $item->imagem) }}">
+                                <p><span class="card-title">{{ $item->descricao }}</span></p>
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+
+            </div>
+        </div>
+    </div>
+
+    {{-- <div class="row">
         <div class="col s6">
             <div class="waves-effect waves-block waves-light">
                 <img class="responsive-img image-border black" src="{{ asset('storage/static/images/index_1.jpg') }}">
@@ -31,6 +54,6 @@ Ut consectetur, erat eget congue aliquet, velit ex hendrerit massa, quis consect
     </div>
     <div class="container center">
         <p><a href="produtos" class="btn waves-effect waves-light black">Link qualquer</a></p>
-    </div>
+    </div> --}}
     
 @endsection

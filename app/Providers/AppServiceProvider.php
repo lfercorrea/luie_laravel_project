@@ -66,6 +66,8 @@ class AppServiceProvider extends ServiceProvider
             'siteconfig_brand' => $site_configs->brand,
             'siteconfig_brand_logo' => $site_configs->brand_logo,
             'siteconfig_endereco' => $site_configs->endereco,
+            'siteconfig_sobre_empresa' => $site_configs->sobre_empresa,
+            'siteconfig_sobre_produtos' => $site_configs->sobre_produtos,
             'siteconfig_email' => $site_configs->email,
             'siteconfig_telefone' => $site_configs->telefone,
             'siteconfig_celular' => $site_configs->celular,

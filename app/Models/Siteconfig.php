@@ -13,6 +13,7 @@ class Siteconfig extends Model
         'brand',
         'brand_logo',
         'endereco',
+        'sobre',
         'email',
         'telefone',
         'celular',

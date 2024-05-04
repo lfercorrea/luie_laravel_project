@@ -8,6 +8,7 @@
     <hr>
 </div>
 
+<p><h4>Institucional</h4></p>
 <div class="col s12">
     <form id="form-categoria" class="col s12" action="{{ route('admin.siteconfig_store') }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -36,6 +37,18 @@
             <div class="input-field col s12">
                 <textarea id="endereco" class="materialize-textarea" name="endereco">{{ $siteconfig_endereco }}</textarea>
                 <label for="endereco">Endereço da empresa</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea id="sobre_empresa" class="materialize-textarea" name="sobre_empresa">{{ $siteconfig_sobre_empresa }}</textarea>
+                <label for="sobre_empresa">Texto de apresentação da empresa</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea id="sobre_produtos" class="materialize-textarea" name="sobre_produtos">{{ $siteconfig_sobre_produtos }}</textarea>
+                <label for="sobre_produtos">Texto de apresentação dos produtos</label>
             </div>
         </div>
         

@@ -62,8 +62,8 @@ Route::middleware(['auth', 'auth_prop'])->prefix('admin')->group(function () {
     Route::put('/alterar/usuario/{id}/store', [UserController::class, 'store'])->name('admin.alterar_usuario.store');
     Route::delete('/excluir/usuario/{id}', [UserController::class, 'destroy'])->name('admin.excluir_usuario');
     
-    Route::get('/siteconfig', [SiteconfigController::class, 'index'])->name('admin.siteconfig');
-    Route::put('/siteconfig/store', [SiteconfigController::class, 'store'])->name('admin.siteconfig_store');
+    Route::get('/siteconfig', [AdminController::class, 'siteconfig'])->name('admin.siteconfig');
+    Route::put('/siteconfig/store', [AdminController::class, 'store'])->name('admin.siteconfig_store');
 });
 /**
  * site index

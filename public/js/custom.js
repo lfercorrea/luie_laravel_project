@@ -68,3 +68,30 @@ document.addEventListener('DOMContentLoaded', function() {
 function printPage() {
   window.print();
 }
+
+/** carrossel da pagina inicial */
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.carousel');
+  var instances = M.Carousel.init(elems, {
+    duration: 200,
+    dist: 0,
+    shift: 0,
+    padding: 0,
+    numVisible: 5,
+    fullWidth: true,
+    indicators: true,
+    noWrap: false,
+    onCycleTo: null
+  });
+});
+
+/** tooltips */
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.tooltipped');
+  var instances = M.Tooltip.init(elems, {
+    enterDelay: 200,
+    margin: 5,
+    position: 'top',
+    transitionMovement: 10
+  });
+});

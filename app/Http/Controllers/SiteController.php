@@ -9,8 +9,18 @@ use App\Models\Produto;
 class SiteController extends Controller
 {
     public function index () {
+        $last_items = Produto::orderBy('updated_at', 'desc')->take(5)->get();
+
         return view('index', [
+            'last_items' => $last_items,
             // 'page_title' => 'Início',
+        ]);
+    }
+
+    public function sobre () {
+
+        return view('sobre', [
+            // objetos herdados de AppServiceProvider.php
         ]);
     }
 

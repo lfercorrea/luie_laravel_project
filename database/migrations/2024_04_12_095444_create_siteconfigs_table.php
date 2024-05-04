@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('brand');
             $table->string('brand_logo');
             $table->string('endereco');
+            $table->text('sobre_empresa');
+            $table->text('sobre_produtos');
             $table->string('email')->unique();
             $table->string('telefone')->nullable();
             $table->string('celular')->nullable();
