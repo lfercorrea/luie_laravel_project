@@ -10,6 +10,24 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+    public function index (Request $request) {
+        $count_usuarios = 0;
+
+        if ($request->search){
+            $usuarios = User::search($request->search)->paginate(30);
+            $count_usuarios = User::search($request->search)->count();
+        }
+        else{
+            $usuarios = User::orderBy('name')->paginate(30);
+        }
+        
+        return view('admin.usuarios', [
+            'page_title' => 'Gestão de usuários',
+            'usuarios' => $usuarios,
+            'count_usuarios' => $count_usuarios,
+        ]);
+    }
+
     public function create () {
         $usuario = new User();
 
@@ -21,6 +39,17 @@ class UserController extends Controller
         ]);
     }
 
+    public function edit ($id) {
+        $usuario = User::findOrFail($id);
+
+        return view('common.form_usuario', [
+            'page_title' => 'Alterar usuário - ' . $usuario->name,
+            'usuario' => $usuario,
+            'modo' => 'alterar',
+            'disable_switch' => 'disabled',
+        ]);
+    }
+    
     public function store (Request $request) {
         Log::info('Iniciando validação dos campos de formulário de usuário (UserController@store)');
         $rules = [
@@ -130,5 +159,25 @@ class UserController extends Controller
         Auth::login($user);
 
         return redirect()->route('site.index')->with('success', 'Cadastro realizado.');
+    }
+
+    public function destroy ($id) {
+        $user = User::find($id);
+        
+        if( $user->level == 1 ) {
+            return back()->with('fail', 'O proprietário não pode ser excluído.');
+        }
+        
+        $imagem = storage_path('app/public/' . $user->foto);
+
+        if (File::exists($imagem)) {
+            File::delete($imagem);
+        }
+
+        $user->delete();
+
+        return redirect()
+            ->route('admin.usuarios')
+            ->with('success', 'Usuário excluído.');
     }
 }
