@@ -40,6 +40,31 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col s12">
+            <h4>Categorias</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <div class="carousel carousel-slider center" style="height: 640px;">
+
+                @foreach ($categorias as $categoria)
+                    <div class="card">
+                        <div class="card-image">
+                            <a class="carousel-item" href="{{ route('site.ver.categoria', ['id' => $categoria->id]) }}">
+                                <img class="responsive-img" src="{{ empty($categoria->imagem) ? asset('storage/static/images/no_photo.gif') :  asset('storage/' . $categoria->imagem) }}">
+                                <p><span class="card-title">{{ $categoria->nome }}</span></p>
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+
+            </div>
+        </div>
+    </div>
+
     {{-- <div class="row">
         <div class="col s6">
             <div class="waves-effect waves-block waves-light">
