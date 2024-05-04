@@ -74,11 +74,11 @@ document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.carousel');
   var instances = M.Carousel.init(elems, {
     duration: 200,
-    dist: -100,
+    dist: 0,
     shift: 0,
     padding: 0,
     numVisible: 5,
-    fullWidth: false,
+    fullWidth: true,
     indicators: true,
     noWrap: false,
     onCycleTo: null
