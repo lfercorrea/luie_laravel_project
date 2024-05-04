@@ -17,7 +17,7 @@
     <div class="row">
         <div class="col s12">
             <h4>Nossos produtos</h4>
-            <p>{!! $siteconfig_sobre_produtos !!}</p>
+            <p>{{ $siteconfig_sobre_produtos }}</p>
         </div>
     </div>
 
