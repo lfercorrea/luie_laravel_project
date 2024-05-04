@@ -29,7 +29,7 @@
                     <div class="card">
                         <div class="card-image">
                             <a class="carousel-item" href="{{ route('site.ver.produto', ['slug' => $item->slug]) }}">
-                                <img class="responsive-img" src="{{ empty($item->imagem) ? asset('storage/static/images/no_photo.gif') :  asset('storage/' . $item->imagem) }}">
+                                <img class="responsive-img" style="max-height: 640px;" src="{{ empty($item->imagem) ? asset('storage/static/images/no_photo.gif') :  asset('storage/' . $item->imagem) }}">
                                 <p><span class="card-title">{{ $item->descricao }}</span></p>
                             </a>
                         </div>
