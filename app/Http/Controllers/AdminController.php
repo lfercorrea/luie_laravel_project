@@ -95,6 +95,6 @@ class AdminController extends Controller
 
         Log::info('Configurações salvas. (AdminController@store)');
 
-        return redirect()->route('admin.siteconfig')->with('success', 'Configurações salvas.');
+        return redirect()->route('admin.index')->with('success', 'Configurações salvas.');
     }
 }

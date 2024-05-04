@@ -110,3 +110,8 @@ main {
         display: none;
     }
 }
+
+.photo-legend {
+    font-size: 12px;
+    font-family: Tahoma, sans-serif;
+}
