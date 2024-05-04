@@ -23,7 +23,7 @@
 
     <div class="row">
         <div class="col s12">
-            <div class="carousel carousel-slider center" style="height: 800px;">
+            <div class="carousel carousel-slider center" style="height: 640px;">
 
                 @foreach ($last_items as $item)
                     <div class="card">
