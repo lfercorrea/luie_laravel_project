@@ -53,12 +53,14 @@
             <div class="carousel carousel-slider center">
 
                 @foreach ($categorias as $categoria)
-                    <div class="card">
-                        <div class="card-image">
-                            <a class="carousel-item" href="{{ route('site.ver.categoria', ['id' => $categoria->id]) }}">
+                    <div class="carousel-item">
+                        <div class="col s12">
+                            <a href="{{ route('site.ver.categoria', ['id' => $categoria->id]) }}">
                                 <img class="responsive-img" src="{{ empty($categoria->imagem) ? asset('storage/static/images/no_photo.gif') :  asset('storage/' . $categoria->imagem) }}">
-                                <p><span class="card-title">{{ $categoria->nome }}</span></p>
                             </a>
+                        </div>
+                        <div class="col s12 center">
+                            <p><span class="photo-legend">{{ $categoria->nome }}</span></p>
                         </div>
                     </div>
                 @endforeach
