@@ -12,9 +12,6 @@ use Illuminate\Support\Facades\Log;
 
 class ProdutoController extends Controller
 {
-    /**
-     * Produtos
-     */
     public function index (Request $request)
     {
         $count_produtos = 0;

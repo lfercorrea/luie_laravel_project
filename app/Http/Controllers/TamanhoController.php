@@ -7,9 +7,6 @@ use App\Models\Tamanho;
 
 class TamanhoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $tamanhos = Tamanho::orderBy('posicao', 'asc')->paginate(30);
@@ -20,10 +17,7 @@ class TamanhoController extends Controller
             'modo' => 'ver',
         ]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create()
     {
         $title = "Cadastro de tamanho";
@@ -37,10 +31,7 @@ class TamanhoController extends Controller
             'prox_posicao' => $prox_posicao,
         ]);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
         $tamanho = $request->all();
@@ -67,25 +58,12 @@ class TamanhoController extends Controller
         }
 
         $request->validate($rules, $messages);
-        
         $tamanho->fill($request->only(['nome', 'posicao']));
-        
         $tamanho->save();
 
         return redirect()->route('admin.tamanhos')->with('success', 'Tamanho salvo.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         $tamanho = Tamanho::findOrFail($id);
@@ -105,18 +83,7 @@ class TamanhoController extends Controller
             'posicoes_ocupadas' => $posicoes_ocupadas,
         ]);
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function destroy(string $id)
     {
         $tamanho = Tamanho::find($id);

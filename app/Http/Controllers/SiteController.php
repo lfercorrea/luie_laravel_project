@@ -13,14 +13,6 @@ class SiteController extends Controller
 
         return view('index', [
             'last_items' => $last_items,
-            // 'page_title' => 'Início',
-        ]);
-    }
-
-    public function sobre () {
-
-        return view('sobre', [
-            // objetos herdados de AppServiceProvider.php
         ]);
     }
 
@@ -42,10 +34,7 @@ class SiteController extends Controller
             'count_produtos' => $count_produtos,
         ]);
     }
-
-    /**
-     * Display the specified resource.
-     */
+    
     public function ver_categoria($id)
     {
         $categoria = Categoria::where('id', $id)->first();
@@ -57,10 +46,7 @@ class SiteController extends Controller
             'produtos' => $produtos,
         ]);
     }
-
-    /**
-     * Display the specified resource.
-     */
+    
     public function ver_produto($slug)
     {
         $produto = Produto::where('slug', $slug)->first();
