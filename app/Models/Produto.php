@@ -44,7 +44,7 @@ class Produto extends Model
 
         if ($id_tamanho) {
             $query->whereHas('tamanho', function ($query) use ($id_tamanho) {
-                $query->where('tamanho_id', $id_tamanho);
+                $query->whereIn('tamanho_id', $id_tamanho);
             });
         }
 

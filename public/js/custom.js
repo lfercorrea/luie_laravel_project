@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
     dist: -100,
     shift: 50,
     padding: 10,
-    numVisible: 5,
+    numVisible: 10,
     fullWidth: false,
     indicators: true,
     noWrap: false,

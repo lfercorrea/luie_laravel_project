@@ -9,10 +9,10 @@
     <div class="col s12 m6">
         <h4>{{ $nome }}</h4>
 
-        @if ( $quantidade == 0 )
-          <span class="red-text"><h6>Indisponível</h6></span>
-        @else
+        @if ( $quantidade > 0 )
           <span class="green-text"><h6>R$ {{ $preco }}</h6></span>
+        @else
+          <span class="red-text"><h6>Indisponível</h6></span>
         @endif
 
         <h6>{{ $descricao }}</h6>

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class='center'>
-        <h4>Gestão de estoque</h4>
+        <h4>Estoque</h4>
         <hr>
     </div>
 
@@ -15,21 +15,29 @@
             <div class="col s12 m3 input-field">
                 <input type="text" name="search" placeholder="Buscar produto"> 
             </div>
-            <div class="col s4 m2 input-field">
-                <select class="browser-default" name="id_tamanho"><option value="">Tamanho</option>
-                    
-                    @foreach ($tamanhos as $tamanho)
-                        {{ $tamanho_nome[$tamanho->id] = $tamanho->nome }}
-                        <option value="{{ $tamanho->id }}">{{ $tamanho->nome }}</option>
-                    @endforeach
-                    
+            <div class="input-field col s4 m2">
+                <select name="id_tamanho[]" id="id_tamanho" multiple="" tabindex="-1" style="display: none;">
+                    <option value="" selected disabled>Tamanhos</option>
+                    <optgroup label="Tamanhos">
+                        
+                        @foreach ($tamanhos as $tamanho)
+                            @php
+                                $tamanho_nome[$tamanho->id] = $tamanho->nome
+                            @endphp
+                            <option value="{{ $tamanho->id }}">{{ $tamanho->nome }}</option>
+                        @endforeach
+                        
+                    </optgroup>
                 </select>
+                <label for="id_tamanho">Tamanhos</label>
             </div>
             <div class="col s8 m2 input-field">
                 <select class="browser-default" name="id_categoria"><option value="">Todas as categorias</option>
                     
                     @foreach ($categorias as $categoria)
-                        {{ $categoria_nome[$categoria->id] = $categoria->nome }}
+                        @php
+                            $categoria_nome[$categoria->id] = $categoria->nome
+                        @endphp 
                         <option value="{{ $categoria->id }}">{{ $categoria->nome }}</option>
                     @endforeach
                     
@@ -55,7 +63,14 @@
                 }
 
                 if (!empty($search_id_tamanho)) {
-                    $count_message[] = "tamanho <b><i>\"{$tamanho_nome[$search_id_tamanho]}\"</i></b>";
+                    $arr_tamanhos_selecionados = [];
+                    
+                    foreach ( $search_id_tamanho as $selected_id) {
+                        $arr_tamanhos_selecionados[] = $tamanho_nome[$selected_id];
+                    }
+
+                    $tamanhos_selecionados = implode(', ', $arr_tamanhos_selecionados);
+                    $count_message[] = "tamanhos selecionados <b><i>\"{$tamanhos_selecionados}\"</i></b>";
                 }
 
                 $plural = (count($count_message) > 0) ? ': ' : '';
