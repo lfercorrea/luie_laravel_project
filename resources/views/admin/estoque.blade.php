@@ -18,7 +18,7 @@
             <div class="input-field col s4 m2">
                 <select name="id_tamanho[]" id="id_tamanho" multiple="" tabindex="-1" style="display: none;">
                     <option value="" selected disabled>Tamanhos</option>
-                    <optgroup label="Tamanhos">
+                    {{-- <optgroup label="Tamanhos"> --}}
                         
                         @foreach ($tamanhos as $tamanho)
                             @php
@@ -29,7 +29,6 @@
                         
                     </optgroup>
                 </select>
-                <label for="id_tamanho">Tamanhos</label>
             </div>
             <div class="col s8 m2 input-field">
                 <select class="browser-default" name="id_categoria"><option value="">Todas as categorias</option>
