@@ -8,7 +8,13 @@
     </div>
     <div class="col s12 m6">
         <h4>{{ $nome }}</h4>
-        <span class="green-text"><h6>R$ {{ $preco }}</h6></span>
+
+        @if ( $quantidade == 0 )
+          <span class="red-text"><h6>Indisponível</h6></span>
+        @else
+          <span class="green-text"><h6>R$ {{ $preco }}</h6></span>
+        @endif
+
         <h6>{{ $descricao }}</h6>
         <p>Categoria: <b>{{ $categoria }}</b></p>
         <div class="chip">
