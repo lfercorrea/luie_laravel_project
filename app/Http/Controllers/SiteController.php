@@ -9,7 +9,10 @@ use App\Models\Produto;
 class SiteController extends Controller
 {
     public function index () {
-        $last_items = Produto::orderBy('updated_at', 'desc')->take(5)->get();
+        $last_items = Produto::orderBy('created_at', 'desc')
+            ->where('quantidade', '>', 0)
+            ->take(10)
+            ->get();
 
         return view('index', [
             'last_items' => $last_items,

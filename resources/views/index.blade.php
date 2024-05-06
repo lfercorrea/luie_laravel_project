@@ -17,7 +17,6 @@
         </div>
         <div class="col s12">
             <div class="carousel">
-                Estilo 1
                 @foreach ($last_items as $item)
                     <div class="carousel-item">
                         <div class="col s12">
@@ -29,18 +28,6 @@
                             <span class="photo-legend">{{ $item->nome }}</span>
                         </div>
                     </div>
-                @endforeach
-
-            </div>
-        </div>
-        <div class="col s12">
-            Estilo 2
-            <div class="carousel carousel-slider">
-
-                @foreach ($last_items as $item)
-                    <a class="carousel-item" href="{{ route('site.ver.produto', ['slug' => $item->slug]) }}">
-                        <img class="responsive-img" src="{{ empty($item->imagem) ? asset('storage/static/images/no_photo.gif') :  asset('storage/' . $item->imagem) }}">
-                    </a>
                 @endforeach
 
             </div>
@@ -60,7 +47,7 @@
                             </a>
                         </div>
                         <div class="col s12 center">
-                            <p><span class="photo-legend">{{ $categoria->nome }}</span></p>
+                            <p><span class="photo-tag">{{ $categoria->nome }}</span></p>
                         </div>
                     </div>
                 @endforeach
