@@ -118,7 +118,6 @@ main {
 
 .photo-tag {
     font-size: 16px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     position: absolute;
     top: 10%;
     left: 50%;
@@ -137,7 +136,7 @@ main {
 }
 .background-category-image {
     display: block;
-    max-height: 400px;
+    max-height: 300px;
     overflow: hidden;
 }
 .background-category-title {

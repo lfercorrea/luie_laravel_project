@@ -47,7 +47,7 @@
                             </a>
                         </div>
                         <div class="col s12 center">
-                            <p><span class="photo-tag">{{ $categoria->nome }}</span></p>
+                            <p><span class="background-category-title">{{ $categoria->nome }}</span></p>
                         </div>
                     </div>
                 @endforeach

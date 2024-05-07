@@ -5,9 +5,9 @@
     <div class="background-category-container">
         <div class="row">
             <div class="col s12">
-                <a href="{{ route('site.ver.categoria', ['id' => $categoria->id]) }}" class="background-category-image">
+                <div class="background-category-image z-depth-2">
                     <img class="responsive-img" src="{{ empty($categoria->imagem) ? asset('storage/static/images/no_photo.gif') :  asset('storage/' . $categoria->imagem) }}">
-                </a>
+                </div>
             </div>
             <div class="col s12">
                 <p><div class="background-category-title">{{ $categoria->nome }}</div></p>
