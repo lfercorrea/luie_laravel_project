@@ -128,3 +128,42 @@ main {
     color: white;
     padding: 5px;
 }
+
+/** exclusivo para ver_categoria */
+.background-category-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+.background-category-image {
+    display: block;
+    max-height: 400px;
+    overflow: hidden;
+}
+.background-category-title {
+    font-size: 32px;
+    font-weight: 300;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    border-radius: 3px;
+    transform: translate(-50%, -50%); /* Ajuste para centralizar verticalmente */
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    padding: 5px;
+}
+.background-category-description {
+    font-size: inherit;
+    font-weight: 300;
+    text-align: center;
+    position: absolute;
+    top: 70%;
+    bottom: auto;
+    left: 50%;
+    border-radius: 3px;
+    transform: translate(-50%, -50%); /* Ajuste para centralizar verticalmente */
+    background-color: rgba(0, 0, 0, 0.15);
+    color: white;
+    padding: 5px;
+    width: 90%;
+}

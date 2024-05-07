@@ -2,8 +2,19 @@
 
 @section('content')
 
-    <h2>{{ $categoria->nome }}</h2>
-    <h6><p>{{ $categoria->descricao }}</p></h6>
+    <div class="background-category-container">
+        <div class="row">
+            <div class="col s12">
+                <a href="{{ route('site.ver.categoria', ['id' => $categoria->id]) }}" class="background-category-image">
+                    <img class="responsive-img" src="{{ empty($categoria->imagem) ? asset('storage/static/images/no_photo.gif') :  asset('storage/' . $categoria->imagem) }}">
+                </a>
+            </div>
+            <div class="col s12">
+                <p><div class="background-category-title">{{ $categoria->nome }}</div></p>
+                <p><div class="background-category-description">{{ $categoria->descricao }}</div></p>
+            </div>
+        </div>
+    </div>
 
     @if (count($produtos) === 0)
         <br>
