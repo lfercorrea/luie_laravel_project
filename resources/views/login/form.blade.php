@@ -18,6 +18,14 @@
                             <input id="password" type="password" name="password" class="validate" required><br>
                             <label for="password">Senha</label>
                         </div>
+                        <div class="row">
+                            <p>
+                                <label>
+                                  <input type="checkbox" name="remember" />
+                                  <span>Lembrar minhas credenciais</span>
+                                </label>
+                            </p>
+                        </div>
                         <div class="row">      
                             <button type="submit" class="btn waves-effect black">Entrar</button>
                         </div>

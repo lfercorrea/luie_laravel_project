@@ -24,7 +24,9 @@ class LoginController extends Controller
             'password.required' => 'A senha é obrigatória.',
         ]);
 
-        if(Auth::attempt($credentials)) {
+        $remember = $request->has('remember');
+
+        if(Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
             $user_logged_in = auth()->user()->name;
 
@@ -39,6 +41,7 @@ class LoginController extends Controller
             Log::info('Usuário errou a senha ao tentar fazer login.', [
                 'user_ip' => $request->ip(),
             ]);
+
             return redirect()->back()->with('fail', 'E-mail ou senha incorretos.');
         }
     }
@@ -48,6 +51,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('site.index')->with('success', 'Logout realizado com sucesso.');
+        return redirect()->route('site.index')->with('success', 'Logout feito com sucesso.');
     }
 }
