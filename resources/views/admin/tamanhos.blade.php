@@ -43,23 +43,21 @@
 
         <tbody>
             @foreach ($tamanhos as $tamanho)
-            <tr>
-                <td class="center-align">
-                    <a href="{{ route('admin.tamanho_edit', $tamanho->id) }}" class="btn-small waves-effect blue darken-1">
-                        <i class="material-icons center">edit</i>
-                    </a>
-                    <button class="btn-small waves-effect red darken-1 modal-trigger" data-target="confirm-delete-modal" data-target-url="/admin/excluir/tamanho/" data-target-id="{{ $tamanho->id }}">
-                        <i class="material-icons center">delete</i>
-                    </button>
-                </td>
-                <td><h5>{{ $tamanho->nome }}</h5></td>
-                <td><h5>Posição {{ $tamanho->posicao }}</h5></td>
-            </tr>
+                <tr>
+                    <td class="center-align">
+                        <a href="{{ route('admin.tamanho_edit', $tamanho->id) }}" class="btn-small waves-effect blue darken-1">
+                            <i class="material-icons center">edit</i>
+                        </a>
+                        <button class="btn-small waves-effect red darken-1 modal-trigger" data-target="confirm-delete-modal" data-target-url="/admin/excluir/tamanho/" data-target-id="{{ $tamanho->id }}">
+                            <i class="material-icons center">delete</i>
+                        </button>
+                    </td>
+                    <td><h5>{{ $tamanho->nome }}</h5></td>
+                    <td><h5>Posição {{ $tamanho->posicao }}</h5></td>
+                </tr>
             @endforeach
         </tbody>
     </table>
-
-    <hr>
 
     <div class="row">
         {{ $tamanhos->links('common/pagination') }}

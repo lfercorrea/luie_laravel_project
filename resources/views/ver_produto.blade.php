@@ -18,7 +18,7 @@
         <h6>{{ $descricao }}</h6>
         <p>Categoria: <b>{{ $categoria }}</b></p>
         <div class="chip">
-          Tamanhos disponíveis: <b>{{ $tamanhos }}</b>
+          Tamanhos: <b>{{ $tamanhos }}</b>
         </div>
     </div>
   </div>

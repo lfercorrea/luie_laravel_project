@@ -66,46 +66,46 @@
             <tbody>
 
                 @foreach ($usuarios as $usuario)
-                <tr>
-                    <td>
-                        <a href="{{ route('admin.alterar_usuario', $usuario->id) }}" class="btn-small waves-effect blue darken-1">
-                            <i class="material-icons center">edit</i>
-                        </a>
+                    <tr>
+                        <td>
+                            <a href="{{ route('admin.alterar_usuario', $usuario->id) }}" class="btn-small waves-effect blue darken-1">
+                                <i class="material-icons center">edit</i>
+                            </a>
 
-                        @if ($usuario->level >= 1)
-                            @if ( $usuario->id !== 1 )
-                                <button class="btn-small waves-effect red darken-1 modal-trigger" data-target="confirm-delete-modal" data-target-url="/admin/excluir/usuario/" data-target-id="{{ $usuario->id }}">
-                                    <i class="material-icons center">delete</i>
-                                </button>
+                            @if ($usuario->level >= 1)
+                                @if ( $usuario->id !== 1 )
+                                    <button class="btn-small waves-effect red darken-1 modal-trigger" data-target="confirm-delete-modal" data-target-url="/admin/excluir/usuario/" data-target-id="{{ $usuario->id }}">
+                                        <i class="material-icons center">delete</i>
+                                    </button>
+                                @endif
                             @endif
-                        @endif
 
-                    </td>
-                    <td>{{ $usuario->id }}</td>
-                    @if ( $usuario->id === 1)
-                        <td><i class="material-icons left">stars</i><b>{{ $usuario->name }}</b><br>{{ $usuario->email }}</td>
-                    @else
-                        <td><b>{{ $usuario->name }}</b><br>{{ $usuario->email }}</td>
-                    @endif
-                    <td><img src="{{ empty($usuario->foto) ? asset('storage/static/images/img_avatar.png') :  asset('storage/' . $usuario->foto) }}" class="responsive-img circle avatar-cell"></td>
-                    <td>{{ $levels[$usuario->level] }}</td>
-                    <td>{{ $usuario->endereco }}, {{ $usuario->numero }} - {{ $usuario->bairro }} - {{ $usuario->cidade }} ({{ $usuario->uf }})</td>
-                    <td>{{ $usuario->celular }}</td>
-                </tr>
+                        </td>
+                        <td>{{ $usuario->id }}</td>
+
+                        @if ( $usuario->id === 1)
+                            <td><i class="material-icons left">stars</i><b>{{ $usuario->name }}</b><br>{{ $usuario->email }}</td>
+                        @else
+                            <td><b>{{ $usuario->name }}</b><br>{{ $usuario->email }}</td>
+                        @endif
+                        
+                        <td><img src="{{ empty($usuario->foto) ? asset('storage/static/images/img_avatar.png') :  asset('storage/' . $usuario->foto) }}" class="responsive-img circle avatar-cell"></td>
+                        <td>{{ $levels[$usuario->level] }}</td>
+                        <td>{{ $usuario->endereco }}, {{ $usuario->numero }} - {{ $usuario->bairro }} - {{ $usuario->cidade }} ({{ $usuario->uf }})</td>
+                        <td>{{ $usuario->celular }}</td>
+                    </tr>
                 @endforeach
 
             </tbody>
         </table>
-        <hr>
     @else
-    <div class="container center">
-        <p><h5>Nenhum usuário encontrado.</h5></p>
-        <br>
-        <a href="{{ route('admin.usuarios') }}" class="btn waves-effect waves-light black">Voltar</a>
-    </div>
+        <div class="container center">
+            <p><h5>Nenhum usuário encontrado.</h5></p>
+            <br>
+            <a href="{{ route('admin.usuarios') }}" class="btn waves-effect waves-light black">Voltar</a>
+        </div>
     @endif
-
-
+    
     <div class="row">
         @if (request()->input('search'))
             {{ $usuarios->appends(['search' => request()->input('search')])->links('common/pagination') }}

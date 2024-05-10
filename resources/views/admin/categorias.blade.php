@@ -42,25 +42,25 @@
         </thead>
 
         <tbody>
+
             @foreach ($categorias as $categoria)
-            <tr>
-                <td class="center-align">
-                    <a href="{{ route('admin.alterar_categoria', $categoria->id) }}" class="btn-small waves-effect blue darken-1">
-                        <i class="material-icons center">edit</i>
-                    </a>
-                    <button class="btn-small waves-effect red darken-1 modal-trigger" data-target="confirm-delete-modal" data-target-url="/admin/excluir/categoria/" data-target-id="{{ $categoria->id }}">
-                        <i class="material-icons center">delete</i>
-                    </button>
-                </td>
-                <td><h5>{{ $categoria->nome }}</h5></td>
-                <td>{{ $categoria->descricao }}</td>
-                <td class="center-align"><img src="{{ empty($categoria->imagem) ? asset('storage/static/images/no_photo.gif') :  asset('storage/' . $categoria->imagem) }}" class="responsive-img image-cell"></td>
-            </tr>
+                <tr>
+                    <td class="center-align">
+                        <a href="{{ route('admin.alterar_categoria', $categoria->id) }}" class="btn-small waves-effect blue darken-1">
+                            <i class="material-icons center">edit</i>
+                        </a>
+                        <button class="btn-small waves-effect red darken-1 modal-trigger" data-target="confirm-delete-modal" data-target-url="/admin/excluir/categoria/" data-target-id="{{ $categoria->id }}">
+                            <i class="material-icons center">delete</i>
+                        </button>
+                    </td>
+                    <td><h5>{{ $categoria->nome }}</h5></td>
+                    <td>{{ $categoria->descricao }}</td>
+                    <td class="center-align"><img src="{{ empty($categoria->imagem) ? asset('storage/static/images/no_photo.gif') :  asset('storage/' . $categoria->imagem) }}" class="responsive-img image-cell"></td>
+                </tr>
             @endforeach
+            
         </tbody>
     </table>
-
-    <hr>
 
     <div class="row">
         {{ $categorias->links('common/pagination') }}

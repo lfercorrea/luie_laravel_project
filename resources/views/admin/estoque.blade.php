@@ -181,7 +181,6 @@
                 @endforeach
             </tbody>
         </table>
-        <hr>
     @else
         <div class="container center">
             <h5>Nenhum produto encontrado.</h5>
