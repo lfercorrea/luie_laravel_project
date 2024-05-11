@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col s6 m3 center">
                     <div class="container">
-                        <a href="/admin/cadastrar/produto" class="waves-effect"><i class="material-icons center large large black-text text-darken-4">add_shopping_cart</i></a>
+                        <a href="/admin/cadastrar/produto" class="waves-effect"><i class="material-icons center medium black-text text-darken-4">add_shopping_cart</i></a>
                     </div>
                     <div class="container">
                         Cadastrar produto
@@ -24,7 +24,7 @@
                 </div>
                 <div class="col s6 m3 center">
                     <div class="container">
-                        <a href="/admin/estoque" class="waves-effect"><i class="material-icons center large large black-text text-darken-4">production_quantity_limits</i></a>
+                        <a href="/admin/estoque" class="waves-effect"><i class="material-icons center medium black-text text-darken-4">production_quantity_limits</i></a>
                     </div>
                     <div class="container">
                         Estoque
@@ -32,7 +32,7 @@
                 </div>
                 <div class="col s6 m3 center">
                     <div class="container">
-                        <a href="/admin/categorias" class="waves-effect"><i class="material-icons center large large black-text text-darken-4">category</i></a>
+                        <a href="/admin/categorias" class="waves-effect"><i class="material-icons center medium black-text text-darken-4">category</i></a>
                     </div>
                     <div class="container">
                         Categorias
@@ -40,7 +40,7 @@
                 </div>
                 <div class="col s6 m3 center">
                     <div class="container">
-                        <a href="/admin/tamanhos" class="waves-effect"><i class="material-icons center large large black-text text-darken-4">height</i></a>
+                        <a href="/admin/tamanhos" class="waves-effect"><i class="material-icons center medium black-text text-darken-4">height</i></a>
                     </div>
                     <div class="container">
                         Tamanhos
@@ -60,7 +60,7 @@
             <div class="row">
                 <div class="col s6 m3 center">
                     <div class="container">
-                        <a href="{{ route('admin.siteconfig') }}" class="waves-effect"><i class="material-icons center large black-text text-darken-4">settings</i></a>
+                        <a href="{{ route('admin.siteconfig') }}" class="waves-effect"><i class="material-icons center medium black-text text-darken-4">settings</i></a>
                     </div>
                     <div class="container">
                         Configurações do site
@@ -69,7 +69,7 @@
 
                     <div class="col s6 m3 center">
                         <div class="container">
-                            <a href="{{ route('admin.usuarios') }}" class="waves-effect"><i class="material-icons center large black-text text-darken-4">people_alt</i></a>
+                            <a href="{{ route('admin.usuarios') }}" class="waves-effect"><i class="material-icons center medium black-text text-darken-4">people_alt</i></a>
                         </div>
                         <div class="container">
                             Usuários

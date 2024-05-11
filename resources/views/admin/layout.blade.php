@@ -20,8 +20,8 @@
     <li class="center"><a class="subheader" class="waves-effect">Produtos</a></li>
     <li class="no-padding">
       <li><a href="{{ route('admin.categorias') }}"><i class="material-icons">category</i>Categorias</a></li>
-      <li><a href="{{ route('admin.tamanhos') }}"><i class="material-icons">height</i>Tamanhos</a></li>
       <li><a href="{{ route('admin.estoque') }}"><i class="material-icons">production_quantity_limits</i>Estoque</a></li>
+      <li><a href="{{ route('admin.tamanhos') }}"><i class="material-icons">height</i>Tamanhos</a></li>
     </li>
     
     @if ( auth()->user()->level === 1 )

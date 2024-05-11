@@ -19,14 +19,14 @@
     <div id="confirm-delete-modal" class="modal">
         <div class="modal-content">
             <h4>Confirmar exclusão</h4>
-            <p>Tem certeza que deseja excluir esta categoria? <span class="red-text">Todos os produtos dela também serão removidos</span>.</p>
+            <p>Tem certeza que deseja excluir esta categoria? <span class="red-text text-darken-1">Todos os produtos dela também serão removidos.</span></p>
         </div>
         <div class="modal-footer">
             <form id="delete-form" action="/admin/excluir/categoria" method="POST">
                 @csrf
                 @method('DELETE')
                 <a href="#!" class="modal-close waves-effect waves-black btn-flat">Cancelar</a>
-                <button type="submit" class="btn waves-effect waves-light red lighten-1">Excluir</button>
+                <button type="submit" class="btn waves-effect waves-light red darken-1">Excluir</button>
             </form>
         </div>
     </div>

@@ -97,18 +97,18 @@
         <div class="modal-content">
             <h4>Confirmar exclusão</h4>
             <p>Tem certeza que deseja excluir este produto?
-                <span class="red-text">Isto excluirá <b>todas</b> as unidades do estoque</span>. Se quiser apenas excluir algumas delas, 
+                <span class="red-text text-darken-1">Isto excluirá todas as unidades do estoque.</span> Se quiser apenas excluir algumas delas, 
                 você deve clicar em <span class="btn-small blue"><i class="material-icons center">edit</i></span> e fazer as alterações pelo formulário.
                 Você também pode adicionar ou remover unidades de estoque de forma incremental clicando em 
                 <span class="btn-small green"><i class="material-icons center">add</i></span> e 
-                    <span class="btn-small green"><i class="material-icons center">remove</i></span>.</p>
+                <span class="btn-small green"><i class="material-icons center">remove</i></span>.</p>
         </div>
         <div class="modal-footer">
             <form id="delete-form" action="/admin/excluir/produto" method="POST">
                 @csrf
                 @method('DELETE')
                 <a href="#!" class="modal-close waves-effect waves-black btn-flat">Cancelar</a>
-                <button type="submit" class="btn waves-effect waves-light red lighten-1">Excluir</button>
+                <button type="submit" class="btn waves-effect waves-light red darken-1">Excluir</button>
             </form>
         </div>
     </div>
