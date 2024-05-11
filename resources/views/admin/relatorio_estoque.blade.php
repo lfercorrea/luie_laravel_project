@@ -156,7 +156,7 @@
                     <thead>
                         <tr>
                             <th class="center-align">Produtos</th>
-                            <th class="center-align">Unidades totais</th>
+                            <th class="center-align">Unidades</th>
                             <th class="center-align">Valor total dos produtos</th>
                         </tr>
                     </thead>
