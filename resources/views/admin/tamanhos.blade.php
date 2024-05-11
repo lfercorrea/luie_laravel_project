@@ -32,7 +32,7 @@
         </div>
     </div>
 
-    <table class="striped responsive-table">
+    <table class="striped">
         <thead>
             <tr>
                 <th class="center-align">Ações</th>
