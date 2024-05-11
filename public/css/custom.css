@@ -137,6 +137,7 @@ main {
     display: block;
     max-height: 300px;
     overflow: hidden;
+    border-radius: 10px;
 }
 .background-category-title {
     font-size: 32px;
