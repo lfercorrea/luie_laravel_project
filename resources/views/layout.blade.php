@@ -62,7 +62,7 @@
             <ul id="slide-out" class="sidenav">
               @include('common.sidenav_head')
                 
-              <li><a href="{{ route('site.index') }}"><i class="material-icons left">home</i>Início do site</a></li>
+              <li><a href="{{ route('site.index') }}"><i class="material-icons left">home</i>Página inicial</a></li>
               @auth
                 <li><a href="{{ route('users.alterar_senha', ['id' => $user->id]) }}" class="black-text"><i class="material-icons left">key</i>Alterar senha</a></li>
               @endauth

@@ -175,3 +175,8 @@ main {
 .modal-fixed-width {
     width: 90% !important;
 }
+
+.section-margins {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}

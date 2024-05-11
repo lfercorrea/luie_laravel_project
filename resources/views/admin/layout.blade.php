@@ -14,7 +14,7 @@
   <ul id="slide-out" class="sidenav">
     @include('common.sidenav_head')
     
-    <li><a href="{{ route('site.index') }}" class="waves-effect"><i class="material-icons">home</i>Índice do site</a></li>
+    <li><a href="{{ route('site.index') }}" class="waves-effect"><i class="material-icons">home</i>Página inicial</a></li>
 
     <li><div class="divider"></div></li>
     <li class="center"><a class="subheader" class="waves-effect">Produtos</a></li>
@@ -26,7 +26,7 @@
     
     @if ( auth()->user()->level === 1 )
       <li><div class="divider"></div></li>
-      <li class="center"><a class="subheader" class="waves-effect">Gestão do site</a></li>
+      <li class="center"><a class="subheader" class="waves-effect">Site</a></li>
       <li><a href="{{ route('admin.siteconfig') }}" class="waves-effect"><i class="material-icons">settings</i>Configurações do site</a></li>
       <li><a href="{{ route('admin.usuarios') }}" class="waves-effect"><i class="material-icons">people_alt</i>Usuários</a></li>
     @endif
