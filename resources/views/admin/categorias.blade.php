@@ -1,6 +1,7 @@
 @extends('admin.layout')
 
 @section('content')
+
     <div class='center'>
         <h5>Categorias</h5>
         <hr>

@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="center section-margins">
+<div class="center">
     <h5>Configurações do site</h5>
     <hr>
 </div>
