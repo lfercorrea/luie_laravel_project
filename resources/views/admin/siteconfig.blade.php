@@ -2,13 +2,12 @@
 
 @section('content')
 
-<div class="container center" style="margin-top: 50px; margin-bottom: 50px;">
-    
-        <h4>Configurações do site</h4>
+<div class="center section-margins">
+    <h5>Configurações do site</h5>
     <hr>
 </div>
 
-<p><h4>Institucional</h4></p>
+<p><h5>Institucional</h5></p>
 <div class="col s12">
     <form id="form-categoria" class="col s12" action="{{ route('admin.siteconfig_store') }}" method="POST" enctype="multipart/form-data">
         @csrf
