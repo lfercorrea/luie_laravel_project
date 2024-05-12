@@ -2,13 +2,13 @@
 
 @section('content')
     <div class='center'>
-        <h4>Usuários cadastrados</h4>
+        <h5>Usuários</h5>
         <hr>
     </div>
 
     <div class="row">
         <div class="input-field col s3">
-            <a href="{{ route('user.create') }}" class="btn green">Novo usuário</a>
+            <a href="{{ route('user.create') }}" class="btn green waves-effect waves-light">Novo</a>
         </div>
         <form action="{{ route('admin.usuarios') }}" method="GET">
             <div class="input-field col s6">

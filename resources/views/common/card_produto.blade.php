@@ -15,7 +15,7 @@
     </div>
 </div>
 
-<div class="col s12 m3">
+<div class="col s6 m3">
     <div class="card">
         <div class="card-image">
             <a href="{{ route('site.ver.produto', ['slug' => $produto->slug]) }}" class="waves-effect waves-light red">

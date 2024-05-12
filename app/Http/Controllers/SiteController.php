@@ -23,12 +23,12 @@ class SiteController extends Controller
     {
         $count_produtos = 0;
 
-        if ($request->search){
-            $produtos = Produto::search($request->search)->paginate(15);
-            $count_produtos = Produto::search($request->search)->count();
+        if ($request->has('search') OR $request->has('id_categoria') OR $request->has('id_tamanho')){
+            $produtos = Produto::search($request->search, null, $request->id_tamanho)->orderBy('updated_at', 'desc')->paginate(20);
+            $count_produtos = Produto::search($request->search, null, $request->id_tamanho)->count();
         }
         else{
-            $produtos = Produto::orderBy('updated_at', 'desc')->paginate(15);
+            $produtos = Produto::orderBy('updated_at', 'desc')->paginate(20);
         }
         
         return view('produtos', [

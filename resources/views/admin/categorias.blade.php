@@ -2,13 +2,13 @@
 
 @section('content')
     <div class='center'>
-        <h4>Categorias</h4>
+        <h5>Categorias</h5>
         <hr>
     </div>
 
     <div class="row">
         <div class="col s12">
-            <a href="{{ route('admin.cadastrar_categoria') }}" class="btn green">Nova categoria</a>
+            <a href="{{ route('admin.cadastrar_categoria') }}" class="btn green waves-effect waves-light">Nova</a>
         </div>
     </div>
 
@@ -18,7 +18,7 @@
 
     <div id="confirm-delete-modal" class="modal">
         <div class="modal-content">
-            <h4>Confirmar exclusão</h4>
+            <h5>Confirmar</h5>
             <p>Tem certeza que deseja excluir esta categoria? <span class="red-text text-darken-1">Todos os produtos dela também serão removidos.</span></p>
         </div>
         <div class="modal-footer">
@@ -53,7 +53,7 @@
                             <i class="material-icons center">delete</i>
                         </button>
                     </td>
-                    <td><h5>{{ $categoria->nome }}</h5></td>
+                    <td><h6>{{ $categoria->nome }}</h6></td>
                     <td>{{ $categoria->descricao }}</td>
                     <td class="center-align"><img src="{{ empty($categoria->imagem) ? asset('storage/static/images/no_photo.gif') :  asset('storage/' . $categoria->imagem) }}" class="responsive-img image-cell"></td>
                 </tr>

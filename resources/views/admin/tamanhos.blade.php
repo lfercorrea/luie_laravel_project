@@ -3,13 +3,13 @@
 @section('content')
 
     <div class='center'>
-        <h4>Tamanhos</h4>
+        <h5>Tamanhos</h5>
         <hr>
     </div>
 
     <div class="row">
         <div class="col s12">
-            <a href="{{ route('admin.tamanho_create') }}" class="btn green">Novo tamanho</a>
+            <a href="{{ route('admin.tamanho_create') }}" class="btn green waves-effect waves-light">Novo</a>
         </div>
     </div>
 
@@ -19,7 +19,7 @@
 
     <div id="confirm-delete-modal" class="modal">
         <div class="modal-content">
-            <h4>Confirmar exclusão</h4>
+            <h5>Confirmar</h5>
             <p>Tem certeza que deseja excluir? <span class="red-text text-darken-1">Todos os produtos com este tamanho serão desvinculados dele</span>.</p>
         </div>
         <div class="modal-footer">
@@ -36,7 +36,7 @@
         <thead>
             <tr>
                 <th class="center-align">Ações</th>
-                <th>Nome (símbolo)</th>
+                <th>Símbolo</th>
                 <th>Ordenamento</th>
             </tr>
         </thead>
@@ -52,8 +52,8 @@
                             <i class="material-icons center">delete</i>
                         </button>
                     </td>
-                    <td><h5>{{ $tamanho->nome }}</h5></td>
-                    <td><h5>Posição {{ $tamanho->posicao }}</h5></td>
+                    <td><h6>{{ $tamanho->nome }}</h6></td>
+                    <td><h6>Posição {{ $tamanho->posicao }}</h6></td>
                 </tr>
             @endforeach
         </tbody>

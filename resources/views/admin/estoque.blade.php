@@ -2,20 +2,20 @@
 
 @section('content')
     <div class='center'>
-        <h4>Estoque</h4>
+        <h5>Estoque</h5>
         <hr>
     </div>
 
     <div class="row">
         <div class="col s12 m3 input-field">
-            <a href="{{ route('admin.cadastrar_produto') }}" class="btn green waves-effect waves-light">Novo produto</a>
-            <a href="{{ route('admin.estoque.imprimir') }}" class="btn black waves-effect waves-light"><i class="material-icons">print</i></a>
+            <a href="{{ route('admin.cadastrar_produto') }}" class="btn green waves-effect waves-light">Novo</a>
+            <a href="{{ route('admin.estoque.imprimir') }}" class="btn black waves-effect waves-light">Extrato</a>
         </div>
         <form action="{{ route('admin.estoque') }}" method="GET">
             <div class="col s12 m3 input-field">
-                <input type="text" name="search" placeholder="Buscar produto"> 
+                <input type="text" name="search" placeholder="Buscar"> 
             </div>
-            <div class="input-field col s4 m2">
+            <div class="col s4 m2 input-field">
                 <select name="id_tamanho[]" id="id_tamanho" multiple="" tabindex="-1" style="display: none;">
                     <option value="" selected disabled>Tamanhos</option>
                     {{-- <optgroup label="Tamanhos"> --}}
@@ -95,7 +95,7 @@
 
     <div id="confirm-delete-modal" class="modal">
         <div class="modal-content">
-            <h4>Confirmar exclusão</h4>
+            <h5>Confirmar</h5>
             <p>Tem certeza que deseja excluir este produto?
                 <span class="red-text text-darken-1">Isto excluirá todas as unidades do estoque.</span> Se quiser apenas excluir algumas delas, 
                 você deve clicar em <span class="btn-small blue"><i class="material-icons center">edit</i></span> e fazer as alterações pelo formulário.

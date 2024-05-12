@@ -2,14 +2,28 @@
 
 @section('content')
 
-    <h4>Produtos</h4>
-
+    <h5>Todos os produtos</h5>
+    
     <div class="row">
         <form action="{{ route('site.produtos') }}" method="GET">
-            <div class="col s9">
-                <input type="text" name="search"> 
+            <div class="col s12 m6 input-field">
+                <input type="text" name="search" placeholder="Procurar por nome ou descrição"> 
             </div>
-            <div class="col s3">
+            <div class="col s8 m3 input-field">
+                <select name="id_tamanho[]" id="id_tamanho" multiple="" tabindex="-1" style="display: none;">
+                    <option value="" selected disabled>Tamanhos</option>
+                        
+                        @foreach ($tamanhos as $tamanho)
+                            @php
+                                $tamanho_nome[$tamanho->id] = $tamanho->nome
+                            @endphp
+                            <option value="{{ $tamanho->id }}">{{ $tamanho->nome }}</option>
+                        @endforeach
+                        
+                    </optgroup>
+                </select>
+            </div>
+            <div class="col s4 m3 input-field">
                 <button class="btn waves-effect waves-light black" type="submit">Buscar</button> 
             </div>
         </form>
@@ -39,8 +53,12 @@
     @endif
 
     <div class="row">
-        @if (request()->input('search'))
-            {{ $produtos->appends(['search' => request()->input('search')])->links('common/pagination') }}
+        @if (request()->input('search') OR request()->input('id_tamanho'))
+            {{ $produtos->appends([
+                'search' => request()->input('search'),
+                'id_tamanho' => request()->input('id_tamanho'),
+                ])
+                ->links('common/pagination') }}
         @else
             {{ $produtos->links('common/pagination') }}
         @endif

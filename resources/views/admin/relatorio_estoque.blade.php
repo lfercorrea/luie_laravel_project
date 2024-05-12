@@ -2,7 +2,7 @@
 
 @section('content')
     <div class='center'>
-        <h4>Extrato de estoque</h4>
+        <h5>Extrato</h5>
         <hr>
     </div>
 
