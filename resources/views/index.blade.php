@@ -11,21 +11,22 @@
             <img src="{{ asset('storage/' . $siteconfig_brand_logo) }}" class="responsive-img">
         </div>
 
-        <div class="col s12 section-margins">
+        <div class="col s12 section-margin-top">
             <h5>Nossos produtos</h5>
             <p>{{ $siteconfig_sobre_produtos }}</p>
         </div>
         <div class="col s12">
             <div class="carousel">
+                
                 @foreach ($last_items as $item)
                     <div class="carousel-item">
+                        <div class="col s12 center">
+                            <span class="photo-legend">{{ $item->nome }}</span>
+                        </div>
                         <div class="col s12">
                             <a href="{{ route('site.ver.produto', ['slug' => $item->slug]) }}">
                                 <img class="responsive-img z-depth-2" src="{{ empty($item->imagem) ? asset('storage/static/images/no_photo.gif') :  asset('storage/' . $item->imagem) }}">
                             </a>
-                        </div>
-                        <div class="col s12 center">
-                            <span class="photo-legend">{{ $item->nome }}</span>
                         </div>
                     </div>
                 @endforeach
@@ -33,7 +34,7 @@
             </div>
         </div>
 
-        <div class="col s12">
+        <div class="col s12 section-margin-top">
             <p><h5>Categorias</h5></p>
         </div>
         <div class="col s12">
