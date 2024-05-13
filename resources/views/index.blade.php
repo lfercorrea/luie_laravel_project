@@ -55,7 +55,10 @@
 
             </div>
         </div>
+    </div>
 
+    <div class="container center">
+        <a href="{{ route('site.produtos') }}" class="btn waves-effect waves-light black">Ver catálogo</a>
     </div>
     
 @endsection
