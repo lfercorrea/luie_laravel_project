@@ -11,7 +11,7 @@
             <img src="{{ asset('storage/' . $siteconfig_brand_logo) }}" class="responsive-img">
         </div>
 
-        <div class="col s12">
+        <div class="col s12 section-margins">
             <h5>Nossos produtos</h5>
             <p>{{ $siteconfig_sobre_produtos }}</p>
         </div>
@@ -34,7 +34,7 @@
         </div>
 
         <div class="col s12">
-            <h5>Categorias</h5>
+            <p><h5>Categorias</h5></p>
         </div>
         <div class="col s12">
             <div class="carousel carousel-slider center">
