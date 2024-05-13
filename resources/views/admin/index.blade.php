@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container center">
-        <h4>Administração</h4>
+        <h5>Administração</h5>
     </div>
 
     <div class="container section-margins">
