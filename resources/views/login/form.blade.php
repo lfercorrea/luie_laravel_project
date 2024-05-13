@@ -5,7 +5,7 @@
     <br>
     <div class="container center">
         <div class="row">
-            <h4>Entrar</h4>
+            <h5>Entrar</h5>
             <div class="col s12">
 
                 <form action="{{ route('login.auth') }}" method="POST">

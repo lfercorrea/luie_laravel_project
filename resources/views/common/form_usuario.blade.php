@@ -4,9 +4,9 @@
 
     <div class="container center" style="margin-top: 50px; margin-bottom: 50px;">
         @if($modo === 'cadastrar')
-            <h4>Cadastro</h4>
+            <h5>Cadastro</h5>
         @elseif($modo === 'alterar')
-            <h4>Alterar usuário</h4>
+            <h5>Alterar usuário</h5>
         @endif
         <hr>
     </div>

@@ -2,16 +2,16 @@
 
 @section('content')
 
-<div class="container center" style="margin-top: 50px; margin-bottom: 50px;">
+<div class="container center">
     @if($modo === 'cadastrar')
-        <h4>Cadastrar tamanho</h4>
+        <h5>Cadastrar tamanho</h5>
     @elseif($modo === 'alterar')
-        <h4>Alterar tamanho</h4>
+        <h5>Alterar tamanho</h5>
     @endif
     <hr>
 </div>
 
-<div class="col s12">
+<div class="col s12 section-margins">
     <form id="form-tamanho" class="col s12" action="{{ $modo === 'cadastrar' ? route('admin.tamanho_store') : ($modo === 'alterar' ? route('admin.tamanho_update', ['id' => $tamanho->id] ) : '' ) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @if($modo === 'alterar')

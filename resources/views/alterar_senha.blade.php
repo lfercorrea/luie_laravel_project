@@ -5,7 +5,7 @@
     <br>
     <div class="container center">
         <div class="row">
-            <h4>Alteração de senha</h4>
+            <h5>Alteração de senha</h5>
             <div class="col s12">
 
                 <form action="{{ route('users.alterar_senha.store', ['id' => $usuario->id]) }}" method="POST">

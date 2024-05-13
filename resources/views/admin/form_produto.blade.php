@@ -2,16 +2,16 @@
 
 @section('content')
 
-<div class="container center" style="margin-top: 50px; margin-bottom: 50px;">
+<div class="container center">
     @if($modo === 'cadastrar')
-        <h4>Cadastrar produto</h4>
+        <h5>Cadastrar produto</h5>
     @elseif($modo === 'alterar')
-        <h4>Alterar produto</h4>
+        <h5>Alterar produto</h5>
     @endif
     <hr>
 </div>
 
-    <div class="col s12">
+    <div class="col s12 section-margins">
         <form id="form-produto" action="{{ $modo === 'cadastrar' ? route('admin.cadastrar_produto_store') : route('admin.alterar_produto.store', ['id' => $produto->id] ) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @if($modo === 'alterar')
