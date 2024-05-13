@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col s12">
-            <h4><p>Sobre a {{ $siteconfig_brand }}</p></h4>
+            <h5><p>Sobre a {{ $siteconfig_brand }}</p></h5>
             <p>{{ $siteconfig_sobre_empresa }}</p>
         </div>
         <div class="col s12 image-padding black z-depth-5">
@@ -12,7 +12,7 @@
         </div>
 
         <div class="col s12">
-            <h4>Nossos produtos</h4>
+            <h5>Nossos produtos</h5>
             <p>{{ $siteconfig_sobre_produtos }}</p>
         </div>
         <div class="col s12">
@@ -34,7 +34,7 @@
         </div>
 
         <div class="col s12">
-            <h4>Categorias</h4>
+            <h5>Categorias</h5>
         </div>
         <div class="col s12">
             <div class="carousel carousel-slider center">
