@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container center" style="margin-top: 50px; margin-bottom: 50px;">
+    <div class="container center">
         @if($modo === 'cadastrar')
             <h5>Cadastro</h5>
         @elseif($modo === 'alterar')
@@ -11,7 +11,7 @@
         <hr>
     </div>
 
-    <div class="col s12">
+    <div class="col s12 section-margins">
 
         <form action="{{ $modo === 'cadastrar' ? route('users.store') : route('admin.alterar_usuario.store', ['id' => $usuario->id] ) }}" method="POST" enctype="multipart/form-data">
             @csrf
