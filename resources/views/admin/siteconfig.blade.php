@@ -7,7 +7,9 @@
     <hr>
 </div>
 
-<p><h5>Institucional</h5></p>
+<div class="section-margin-top">
+    <h5>Institucional</h5>
+</div>
 <div class="col s12">
     <form id="form-categoria" class="col s12" action="{{ route('admin.siteconfig_store') }}" method="POST" enctype="multipart/form-data">
         @csrf

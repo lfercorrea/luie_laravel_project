@@ -20,7 +20,7 @@
     <div id="confirm-delete-modal" class="modal">
         <div class="modal-content">
             <h5>Confirmar</h5>
-            <p>Tem certeza que deseja excluir? <span class="red-text text-darken-1">Todos os produtos com este tamanho serão desvinculados dele</span>.</p>
+            <p>Tem certeza que deseja excluir? <span class="red-text text-darken-1">Todos os produtos com este tamanho serão desvinculados dele.</span></p>
         </div>
         <div class="modal-footer">
             <form id="delete-form" action="/admin/excluir/tamanho" method="POST">
