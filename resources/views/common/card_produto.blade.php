@@ -8,7 +8,7 @@
 
 <div id="zoom_img_{{ $produto->slug }}" class="modal modal-fixed-footer modal-fixed-width modal-fixed-height">
     <div class="modal-content center">
-        <img src="{{ empty($produto->imagem) ? asset('storage/static/images/no_photo.gif') :  asset('storage/' . $produto->imagem) }}">
+        <img src="{{ empty($produto->imagem) ? asset('storage/static/images/no_photo.gif') :  asset('storage/' . $produto->imagem) }}" class="img-max-width">
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-close waves-effect waves-black btn-flat">Fechar</a>

@@ -186,3 +186,7 @@ main {
 .section-margin-bottom {
     margin-bottom: 50px;
 }
+
+.img-max-width {
+    max-width: 1080px;
+}
